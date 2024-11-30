@@ -24,9 +24,11 @@ class UserFixtures extends Fixture
         $admin->setPhone('+33781570127');
         $admin->setZipcode('69003');
         $admin->setCity('LYON');
-        $admin->setAddress('3ième quartier Sans soucis proche métro');
+        $admin->setLocation('Sans soucis proche metro');
         $admin->setCountry('France');
-        $admin->IsVerified(1);
+        $admin->setDepartment('Rhône');
+        $admin->setRegion('Auvergne-Rhône-Alpes');
+        $admin->setVerified(1);
         $admin->setPassword(
             $this->passwordEncoder->hashPassword($admin, 'admin') // l'admin devra changer le mdp      
         );      
@@ -48,8 +50,11 @@ class UserFixtures extends Fixture
             $user->setPhone($faker->e164PhoneNumber()); 
             $user->setZipcode(str_replace(' ', '', $faker->postcode()));            
             $user->setCity($faker->city());
-            $admin->setAddress($faker->address());
-            $admin->setCountry('$faker->country()');
+            $user->setLocation($faker->secondaryAddress());
+            $user->setCountry(country: 'France');
+            $user->setDepartment($faker->departmentName());
+            $user->setRegion($faker->region());
+            $user->setVerified(0);
             $user->setPassword(
                 $this->passwordEncoder->hashPassword($user, $faker->password())    
             );

@@ -45,19 +45,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $city = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 50)]
     private ?string $zipcode = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address = null;
+    #[ORM\Column(length: 255)]
+    private ?string $location = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $country = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $department = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $region = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -207,14 +207,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getLocation(): ?string
     {
-        return $this->address;
+        return $this->location;
     }
 
-    public function setAddress(string $address): static
+    public function setLocation(string $location): static
     {
-        $this->address = $address;
+        $this->location = $location;
 
         return $this;
     }
