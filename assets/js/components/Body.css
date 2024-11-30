@@ -1,0 +1,115 @@
+.body {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-title-color);
+  }
+  
+  .body.dark {
+    /*background-color: var(--background-color-dark);*/
+    color: var(--text-title-color-dark);
+  }
+  
+  .body.dark svg, .body.dark .footerSVG {  
+    padding:0;
+    margin:0;
+    background-color: var(--background-color-dark);
+  }
+
+  p {
+    color: var(--p-color);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bolder;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--hover-color);
+  }
+
+  hr.grad {
+    clear: both;
+    margin: 0;
+    padding: 0;    
+    border-bottom: 2px solid black;
+  }
+
+  /* DIVISIONS DU BODY POUR LE BACKGROUND */
+  .posts-content, .community-content, .innovation-content {
+    width: 100%;
+    min-height: 600px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .products-content, .videos-content {
+    width: 100%;
+    min-height: 600px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .body.dark .posts-content, .body.dark .community-content, .body.dark .innovation-content {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .body.dark .products-content, .body.dark .videos-content {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .contact-content {
+    width: 100%;
+    min-height: 600px;
+    background: hsla(0, 0%, 22%, 1);
+    background: linear-gradient(90deg, hsla(0, 0%, 22%, 1) 0%, hsla(0, 0%, 50%, 1) 75%);
+    background: -moz-linear-gradient(90deg, hsla(0, 0%, 22%, 1) 0%, hsla(0, 0%, 50%, 1) 75%);
+    background: -webkit-linear-gradient(90deg, hsla(0, 0%, 22%, 1) 0%, hsla(0, 0%, 50%, 1) 75%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#393939", endColorstr="#7F7F7F", GradientType=1 );
+  }
+
+  /* BUTTON LOGIN LOGOUT */
+  .auth-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .login-button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 1px var(--text-shadow-color); 
+  }
+
+  .logout-button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 1px var(--text-shadow-color); 
+  }
+
+  .login-button:hover, .logout-button:hover {
+    color: var(--hover-color);
+    text-shadow: 1px 1px 1px var(--text-shadow-color); 
+  }
+
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  }
+    

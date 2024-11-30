@@ -1,0 +1,13 @@
+.innovation {
+    width: 80%;
+    padding: 40px 20px;
+    text-align: center;
+    margin: 0 auto;   
+}
+
+.innovation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+  

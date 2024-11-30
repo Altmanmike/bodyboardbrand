@@ -1,0 +1,51 @@
+.contact-form {
+    max-width: 600px;
+    /*margin: 0 auto; // pour le footerSVG*/
+    margin: 50px auto 0;
+    background-color: var(--background-color);
+    color: var(--text-title-color);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 4px 3px 6px var(--box-shadow-color);
+  }
+
+  .body.dark .contact-form {
+    background-color: var(--background-color-dark);
+    color: var(--text-title-color-dark);
+  }
+
+  .contact-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-form button {
+    background-color: var(--primary-color);
+    box-shadow: 2px 2px 2px var(--text-shadow-color);
+    color: var(--text-title-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .contact-form button:hover {
+    background-color: var(--hover-color);
+  }
+  

@@ -1,0 +1,35 @@
+.products {
+  width: 80%;
+  padding: 40px 20px;
+  text-align: center;
+  margin: 0 auto; 
+}
+
+.products h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.products-page {
+  padding: 0;
+}
+
+.categories-large {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
+  align-items: stretch;
+}

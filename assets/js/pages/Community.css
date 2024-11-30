@@ -1,0 +1,67 @@
+.community {
+  width: 80%;
+  padding: 40px 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-areas: 
+    "leader leader"
+    "pro1 pro2"
+    "junior1 junior2"
+    "photo1 photo2"
+    "coord dev";
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-content: space-between;
+  align-items: start;
+  justify-items: stretch;
+}
+
+.member-card {
+  min-width: 500px;
+  max-width: 1200px;
+  min-height: 300px;
+  max-height: 400px;
+}
+
+.leader-card {
+  grid-area: leader;
+  background: #f3f4f6;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.pro-card, .junior-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.small-card {
+  background: #e5e7eb;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .community-grid {
+    justify-items: center;
+  }
+  .member-card {
+    min-width: 150px;
+    max-width: 250px;
+  }
+}
+
+  

@@ -1,10 +1,11 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
-import './styles/app.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './styles/App.css';
+import App from './js/App';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
