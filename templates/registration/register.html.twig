@@ -7,17 +7,38 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <section class="container w-50 text-center my-5">
+        <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_start(registrationForm) }}
+            <fieldset class="my-3">
+                <legend><h2 class="my-3">Identity</h2></legend>
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+            </fieldset>
+            <fieldset class="my-3">
+                <legend><h2>Informations</h2></legend>
+                {{ form_row(registrationForm.phone) }}
+                {{ form_row(registrationForm.location) }}
+                {{ form_row(registrationForm.city) }}                                        
+                {{ form_row(registrationForm.zipcode) }}
+                {{ form_row(registrationForm.country) }}
+                {{ form_row(registrationForm.department) }}
+                {{ form_row(registrationForm.region) }}
+            </fieldset>
+            <fieldset class="my-3">
+                <legend><h2>Security</h2></legend>
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            </fieldset>
+            {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <button type="submit" class="button-register">Register</button>
+        {{ form_end(registrationForm) }}
+    </section>
+
 {% endblock %}

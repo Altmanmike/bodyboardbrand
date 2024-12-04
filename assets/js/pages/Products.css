@@ -33,3 +33,11 @@
   justify-items: center;
   align-items: stretch;
 }
+
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .products {
+      width: 100%;
+    }
+}

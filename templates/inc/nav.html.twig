@@ -1,0 +1,89 @@
+<hr class="prefull">
+<hr class="full">
+<nav class="navbar navbar-expand-lg navbar navbar-dark" > 
+    <div class="container-fluid menu">
+        <a class="navbar-brand px-3" href="{{ path('app') }}"><img src="{{ asset('assets/logo-default.png') }}" alt="logo" class="logo-image"/></a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end navbar-text" id="navbarNav">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item mx-1">
+                    <a class="nav-link active" href="{{ path('app') }}"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app') }}#products"><i class="fas fa-shopping-cart"></i> Products</a>                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app') }}#community"><i class="fas fa-users"></i> Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app') }}#videos"><i class="fas fa-camera"></i> Videos</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app') }}#innovation"><i class="fas fa-info"></i> Innovation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app') }}#contact"><i class="fas fa-phone"></i> Contact</a>
+                </li>   
+            </ul>     
+        </div>
+        <div class="collapse navbar-collapse justify-content-end navbar-text" id="navbarNav">
+            {% if app.user %}                
+                <div class="dropdown text-center">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Logon 
+                  </a>
+                  <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                    {% if app.user.roles == '["ROLE_ADMIN"]' %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_admin_dash', {id: app.user.id}) }}"><i class="fas fa-address-card"></i> Dashboard</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_user_dash', {id: app.user.id}) }}"><i class="fas fa-address-card"></i> Dashboard</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_user', {id: app.user.id}) }}"><i class="fas fa-user-edit"></i> Profile</a>
+                    </li>   
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_user_cart', {id: app.user.id}) }}"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>                  
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_pre_logout') }}"><i class="fas fa-sign-out-alt"></i> Logoout</a>
+                    </li>                                        
+                  </ul>
+                </div> 
+            {% else %}
+                <ul class="navbar-nav text-center"> 
+                    <li class="nav-item mx-1">
+                        <a class="nav-link"  href="{{ path('app_login') }}" ><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav text-center"> 
+                    <li class="nav-item mx-1">
+                        <a class="nav-link"  href="{{ path('app_register') }}" ><i class="fas fa-user-edit"></i> Register</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+        
+<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0974F1" fill-opacity="1" d="M0,256L1440,160L1440,0L0,0Z"></path></svg>--> 
+
+<div class="container">
+
+    <!--<?php if(isset($_SESSION['flash'])): ?>
+        <?php foreach($_SESSION['flash'] as $type => $message): ?>
+            <div class="w-50 mx-auto text-center alert alert-<?= $type; ?>">
+                <?= $message; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['flash']); ?>
+    <?php endif; ?>-->
+    
+</div>    

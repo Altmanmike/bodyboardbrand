@@ -1,6 +1,5 @@
 import React from 'react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
-import Header from './components/Header';
 import Carousel from './pages/Carousel';
 import Body from './components/Body';
 import Footer from './components/Footer';
@@ -15,8 +14,6 @@ const AppContent = () => {
       <div id="scrollUp" >
           <a href="#top"><img src={toTopButton} alt="GO TOP"/></a>
       </div>
-      <hr class="full"></hr>      
-      <Header />
       <hr class="grad"></hr>
       <Carousel />      
       <Body />    

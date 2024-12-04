@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -71,6 +71,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    public function __construct()
+    {     
+        $this->createdAt = new \DateTimeImmutable();
+        $this->lastLoginAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

@@ -4,6 +4,8 @@ import ProductCategoryCard from '../components/ProductCategoryCard';
 import './Products.css';
 import KzBoard01 from '../../imgs/products/kz-board-01.png';
 import KzBoard02 from '../../imgs/products/kz-board-02.png';
+import KzBoard03 from '../../imgs/products/kz-board-03.png';
+import KzBoard04 from '../../imgs/products/kz-board-04.png';
 import KzFins01 from '../../imgs/products/kz-fins-01.png';
 import KzFinsLeash from '../../imgs/products/kz-fins-leash.png';
 import KzBoardLeash from '../../imgs/products/kz-board-leash.png';
@@ -20,22 +22,24 @@ const Products = () => {
     boards: [
       { id: 1, title: 'Board Alpha', image: KzBoard01, sizes: ['40', '41', '42', '43', '44'] },
       { id: 2, title: 'Board Omega', image: KzBoard02, sizes: ['40', '41', '42', '43', '44'] },
+      { id: 3, title: 'Board Beta', image: KzBoard03, sizes: ['40', '41', '42', '43', '44'] },
+      { id: 4, title: 'Board Zeta', image: KzBoard04, sizes: ['40', '41', '42', '43', '44'] },
     ],
     gears: [
-      { id: 3, title: 'Fins Alpha', image: KzFins01, sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'] },
-      { id: 4, title: 'Leash Alpha', image: KzFinsLeash, sizes: ['L'] },
-      { id: 5, title: 'Leash Omega', image: KzBoardLeash, sizes: ['L'] },
+      { id: 5, title: 'Fins Alpha', image: KzFins01, sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'] },
+      { id: 6, title: 'Leash Alpha', image: KzFinsLeash, sizes: ['L'] },
+      { id: 7, title: 'Leash Omega', image: KzBoardLeash, sizes: ['L'] },
     ],
     clothing: [
-      { id: 6, title: 'Sweat Alpha', image: KzSweatBlack, sizes: ['S', 'M', 'L', 'XL'] },
-      { id: 7, title: 'Sweat Omega', image: KzSweatWhite, sizes: ['S', 'L', 'XL', 'XXL'] },
-      { id: 8, title: 'Cap Alpha', image: KzCapBlack, sizes: ['L'] },
-      { id: 9, title: 'Cap Omega', image: KzCapRed, sizes: ['L'] },
+      { id: 8, title: 'Sweat Alpha', image: KzSweatBlack, sizes: ['S', 'M', 'L', 'XL'] },
+      { id: 9, title: 'Sweat Omega', image: KzSweatWhite, sizes: ['S', 'L', 'XL', 'XXL'] },
+      { id: 10, title: 'Cap Alpha', image: KzCapBlack, sizes: ['L'] },
+      { id: 11, title: 'Cap Omega', image: KzCapRed, sizes: ['L'] },
     ],
     accessories: [
-      { id: 10, title: 'Mug Alpha', image: KzMugBlack, sizes: ['L'] },
-      { id: 11, title: 'Key Alpha', image: KzKeyRing, sizes: ['L'] },
-      { id: 12, title: 'Sticker Alpha', image: KzSticker, sizes: ['L'] },
+      { id: 12, title: 'Mug Alpha', image: KzMugBlack, sizes: ['L'] },
+      { id: 13, title: 'Key Alpha', image: KzKeyRing, sizes: ['L'] },
+      { id: 14, title: 'Sticker Alpha', image: KzSticker, sizes: ['L'] },
     ],
   };
 

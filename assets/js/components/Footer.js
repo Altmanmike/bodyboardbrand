@@ -18,14 +18,14 @@ const Footer = () => {
     <footer className={`footer ${isDarkMode ? 'dark' : ''}`}>      
       <div className="footer-sections">
         {/* About Section */}
-        <div className="footer-section">
+        <div className="footer-about">
           <h4>About K&Z</h4>
           <p>
             K&Z is a bodyboarding brand dedicated to innovation and performance, supporting riders worldwide.
           </p>
         </div>
         {/* Links Section */}
-        <div className="footer-section">
+        <div className="footer-links">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#home">Home</a></li>
@@ -37,9 +37,9 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact Section */}
+        {/* Logo Section */}
         <div
-          className="logo"
+          className="footer-logo"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -50,17 +50,17 @@ const Footer = () => {
           />
         </div>
 
-        {/* Contact Section */}
-        <div className="footer-section">
+        {/* Infos Section */}
+        <div className="footer-infos">
           <h4>Contact Us</h4>
           <p>Email: <a href="mailto:support@kz.fr">support@kz.fr</a></p>
           <p>Phone: +33 08 11 22 33 44</p>
           <p>Location: 123 Ocean Drive, Morey City</p>
         </div>
         {/* Social Media Section */}
-        <div className="footer-section">
+        <div className="footer-social">
           <h4>Follow Us</h4>
-          <ul className="social-links">
+          <ul>
             <li><a href="https://discord.com"><DiscordIcon /></a></li>
             <li><a href="https://whatsup.com"><WhatsappIcon /></a></li>
             <li><a href="https://instagram.com"><InstagramIcon /></a></li>
@@ -69,11 +69,11 @@ const Footer = () => {
             <li><a href="https://youtube.com"><YoutubeIcon /></a></li>
           </ul>
         </div>
-      </div>
-      {/* Bottom Bar */}
-      <div className="footer-bottom">
-        <p>&copy; 2024 K&Z. All rights reserved.</p>
-      </div>
+        {/* Bottom Bar */}
+        <div className="footer-bottom">
+          <p>&copy; 2024 K&Z. All rights reserved.</p>
+        </div>
+      </div>      
     </footer>
   );
 };
