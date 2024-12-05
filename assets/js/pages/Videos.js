@@ -1,6 +1,6 @@
 // src/pages/Videos.js
 import React from 'react';
-import VideoCard from '../components/VideoCard';
+import VideoCard from '../components/cards/VideoCard';
 import './Videos.css';
 
 const Videos = () => {

@@ -1,8 +1,8 @@
 import React, { useState }  from 'react';
 import { useTheme } from '../context/ThemeContext';
 import './Footer.css';
-import logoDefault from '../../imgs/logo-default.png';
-import logoHover from '../../imgs/logo-hover.png';
+import logoDefault from '../../imgs/logo.png';
+import logoHover from '../../imgs/logo-hov.png';
 import DiscordIcon from '../icons/DiscordIcon';
 import WhatsappIcon from '../icons/WhatsappIcon';
 import InstagramIcon from '../icons/InstagramIcon';

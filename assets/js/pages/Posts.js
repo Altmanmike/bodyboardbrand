@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from '../components/PostCard';
+import PostCard from '../components/cards/PostCard';
 import './Posts.css';
 import ImgPost01 from '../../imgs/posts/waves.jpg';
 import ImgPost02 from '../../imgs/posts/tricks.jpg';
@@ -31,7 +31,7 @@ const Posts = () => {
   ];
 
   return (
-    <section id="posts" className="posts">
+    <section id="posts" className="posts">      
       <h2>Latest Articles</h2>
       <div className="posts-grid">
         {posts.map((post, index) => (

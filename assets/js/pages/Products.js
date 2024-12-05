@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ProductCard from '../components/ProductCard';
-import ProductCategoryCard from '../components/ProductCategoryCard';
+import ProductCard from '../components/cards/ProductCard';
+import ProductCategoryCard from '../components/cards/ProductCategoryCard';
 import './Products.css';
 import KzBoard01 from '../../imgs/products/kz-board-01.png';
 import KzBoard02 from '../../imgs/products/kz-board-02.png';

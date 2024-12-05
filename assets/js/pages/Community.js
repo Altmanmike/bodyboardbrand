@@ -1,5 +1,5 @@
 import React from 'react';
-import MemberCard from '../components/MemberCard';
+import MemberCard from '../components/cards/MemberCard';
 import './Community.css';
 import ImgLeader from '../../imgs/members/leader.jpg';
 import ImgPro1 from '../../imgs/members/pro1.jpg';

@@ -14,7 +14,7 @@ const AppContent = () => {
       <div id="scrollUp" >
           <a href="#top"><img src={toTopButton} alt="GO TOP"/></a>
       </div>
-      <hr class="grad"></hr>
+      <hr class="between"></hr>
       <Carousel />      
       <Body />    
       <Footer />

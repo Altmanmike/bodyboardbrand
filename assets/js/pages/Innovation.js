@@ -1,5 +1,5 @@
 import React from 'react';
-import InnovationCard from '../components/InnovationCard';
+import InnovationCard from '../components/cards/InnovationCard';
 import './Innovation.css';
 import ImgInnov01 from '../../imgs/innovation/stringers.jpg';
 import ImgInnov02 from '../../imgs/innovation/fins.jpg';

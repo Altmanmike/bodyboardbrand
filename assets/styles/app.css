@@ -72,6 +72,9 @@ mark {
 
 :root {
   /* Couleurs principales pour le mode clair */
+  --primary-color: white; 
+  --hover-color: #222222; 
+  --text-shadow-color: dodgerblue;
   --background-color: white;
   --background-color-dark: black;
   --text-title-color: black;
@@ -80,10 +83,7 @@ mark {
   --link-color: blue;
   --link-color-dark: yellow;
   --link-hover-color: green;
-  --link-hover-color-dark: orange;    
-  --primary-color: crimson; 
-  --hover-color: darkviolet; 
-  --text-shadow-color: dodgerblue;
+  --link-hover-color-dark: orange; 
   --box-shadow-color: rgba(0, 0, 0, 0.2);
   --categoryCard-color: rgba(255, 255, 255, 0.2);
   --card-background-color: #c5c5c585;
@@ -100,8 +100,8 @@ body {
 }
 
 html {
-  --scrollbarBG: crimson;
-  --thumbBG: darkviolet; 
+  --scrollbarBG: var(--primary-color);
+  --thumbBG: var(--hover-color); 
 }
 
 body::-webkit-scrollbar {
@@ -152,6 +152,13 @@ header, main, footer {
 	width: 70px;    
 }
 
+hr.between {
+  clear: both;
+  margin: 0;
+  padding: 0;    
+  border-bottom: 0px solid black;
+}
+
 hr.prefull {
   margin: 0;
   padding: 0;
@@ -195,24 +202,18 @@ section {
  }
 
  nav {
-  background: hsla(152, 100%, 50%, 1);
-  background: linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
-  background: -moz-linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
-  background: -webkit-linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00ff87", endColorstr="#60efff", GradientType=1 );
-  /*color:var(--primary-color);*/
+  background: hsla(236, 100%, 8%, 1);
+  background: linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  background: -moz-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  background: -webkit-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000328", endColorstr="#092C56", GradientType=1 );
  }
-/*
-.navbar-global .navbar-user > li > a {
-  color: white;
-}*/
+
 
 .navbar-primary {
-  /*clear: both;*/
   background-color: #242428;
   bottom: 0px;
   left: 0px;
-  /*position: absolute;  mis dans la div */
   top: 102px;
   width: 240px;
   min-width: 240px;
@@ -243,7 +244,6 @@ section {
 }
 
 .btn-expand-collapse {
-    /*position: absolute;*/
     display: block;
     left: 0px;
     bottom:0;
@@ -333,19 +333,6 @@ section {
   display: flex;
   flex-direction: row;
 }
-/*
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-}
-
-.nav-links li {
-  position: relative;
-}*/
 
 a {
   text-decoration: none;
@@ -390,10 +377,7 @@ a:hover {
   position: absolute;
   top: 100%;
   left: 0;
-  /*background-color: var(--background-color);*/
   padding: 10px 0;
-  /*box-shadow: 0 2px 3px var(--box-shadow-color);*/
-  /*border-radius: 2px;*/
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -433,7 +417,6 @@ a:hover {
   background-color: var(--hover-color);
 }
 
-
 /* Responsivité */
 @media (max-width: 768px) {
   .menu-toggle {
@@ -442,8 +425,6 @@ a:hover {
     cursor: pointer;
   }
   section {
-    /*margin: 10px;
-    padding: 15px;*/
     margin: 0;
     padding: 0;
   }
