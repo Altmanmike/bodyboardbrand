@@ -162,7 +162,7 @@ hr.between {
 hr.prefull {
   margin: 0;
   padding: 0;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
 }
 
 hr.full {
@@ -336,7 +336,7 @@ section {
 
 a {
   text-decoration: none;
-  color: var(--primary-color)!important;
+  color: var(--text-title-color)!important;
   text-shadow: 1px 1px 1px var(--text-shadow-color)!important; 
   padding: 8px 15px;
   cursor: pointer;
@@ -344,9 +344,12 @@ a {
 }
 
 a:hover {
-  color: var(--hover-color)!important;
+  color: var(--text-title-color-dark)!important;
   border-radius: 5px;
-  text-shadow: 1px 1px 1px var(--text-shadow-color)!important; 
+  text-shadow: 1px 3px 2px var(--text-title-color)!important; 
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .menu-icon {

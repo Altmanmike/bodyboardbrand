@@ -23,7 +23,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
-
+  /*
   a {
     color: var(--primary-color);
     text-decoration: none;
@@ -33,7 +33,7 @@
 
   a:hover {
     color: var(--hover-color);
-  }
+  }*/
 
   hr.grad {
     clear: both;
@@ -176,6 +176,14 @@
     margin: 0;
   }
 
+  /* FOOTER SVG */
+  .footerSVG-content {
+    background: hsla(236, 100%, 8%, 1);
+    background: linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+    background: -moz-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+    background: -webkit-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000328", endColorstr="#092C56", GradientType=1 );
+  }
 
   /* Responsivité */
   @media (max-width: 768px) {

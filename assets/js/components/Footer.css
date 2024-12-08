@@ -1,5 +1,10 @@
 .footer {
-  background-color: var(--background-color);
+  background: hsla(236, 100%, 8%, 1);
+  background: linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  background: -moz-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  background: -webkit-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000328", endColorstr="#092C56", GradientType=1 );
+  
   color: var(--text-title-color);
   padding: 0 20px;
   display: flex;
@@ -65,8 +70,9 @@
 }
 
 .footer-links ul li a, .footer-social ul li a {
-  color: var(--primary-color); 
   text-decoration: none;
+  color: var(--text-title-color)!important;
+  text-shadow: 1px 1px 1px var(--text-shadow-color)!important; 
 }
 
 .footer-social ul li a {
@@ -74,7 +80,11 @@
 }
 
 .footer-links ul li a:hover, .footer-social ul li a:hover {
-  color: var(--hover-color);
+  color: var(--text-title-color-dark)!important;
+  text-shadow: 1px 3px 2px var(--text-title-color)!important; 
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .footer-sections {
