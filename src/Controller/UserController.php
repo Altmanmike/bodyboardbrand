@@ -9,6 +9,45 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
+    #[Route('/api/users', name: 'api_user_all')]
+    public function getCollection(): Response
+    {
+        $users = [
+            [
+                'email' => 'altman_mike@yahoo.fr', 
+                'roles' => '["ROLE_ADMIN"]',
+                'firstname' => 'Michael',
+                'lastname' => 'ALTMAN',
+                'phone' => '0781570127',
+                'city' => 'Lyon',
+                'zipcode' => '69003',
+                'location' => '10 rue sans soucis',
+                'country' => 'france',
+                'department' => '',
+                'region' => '',
+                'created_at' => 'gffghf',
+                'last_login_at' => 'fghfgh',
+            ],
+            [
+                'email' => 'pguillaume@fontaine.com', 
+                'roles' => '["ROLE_USER"]',
+                'firstname' => 'zerzerzer',
+                'lastname' => 'zerzer',
+                'phone' => '15784589',
+                'city' => 'Lyon',
+                'zipcode' => '69003',
+                'location' => 'fghfghfg hfhgfh',
+                'country' => '',
+                'department' => '',
+                'region' => '',
+                'created_at' => 'fsfsdf',
+                'last_login_at' => 'sdfsdf',
+            ],
+            
+        ];
+        return $this->json($users);
+    }
+
     #[Route('/user', name: 'app_user')]
     public function index(UserRepository $repo): Response
     {

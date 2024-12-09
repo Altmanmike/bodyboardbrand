@@ -4,7 +4,7 @@
   background: -moz-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
   background: -webkit-linear-gradient(180deg, hsla(236, 100%, 8%, 1) 0%, hsla(213, 81%, 19%, 1) 0%, hsla(210, 100%, 56%, 1) 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000328", endColorstr="#092C56", GradientType=1 );
-  
+
   color: var(--text-title-color);
   padding: 0 20px;
   display: flex;
@@ -112,6 +112,9 @@
 
 .footer-infos a:hover {
   color: var(--hover-color);
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .footer-bottom {

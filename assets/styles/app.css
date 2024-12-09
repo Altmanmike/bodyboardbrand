@@ -418,6 +418,7 @@ a:hover {
 
 .button-login:hover, .button-register:hover {
   background-color: var(--hover-color);
+  color: var(--text-title-color-dark);
 }
 
 /* Responsivité */
