@@ -28,12 +28,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('BodyboardBrand');
+            ->setTitle('BodyboardBrand')
+            ->setTitle('<div style="text-align:center;"><img src="/assets/logo.png" alt="logo" class="logo-image" style="width:150px;"/><span class="text-small">Bodyboards</span></div>');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app');
         yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Posts', 'fas fa-pencil-alt', Post::class);
         yield MenuItem::linkToCrud('Products', 'fas fa-shopping-cart', Product::class);
