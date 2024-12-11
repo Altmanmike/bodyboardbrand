@@ -6,11 +6,10 @@ use App\Entity\Video;
 use App\Repository\VideoRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class VideoFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private VideoRepository $repo) {}    
+    public function __construct(private VideoRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {
@@ -23,7 +22,6 @@ class VideoFixtures extends Fixture
         $video->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($video);
-        $manager->flush();
 
         // Entrée en bdd de vidéos youtube sélectionnées
         $video = new Video();
@@ -34,7 +32,6 @@ class VideoFixtures extends Fixture
         $video->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($video);
-        $manager->flush();
 
         // Entrée en bdd de vidéos youtube sélectionnées
         $video = new Video();
@@ -45,6 +42,7 @@ class VideoFixtures extends Fixture
         $video->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($video);
+        
         $manager->flush();
  
     }

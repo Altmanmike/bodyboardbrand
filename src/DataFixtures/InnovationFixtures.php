@@ -6,11 +6,10 @@ use App\Entity\Innovation;
 use App\Repository\InnovationRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class InnovationFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private InnovationRepository $repo) {}    
+    public function __construct(private InnovationRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {
@@ -24,7 +23,6 @@ class InnovationFixtures extends Fixture
         $innovation->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($innovation);
-        $manager->flush();
  
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
@@ -36,7 +34,6 @@ class InnovationFixtures extends Fixture
         $innovation->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($innovation);
-        $manager->flush();
 
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
@@ -48,6 +45,7 @@ class InnovationFixtures extends Fixture
         $innovation->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($innovation);
+
         $manager->flush();
     }
 }

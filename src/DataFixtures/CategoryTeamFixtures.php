@@ -2,121 +2,122 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Team;
-use App\Repository\TeamRepository;
+use App\Entity\CategoryTeam;
+use App\Repository\CategoryTeamRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-class TeamFixtures extends Fixture
+class CategoryTeamFixtures extends Fixture
 {
-    public function __construct(private TeamRepository $repo) {}    
+    public function __construct(private CategoryTeamRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {
-        // Teams
-        $team = new Team();
-        $team->setName('Riders');
-        $team->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
-                    Composition :
+        // Entrée en bdd de catégories d'équipes
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('Bodyboarders');
+        $categoryTeam->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
+                    <br>Composition :
                     Leader de l\'équipe : Le rider principal, souvent le visage de la marque.
                     Riders internationaux : Participants réguliers aux compétitions IBA et autres grands circuits.
                     Riders locaux : Représentants régionaux pour promouvoir la marque dans des niches spécifiques (Antilles, Océan Indien, etc.).
                     Ambassadeurs : Pas forcément compétiteurs, mais influents dans la communauté bodyboard (réseaux sociaux, surf shops, etc.).
-                    Activités :
+                    <br>Activités :
                     Compétitions nationales et internationales.
                     Production de contenu (vidéos, photos).
-                    Sessions de test pour les nouveaux produits.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                    Sessions de test pour les nouveaux produits.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
-        
-        $team = new Team();
-        $team->setName('R&D');
-        $team->setDescription('Concevoir et améliorer les produits (planches, palmes, leash, etc.) en intégrant les retours des riders et les tendances du marché.
-                Composition :
+        $manager->persist($categoryTeam);
+
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('R&D');
+        $categoryTeam->setDescription('Concevoir et améliorer les produits (planches, palmes, leash, etc.) en intégrant les retours des riders et les tendances du marché.
+                <br>Composition :
                 Ingénieurs matériaux : Pour travailler sur les stingers, les noyaux, et les revêtements.
                 Designers produit : Création des designs innovants (formes, graphismes).
                 Testeurs techniques : Riders impliqués dans les phases de tests intensifs.
                 Responsables CAO et simulation : Pour modéliser les équipements et simuler leur comportement sur des vagues.
-                Activités :
+                <br>Activités :
                 Prototypage et tests des produits.
                 Innovation sur les formes et les matériaux.
                 Analyse des impacts (A.R.S., Invert, etc.).
-                Collaboration avec les riders pour améliorer les produits.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                Collaboration avec les riders pour améliorer les produits.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
+        $manager->persist($categoryTeam);
 
-        $team = new Team();
-        $team->setName('Marketing and Communication');
-        $team->setDescription('Assurer la visibilité et la promotion de la marque auprès des communautés locales et internationales.
-                Composition :
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('Marketing and Communication');
+        $categoryTeam->setDescription('Assurer la visibilité et la promotion de la marque auprès des communautés locales et internationales.
+                <br>Composition :
                 Responsable marketing : Définition de la stratégie globale.
                 Community managers : Gestion des réseaux sociaux (YouTube, Instagram, TikTok).
                 Créateurs de contenu : Photographe, vidéaste, monteur.
                 Relations presse : Contact avec les médias spécialisés et généralistes.
                 Partenariats : Responsable des collaborations (sponsors, collaborations avec d\'autres marques).
-                Activités :
+                <br>Activités :
                 Gestion des campagnes publicitaires.
                 Organisation d’événements (contests, clinics).
                 Création de contenu promotionnel (teasers, tutos, vlog).
-                Suivi des tendances de la communauté bodyboard.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                Suivi des tendances de la communauté bodyboard.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
+        $manager->persist($categoryTeam);
 
-        $team = new Team();
-        $team->setName('E-Commerce and Sales');
-        $team->setDescription('Gérer les ventes en ligne et maximiser les revenus.
-                Composition :
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('E-Commerce and Sales');
+        $categoryTeam->setDescription('Gérer les ventes en ligne et maximiser les revenus.
+                <br>Composition :
                 Responsable e-commerce : Supervision de la boutique en ligne.
                 Web développeurs : Maintenance et développement de la plateforme (ReactJS, Symfony).
                 Logistique : Gestion des stocks, préparation des commandes.
                 Analystes de données : Suivi des ventes et des retours clients.
-                Activités :
+                <br>Activités :
                 Gestion du site e-commerce (SEO, UX).
                 Lancement de nouvelles collections et promotions.
-                Optimisation des process logistiques.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                Optimisation des process logistiques.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
+        $manager->persist($categoryTeam);
 
-        $team = new Team();
-        $team->setName('S.A.V');
-        $team->setDescription('Offrir un support client de qualité et traiter les demandes des clients et partenaires.
-                Composition :
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('S.A.V');
+        $categoryTeam->setDescription('Offrir un support client de qualité et traiter les demandes des clients et partenaires.
+                <br>Composition :
                 Responsables support : Traitement des tickets clients (retours, réparations, etc.).
                 Techniciens produits : Pour les réparations et conseils techniques.
                 Ambassadeurs service : Riders ou experts disponibles pour des tutoriels en ligne ou des FAQ.
-                Activités :
+                <br>Activités :
                 Suivi des commandes et réclamations.
                 Conseils personnalisés pour les clients.
-                Organisation d\'ateliers et webinaires pour expliquer les produits.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                Organisation d\'ateliers et webinaires pour expliquer les produits.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
+        $manager->persist($categoryTeam);
 
-        $team = new Team();
-        $team->setName('Administration and Staff');
-        $team->setDescription('Assurer la bonne gestion de l’entreprise sur le plan administratif et financier.
-                Composition :
+        $categoryTeam = new CategoryTeam();
+        $categoryTeam->setName('Administration and Staff');
+        $categoryTeam->setDescription('Assurer la bonne gestion de l’entreprise sur le plan administratif et financier.
+                <br>Composition :
                 Directeur général : Superviseur de toutes les équipes.
                 Responsable RH : Gestion des membres et des recrutements.
                 Responsable financier : Gestion des budgets et investissements.
-                Activités :
+                <br>Activités :
                 Planification stratégique.
                 Gestion des contrats des riders et des employés.
-                Recherche de financements ou investisseurs.');
-        $team->setCreatedAt(new \DateTimeImmutable());
-        $team->setUpdatedAt(new \DateTimeImmutable());
+                Recherche de financements ou investisseurs.'); 
+        $categoryTeam->setCreatedAt(new \DateTimeImmutable());
+        $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
-        $manager->persist($team);
+        $manager->persist($categoryTeam);
 
-        $manager->flush(); 
+        $manager->flush();
+ 
     }
 }

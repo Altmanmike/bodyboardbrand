@@ -6,11 +6,10 @@ use App\Entity\Post;
 use App\Repository\PostRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class PostFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private PostRepository $repo) {}    
+    public function __construct(private PostRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {
@@ -24,7 +23,6 @@ class PostFixtures extends Fixture
         $post->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($post);
-        $manager->flush();
  
         // Entrée en bdd d'articles
         $post = new Post();
@@ -36,7 +34,6 @@ class PostFixtures extends Fixture
         $post->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($post);
-        $manager->flush();
 
         // Entrée en bdd d'articles
         $post = new Post();
@@ -48,6 +45,7 @@ class PostFixtures extends Fixture
         $post->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($post);
+        
         $manager->flush();
     }
 }

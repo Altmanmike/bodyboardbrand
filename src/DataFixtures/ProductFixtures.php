@@ -6,11 +6,10 @@ use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProductFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private ProductRepository $repo) {}    
+    public function __construct(private ProductRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {
@@ -29,7 +28,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits
         $product = new Product();
@@ -45,7 +43,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits
         $product = new Product();
@@ -61,7 +58,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits
         $product = new Product();
@@ -77,7 +73,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // BOARDS
         // Entrée en bdd de produits
@@ -94,7 +89,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // GEARS
         // Entrée en bdd de produits : palmes
@@ -111,7 +105,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : leash for fins
         $product = new Product();
@@ -127,7 +120,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : leash for fins
         $product = new Product();
@@ -143,7 +135,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : leash for board
         $product = new Product();
@@ -159,7 +150,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // CLOTHING
         // Entrée en bdd de produits : sweat
@@ -176,7 +166,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : sweat
         $product = new Product();
@@ -192,7 +181,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : cap
         $product = new Product();
@@ -208,7 +196,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : cap
         $product = new Product();
@@ -224,7 +211,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // ACCESORIES
         // Entrée en bdd de produits : acces
@@ -241,7 +227,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : acces
         $product = new Product();
@@ -257,7 +242,6 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
-        $manager->flush();
 
         // Entrée en bdd de produits : acces
         $product = new Product();
@@ -273,6 +257,7 @@ class ProductFixtures extends Fixture
         $product->setUpdatedAt(new \DateTimeImmutable());
         /*$this->addReference('user_4', $user);*/
         $manager->persist($product);
+        
         $manager->flush();
     }
 }
