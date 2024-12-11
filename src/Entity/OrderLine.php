@@ -2,28 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryPostRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\OrderLineRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryPostRepository::class)]
-class CategoryPost
+#[ORM\Entity(repositoryClass: OrderLineRepository::class)]
+class OrderLine
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[ORM\Column(nullable: true)]
+    private ?float $price = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
@@ -36,26 +35,26 @@ class CategoryPost
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getQuantity(): ?int
     {
-        return $this->name;
+        return $this->quantity;
     }
 
-    public function setName(string $name): static
+    public function setQuantity(?int $quantity): static
     {
-        $this->name = $name;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getPrice(): ?float
     {
-        return $this->description;
+        return $this->price;
     }
 
-    public function setDescription(string $description): static
+    public function setPrice(?float $price): static
     {
-        $this->description = $description;
+        $this->price = $price;
 
         return $this;
     }
@@ -77,7 +76,7 @@ class CategoryPost
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 

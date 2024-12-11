@@ -20,12 +20,17 @@ class CategoryProduct
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    public function __construct()
+    {     
+        $this->createdAt = new \DateTimeImmutable();       
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
