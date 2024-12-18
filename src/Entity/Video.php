@@ -6,6 +6,7 @@ use App\Repository\VideoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
+#[ORM\Table(name: '`video`')]
 class Video
 {
     #[ORM\Id]
@@ -27,6 +28,13 @@ class Video
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    private ?categoryVideo $category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {     
@@ -94,6 +102,30 @@ class Video
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?categoryVideo
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?categoryVideo $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

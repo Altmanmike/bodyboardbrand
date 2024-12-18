@@ -34,13 +34,15 @@ class UserFixtures extends Fixture
         );      
         $admin->setCreatedAt(new \DateTimeImmutable());
         $admin->setLastLoginAt(new \DateTimeImmutable());
-
+       
+        $this->addReference('user_0', $admin);
+        
         $manager->persist($admin);
 
         // Génération d'une DataFixtures de fausses données d'utilisateurs via FakerPHP
         $faker = Factory::create('fr_FR');
 
-        for($i=0; $i < 10; $i++)
+        for($i=1; $i <= 10; $i++)
         {
             $user = new User();
             $user->setEmail($faker->email());
@@ -59,19 +61,30 @@ class UserFixtures extends Fixture
                 $this->passwordEncoder->hashPassword($user, $faker->password())    
             );
             $user->setCreatedAt(new \DateTimeImmutable());
-            $user->setLastLoginAt(new \DateTimeImmutable());
-
-            // on relie les deux fixtures via addReference en gardant des utilisateurs pour nos tickets
-            /*if($i == 10) {
+            $user->setLastLoginAt(new \DateTimeImmutable());   
+            $this->addReference('user_'.$i, $user);    
+            /*if ($i == 1) {
                 $this->addReference('user_1', $user);
-            } elseif ($i == 20) {
+            } elseif ($i == 2) {
                 $this->addReference('user_2', $user);
-            } elseif ($i == 30) {
+            } elseif ($i == 3) {
                 $this->addReference('user_3', $user);
-            } elseif ($i == 40) {
+            } elseif ($i == 4) {
                 $this->addReference('user_4', $user);
+            } elseif ($i == 5) {
+                $this->addReference('user_5', $user);
+            } elseif ($i == 6) {
+                $this->addReference('user_6', $user);
+            } elseif ($i == 7) {
+                $this->addReference('user_7', $user);
+            } elseif ($i == 8) {
+                $this->addReference('user_8', $user);
+            } elseif ($i == 9) {
+                $this->addReference('user_9', $user);
+            } elseif ($i == 10) {
+                $this->addReference('user_10', $user);
             }*/
-
+            
             $manager->persist($user);        
         }
 

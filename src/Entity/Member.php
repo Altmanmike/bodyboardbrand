@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\MemberRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
+#[ORM\Table(name: '`member`')]
 class Member
 {
     #[ORM\Id]
@@ -47,12 +50,26 @@ class Member
     #[ORM\Column(nullable: true)]
     private ?int $ranking = null;
 
+    #[ORM\OneToOne(inversedBy: 'member', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?user $user = null;
+
+    /**
+     * @var Collection<int, team>
+     */
+    #[ORM\ManyToMany(targetEntity: team::class, inversedBy: 'members')]
+    private Collection $teams;
+
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeImmutable $joinDate = null;
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(nullable:true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {     
-        $this->joinDate = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->teams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,16 +207,64 @@ class Member
         $this->ranking = $ranking;
 
         return $this;
+    } 
+
+    public function getUser(): ?user
+    {
+        return $this->user;
     }
 
-    public function getJoinDate(): ?\DateTimeImmutable
+    public function setUser(user $user): static
     {
-        return $this->joinDate;
+        $this->user = $user;
+
+        return $this;
     }
 
-    public function setJoinDate(\DateTimeImmutable $joinDate): static
+    /**
+     * @return Collection<int, team>
+     */
+    public function getTeams(): Collection
     {
-        $this->joinDate = $joinDate;
+        return $this->teams;
+    }
+
+    public function addTeam(team $team): static
+    {
+        if (!$this->teams->contains($team)) {
+            $this->teams->add($team);
+        }
+
+        return $this;
+    }
+
+    public function removeTeam(team $team): static
+    {
+        $this->teams->removeElement($team);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

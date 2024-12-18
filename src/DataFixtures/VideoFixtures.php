@@ -6,8 +6,9 @@ use App\Entity\Video;
 use App\Repository\VideoRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
     public function __construct(private VideoRepository $repo) {}    
 
@@ -20,7 +21,8 @@ class VideoFixtures extends Fixture
         $video->setDescription('Best moments from the K&Z team in 2024 competitions.'); 
         $video->setCreatedAt(new \DateTimeImmutable());
         $video->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $video->setUser($this->getReference('user_0'));
+        $video->setCategory($this->getReference('categoryVideo_0'));
         $manager->persist($video);
 
         // Entrée en bdd de vidéos youtube sélectionnées
@@ -30,7 +32,8 @@ class VideoFixtures extends Fixture
         $video->setDescription('Step-by-step tutorial by our pro riders.'); 
         $video->setCreatedAt(new \DateTimeImmutable());
         $video->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $video->setUser($this->getReference('user_4'));
+        $video->setCategory($this->getReference('categoryVideo_2'));
         $manager->persist($video);
 
         // Entrée en bdd de vidéos youtube sélectionnées
@@ -40,10 +43,19 @@ class VideoFixtures extends Fixture
         $video->setDescription('A day in the life of our junior riders.'); 
         $video->setCreatedAt(new \DateTimeImmutable());
         $video->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $video->setUser($this->getReference('user_6'));
+        $video->setCategory($this->getReference('categoryVideo_4'));
         $manager->persist($video);
         
         $manager->flush();
  
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+            CategoryVideoFixtures::class
+        ]; 
     }
 }

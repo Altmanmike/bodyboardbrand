@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Repository\OrderFullRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
-class Order
+#[ORM\Entity(repositoryClass: OrderFullRepository::class)]
+#[ORM\Table(name: '`orderFull`')]
+class OrderFull
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,9 +31,20 @@ class Order
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $completedAt = null;
 
+    /**
+     * @var Collection<int, orderLine>
+     */
+    #[ORM\OneToMany(targetEntity: orderLine::class, mappedBy: 'orderFull')]
+    private Collection $orderLines;
+
+    #[ORM\ManyToOne(inversedBy: 'orderFulls')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {     
-        $this->createdAt = new \DateTimeImmutable();       
+        $this->createdAt = new \DateTimeImmutable();
+        $this->orderLines = new ArrayCollection();       
     }
     
     public function getId(): ?int
@@ -95,6 +108,48 @@ class Order
     public function setCompletedAt(?\DateTimeImmutable $completedAt): static
     {
         $this->completedAt = $completedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, orderLine>
+     */
+    public function getOrderLines(): Collection
+    {
+        return $this->orderLines;
+    }
+
+    public function addOrderLine(orderLine $orderLine): static
+    {
+        if (!$this->orderLines->contains($orderLine)) {
+            $this->orderLines->add($orderLine);
+            $orderLine->setOrderFull($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLine(orderLine $orderLine): static
+    {
+        if ($this->orderLines->removeElement($orderLine)) {
+            // set the owning side to null (unless already changed)
+            if ($orderLine->getOrderFull() === $this) {
+                $orderLine->setOrderFull(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

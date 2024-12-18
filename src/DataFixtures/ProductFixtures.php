@@ -26,7 +26,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our board product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_0'));
+        $this->addReference('product_0', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits
@@ -41,7 +43,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our board product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_0'));
+        $this->addReference('product_1', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits
@@ -56,7 +60,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our board product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_0'));
+        $this->addReference('product_2', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits
@@ -71,23 +77,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our board product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
-        $manager->persist($product);
-
-        // BOARDS
-        // Entrée en bdd de produits
-        $product = new Product();
-        $product->setTitle('Board Alpha');
-        $product->setCover('../../imgs/products/kz-board-01.png');
-        $product->setImages(['../../imgs/products/kz-board-01.png','../../imgs/products/kz-board-01.png']);
-        $product->setColors(['black','cyan']);
-        $product->setSizes(['41','42','43']);
-        $product->setStock(5);
-        $product->setPrice(250.00);
-        $product->setDescription('Our board product'); 
-        $product->setCreatedAt(new \DateTimeImmutable());
-        $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_0'));
+        $this->addReference('product_3', $product);
         $manager->persist($product);
 
         // GEARS
@@ -103,7 +95,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our fins product for bodyboard'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_1'));
+        $this->addReference('product_4', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : leash for fins
@@ -118,7 +112,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our fins product for bodyboard'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_1'));
+        $this->addReference('product_5', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : leash for fins
@@ -133,7 +129,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our leash for fins product for bodyboard'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_1'));
+        $this->addReference('product_6', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : leash for board
@@ -148,7 +146,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our leash for board product for bodyboard'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_1'));
+        $this->addReference('product_7', $product);
         $manager->persist($product);
 
         // CLOTHING
@@ -164,7 +164,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our sweat product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_2'));
+        $this->addReference('product_8', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : sweat
@@ -179,7 +181,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our sweat product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_2'));
+        $this->addReference('product_9', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : cap
@@ -194,7 +198,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our black cap product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_2'));
+        $this->addReference('product_10', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : cap
@@ -209,7 +215,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our red cap product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_2'));
+        $this->addReference('product_11', $product);
         $manager->persist($product);
 
         // ACCESORIES
@@ -225,7 +233,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our mug product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_3'));
+        $this->addReference('product_12', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : acces
@@ -240,7 +250,9 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our key ring product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_3'));
+        $this->addReference('product_13', $product);
         $manager->persist($product);
 
         // Entrée en bdd de produits : acces
@@ -255,9 +267,19 @@ class ProductFixtures extends Fixture
         $product->setDescription('Our sticker product'); 
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $product->setUser($this->getReference('user_0'));
+        $product->setCategory($this->getReference('categoryProduct_4'));
+        $this->addReference('product_14', $product);
         $manager->persist($product);
         
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+            CategoryProductFixtures::class
+        ]; 
     }
 }

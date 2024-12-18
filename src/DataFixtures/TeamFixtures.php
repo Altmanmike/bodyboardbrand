@@ -6,8 +6,9 @@ use App\Entity\Team;
 use App\Repository\TeamRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class TeamFixtures extends Fixture
+class TeamFixtures extends Fixture implements DependentFixtureInterface
 {
     public function __construct(private TeamRepository $repo) {}    
 
@@ -15,7 +16,7 @@ class TeamFixtures extends Fixture
     {
         // Teams
         $team = new Team();
-        $team->setName('Riders');
+        $team->setName('Bodyboarders Pro');
         $team->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
                     
                 Composition :
@@ -30,11 +31,49 @@ class TeamFixtures extends Fixture
                 Sessions de test pour les nouveaux produits.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_0'));
         $manager->persist($team);
         
         $team = new Team();
-        $team->setName('R&D');
+        $team->setName('Bodyboarders Pro-Amateurs');
+        $team->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
+                    
+                Composition :
+                Leader de l\'équipe : Le rider principal, souvent le visage de la marque.
+                Riders internationaux : Participants réguliers aux compétitions IBA et autres grands circuits.
+                Riders locaux : Représentants régionaux pour promouvoir la marque dans des niches spécifiques (Antilles, Océan Indien, etc.).
+                Ambassadeurs : Pas forcément compétiteurs, mais influents dans la communauté bodyboard (réseaux sociaux, surf shops, etc.).
+                
+                Activités :
+                Compétitions nationales et internationales.
+                Production de contenu (vidéos, photos).
+                Sessions de test pour les nouveaux produits.');
+        $team->setCreatedAt(new \DateTimeImmutable());
+        $team->setUpdatedAt(new \DateTimeImmutable());
+        $team->setCategory($this->getReference('categoryTeam_0'));
+        $manager->persist($team);
+
+        $team = new Team();
+        $team->setName('Bodyboarders Juniors');
+        $team->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
+                    
+                Composition :
+                Leader de l\'équipe : Le rider principal, souvent le visage de la marque.
+                Riders internationaux : Participants réguliers aux compétitions IBA et autres grands circuits.
+                Riders locaux : Représentants régionaux pour promouvoir la marque dans des niches spécifiques (Antilles, Océan Indien, etc.).
+                Ambassadeurs : Pas forcément compétiteurs, mais influents dans la communauté bodyboard (réseaux sociaux, surf shops, etc.).
+                
+                Activités :
+                Compétitions nationales et internationales.
+                Production de contenu (vidéos, photos).
+                Sessions de test pour les nouveaux produits.');
+        $team->setCreatedAt(new \DateTimeImmutable());
+        $team->setUpdatedAt(new \DateTimeImmutable());
+        $team->setCategory($this->getReference('categoryTeam_0'));
+        $manager->persist($team);
+
+        $team = new Team();
+        $team->setName('Ingénieurs');
         $team->setDescription('Concevoir et améliorer les produits (planches, palmes, leash, etc.) en intégrant les retours des riders et les tendances du marché.
                 
                 Composition :
@@ -50,11 +89,29 @@ class TeamFixtures extends Fixture
                 Collaboration avec les riders pour améliorer les produits.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_1'));
+        $manager->persist($team);
+
+        $team = new Team();        
+        $team->setName('Développement web');
+        $team->setDescription('Concevoir le site et ses fonctionnalités en intégrant les retours des utilisateurs.
+                
+                Composition :                
+                Designers : Création des designs innovants (formes, graphismes).
+                Web développeurs : Maintenance et développement de la plateforme (ReactJS, Symfony).
+                Testeurs techniques : Utilisateurs impliqués dans les phases de tests intensifs.                
+                
+                Activités :
+                Tests unitaires.
+                Force de propositions
+                Rédaction des spécificités et cahiers des charges.'); 
+        $team->setCreatedAt(new \DateTimeImmutable());
+        $team->setUpdatedAt(new \DateTimeImmutable());
+        $team->setCategory($this->getReference('categoryTeam_3'));
         $manager->persist($team);
 
         $team = new Team();
-        $team->setName('Marketing and Communication');
+        $team->setName('Managers');
         $team->setDescription('Assurer la visibilité et la promotion de la marque auprès des communautés locales et internationales.
                 
                 Composition :
@@ -68,33 +125,37 @@ class TeamFixtures extends Fixture
                 Gestion des campagnes publicitaires.
                 Organisation d’événements (contests, clinics).
                 Création de contenu promotionnel (teasers, tutos, vlog).
-                Suivi des tendances de la communauté bodyboard.');
+                Suivi des tendances de la communauté bodyboard.');         
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_2'));
         $manager->persist($team);
 
         $team = new Team();
-        $team->setName('E-Commerce and Sales');
+        $team->setName('Responsables');
         $team->setDescription('Gérer les ventes en ligne et maximiser les revenus.
                 
                 Composition :
-                Responsable e-commerce : Supervision de la boutique en ligne.
-                Web développeurs : Maintenance et développement de la plateforme (ReactJS, Symfony).
+                Responsable RH : Gestion des membres et des recrutements.
+                Responsable financier : Gestion des budgets et investissements.
+                Responsable e-commerce : Supervision de la boutique en ligne.                
                 Logistique : Gestion des stocks, préparation des commandes.
                 Analystes de données : Suivi des ventes et des retours clients.
-                
+                                
                 Activités :
+                Planification stratégique.
+                Gestion des contrats des riders et des employés.
+                Recherche de financements ou investisseurs.
                 Gestion du site e-commerce (SEO, UX).
                 Lancement de nouvelles collections et promotions.
-                Optimisation des process logistiques.');
+                Optimisation des process logistiques.'); 
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_3'));
         $manager->persist($team);
 
         $team = new Team();
-        $team->setName('S.A.V');
+        $team->setName('Techniciens');
         $team->setDescription('Offrir un support client de qualité et traiter les demandes des clients et partenaires.
                 
                 Composition :
@@ -108,27 +169,34 @@ class TeamFixtures extends Fixture
                 Organisation d\'ateliers et webinaires pour expliquer les produits.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_4'));
         $manager->persist($team);
 
         $team = new Team();
-        $team->setName('Administration and Staff');
+        $team->setName('Direction');
         $team->setDescription('Assurer la bonne gestion de l’entreprise sur le plan administratif et financier.
-               
+                
                 Composition :
-                Directeur général : Superviseur de toutes les équipes.
+                Directeur général : Superviseur de toutes les équipes.                
                 Responsable RH : Gestion des membres et des recrutements.
                 Responsable financier : Gestion des budgets et investissements.
-                
+
                 Activités :
                 Planification stratégique.
                 Gestion des contrats des riders et des employés.
-                Recherche de financements ou investisseurs.');
+                Recherche de financements ou investisseurs.'); 
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $team->setCategory($this->getReference('categoryTeam_5'));
         $manager->persist($team);
 
         $manager->flush(); 
+    }
+    
+    public function getDependencies(): array
+    {
+        return [
+            CategoryTeamFixtures::class
+        ]; 
     }
 }

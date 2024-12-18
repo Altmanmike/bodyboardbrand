@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\TeamRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
+#[ORM\Table(name: '`team`')]
 class Team
 {
     #[ORM\Id]
@@ -26,9 +29,20 @@ class Team
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'teams')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?categoryTeam $category = null;
+
+    /**
+     * @var Collection<int, Member>
+     */
+    #[ORM\ManyToMany(targetEntity: Member::class, mappedBy: 'teams')]
+    private Collection $members;
+
     public function __construct()
     {     
         $this->createdAt = new \DateTimeImmutable();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +94,45 @@ class Team
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?categoryTeam
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?categoryTeam $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Member>
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Member $member): static
+    {
+        if (!$this->members->contains($member)) {
+            $this->members->add($member);
+            $member->addTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): static
+    {
+        if ($this->members->removeElement($member)) {
+            $member->removeTeam($this);
+        }
 
         return $this;
     }

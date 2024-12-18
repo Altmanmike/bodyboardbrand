@@ -6,8 +6,9 @@ use App\Entity\Member;
 use App\Repository\MemberRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class MemberFixtures extends Fixture
+class MemberFixtures extends Fixture implements DependentFixtureInterface
 {
     public function __construct(private MemberRepository $repo) {}    
 
@@ -27,10 +28,18 @@ class MemberFixtures extends Fixture
         $member->setFacebook('');
         $member->setYoutube('');
         $member->setRanking(0);
-        $member->setJoinDate(new \DateTimeImmutable());
+        $member->setCreatedAt(new \DateTimeImmutable());
 
-        /*$this->addReference('user_4', $user);*/
+        $member->setUser($this->getReference('user_0'));
+
         $manager->persist($member);
         $manager->flush();     
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class
+        ]; 
     }
 }

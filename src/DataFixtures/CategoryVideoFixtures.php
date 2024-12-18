@@ -19,7 +19,7 @@ class CategoryVideoFixtures extends Fixture
         $categoryVideo->setDescription('Best moments from the K&Z team in competitions.'); 
         $categoryVideo->setCreatedAt(new \DateTimeImmutable());
         $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $this->addReference('categoryVideo_0', $categoryVideo);
         $manager->persist($categoryVideo);
 
         $categoryVideo = new CategoryVideo();
@@ -27,7 +27,15 @@ class CategoryVideoFixtures extends Fixture
         $categoryVideo->setDescription('Best moments from others!!!'); 
         $categoryVideo->setCreatedAt(new \DateTimeImmutable());
         $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $this->addReference('categoryVideo_1', $categoryVideo);
+        $manager->persist($categoryVideo);
+
+        $categoryVideo = new CategoryVideo();
+        $categoryVideo->setName('Pro team playlist');
+        $categoryVideo->setDescription('Best moments from pro-amateur riders.'); 
+        $categoryVideo->setCreatedAt(new \DateTimeImmutable());
+        $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
+        $this->addReference('categoryVideo_2', $categoryVideo);
         $manager->persist($categoryVideo);
 
         $categoryVideo = new CategoryVideo();
@@ -35,7 +43,7 @@ class CategoryVideoFixtures extends Fixture
         $categoryVideo->setDescription('Best moments from pro-amateur riders.'); 
         $categoryVideo->setCreatedAt(new \DateTimeImmutable());
         $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $this->addReference('categoryVideo_3', $categoryVideo);
         $manager->persist($categoryVideo);
 
         $categoryVideo = new CategoryVideo();
@@ -43,7 +51,7 @@ class CategoryVideoFixtures extends Fixture
         $categoryVideo->setDescription('Best tricks from young riders.'); 
         $categoryVideo->setCreatedAt(new \DateTimeImmutable());
         $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $this->addReference('categoryVideo_4', $categoryVideo);
         $manager->persist($categoryVideo);
 
         $categoryVideo = new CategoryVideo();
@@ -51,7 +59,7 @@ class CategoryVideoFixtures extends Fixture
         $categoryVideo->setDescription('Others'); 
         $categoryVideo->setCreatedAt(new \DateTimeImmutable());
         $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
-        /*$this->addReference('user_4', $user);*/
+        $this->addReference('categoryVideo_5', $categoryVideo);
         $manager->persist($categoryVideo);
 
         $manager->flush();

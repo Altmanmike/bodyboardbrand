@@ -6,6 +6,7 @@ use App\Repository\OrderLineRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderLineRepository::class)]
+#[ORM\Table(name: '`orderLine`')]
 class OrderLine
 {
     #[ORM\Id]
@@ -24,6 +25,14 @@ class OrderLine
 
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orderLines')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?product $product = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orderLines')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?OrderFull $orderFull = null;
 
     public function __construct()
     {     
@@ -79,6 +88,30 @@ class OrderLine
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getProduct(): ?product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?product $product): static
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    public function getOrderFull(): ?OrderFull
+    {
+        return $this->orderFull;
+    }
+
+    public function setOrderFull(?OrderFull $orderFull): static
+    {
+        $this->orderFull = $orderFull;
 
         return $this;
     }

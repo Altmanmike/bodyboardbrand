@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\Table(name: '`product`')]
 class Product
 {
     #[ORM\Id]
@@ -32,21 +35,34 @@ class Product
     #[ORM\Column]
     private ?float $price = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $cover = null;
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?categoryProduct $category = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $cover = null;
+    /**
+     * @var Collection<int, OrderLine>
+     */
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product')]
+    private Collection $orderLines;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {     
         $this->createdAt = new \DateTimeImmutable();
+        $this->orderLines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,6 +141,30 @@ class Product
 
         return $this;
     }
+    
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(string $cover): static
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -150,26 +190,56 @@ class Product
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getCategory(): ?categoryProduct
     {
-        return $this->description;
+        return $this->category;
     }
 
-    public function setDescription(string $description): static
+    public function setCategory(?categoryProduct $category): static
     {
-        $this->description = $description;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getCover(): ?string
+    /**
+     * @return Collection<int, OrderLine>
+     */
+    public function getOrderLines(): Collection
     {
-        return $this->cover;
+        return $this->orderLines;
     }
 
-    public function setCover(string $cover): static
+    public function addOrderLine(OrderLine $orderLine): static
     {
-        $this->cover = $cover;
+        if (!$this->orderLines->contains($orderLine)) {
+            $this->orderLines->add($orderLine);
+            $orderLine->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderLine(OrderLine $orderLine): static
+    {
+        if ($this->orderLines->removeElement($orderLine)) {
+            // set the owning side to null (unless already changed)
+            if ($orderLine->getProduct() === $this) {
+                $orderLine->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

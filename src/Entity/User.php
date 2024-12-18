@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -72,10 +75,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Member $member = null;
+
+    /**
+     * @var Collection<int, post>
+     */
+    #[ORM\OneToMany(targetEntity: post::class, mappedBy: 'user')]
+    private Collection $posts;
+
+    /**
+     * @var Collection<int, orderFull>
+     */
+    #[ORM\OneToMany(targetEntity: orderFull::class, mappedBy: 'user')]
+    private Collection $orderFulls;
+
+    /**
+     * @var Collection<int, innovation>
+     */
+    #[ORM\OneToMany(targetEntity: innovation::class, mappedBy: 'user')]
+    private Collection $innovations;
+
+    /**
+     * @var Collection<int, video>
+     */
+    #[ORM\OneToMany(targetEntity: video::class, mappedBy: 'user')]
+    private Collection $videos;
+
+    /**
+     * @var Collection<int, Product>
+     */
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user')]
+    private Collection $products;
+
     public function __construct()
     {     
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLoginAt = new \DateTimeImmutable();
+        $this->posts = new ArrayCollection();
+        $this->orderFulls = new ArrayCollection();
+        $this->innovations = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -305,6 +346,173 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(Member $member): static
+    {
+        // set the owning side of the relation if necessary
+        if ($member->getUser() !== $this) {
+            $member->setUser($this);
+        }
+
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, post>
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(post $post): static
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(post $post): static
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, orderFull>
+     */
+    public function getOrderFulls(): Collection
+    {
+        return $this->orderFulls;
+    }
+
+    public function addorderFull(orderFull $orderFull): static
+    {
+        if (!$this->orderFulls->contains($orderFull)) {
+            $this->orderFulls->add($orderFull);
+            $orderFull->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(orderFull $orderFull): static
+    {
+        if ($this->orderFulls->removeElement($orderFull)) {
+            // set the owning side to null (unless already changed)
+            if ($orderFull->getUser() === $this) {
+                $orderFull->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, innovation>
+     */
+    public function getInnovations(): Collection
+    {
+        return $this->innovations;
+    }
+
+    public function addInnovation(innovation $innovation): static
+    {
+        if (!$this->innovations->contains($innovation)) {
+            $this->innovations->add($innovation);
+            $innovation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInnovation(innovation $innovation): static
+    {
+        if ($this->innovations->removeElement($innovation)) {
+            // set the owning side to null (unless already changed)
+            if ($innovation->getUser() === $this) {
+                $innovation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, video>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(video $video): static
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+            $video->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(video $video): static
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getUser() === $this) {
+                $video->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getUser() === $this) {
+                $product->setUser(null);
+            }
+        }
 
         return $this;
     }
