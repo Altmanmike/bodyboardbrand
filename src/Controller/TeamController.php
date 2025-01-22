@@ -16,7 +16,7 @@ class TeamController extends AbstractController
         ]);
     }
 
-    #[Route('/api/teams', name: 'api_team_all')]
+    /*#[Route('/api/teams', name: 'api_team_all')]
     public function getCollection(): Response
     {
         $teams = [
@@ -101,5 +101,5 @@ class TeamController extends AbstractController
             ],
         ];
         return $this->json($teams);
-    }
+    }*/
 }

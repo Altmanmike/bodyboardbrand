@@ -32,7 +32,7 @@ class CategoryTeam
     /**
      * @var Collection<int, Team>
      */
-    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Team::class, mappedBy: 'category', fetch: 'EAGER')]
     private Collection $teams;
 
     public function __construct()

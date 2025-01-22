@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryPostRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryPostRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryPostRepository::class)]
 #[ORM\Table(name: '`categoryPost`')]
@@ -18,6 +19,7 @@ class CategoryPost
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['posts.show'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -32,7 +34,7 @@ class CategoryPost
     /**
      * @var Collection<int, Post>
      */
-    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'category', fetch: 'EAGER')]
     private Collection $posts;
 
     public function __construct()

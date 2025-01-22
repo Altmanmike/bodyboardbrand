@@ -16,7 +16,7 @@ class VideoController extends AbstractController
         ]);
     }
 
-    #[Route('/api/videos', name: 'api_video_all')]
+    /*#[Route('/api/videos', name: 'api_video_all')]
     public function getCollection(): Response
     {
         $videos = [
@@ -37,5 +37,5 @@ class VideoController extends AbstractController
             ],
         ];
         return $this->json($videos);
-    }
+    }*/
 }

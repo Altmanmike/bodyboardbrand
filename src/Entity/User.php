@@ -75,37 +75,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'], fetch: 'EAGER')]
     private ?Member $member = null;
 
     /**
      * @var Collection<int, post>
      */
-    #[ORM\OneToMany(targetEntity: post::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: post::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $posts;
 
     /**
      * @var Collection<int, orderFull>
      */
-    #[ORM\OneToMany(targetEntity: orderFull::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: orderFull::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $orderFulls;
 
     /**
      * @var Collection<int, innovation>
      */
-    #[ORM\OneToMany(targetEntity: innovation::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: innovation::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $innovations;
 
     /**
      * @var Collection<int, video>
      */
-    #[ORM\OneToMany(targetEntity: video::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: video::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $videos;
 
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $products;
 
     public function __construct()

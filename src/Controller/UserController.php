@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
-    #[Route('/api/users', name: 'api_user_all')]
+    /*#[Route('/api/users', name: 'api_user_all')]
     public function getCollection(): Response
     {
         $users = [
@@ -46,7 +46,7 @@ class UserController extends AbstractController
             
         ];
         return $this->json($users);
-    }
+    }*/
 
     #[Route('/user', name: 'app_user')]
     public function index(UserRepository $repo): Response

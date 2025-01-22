@@ -29,14 +29,14 @@ class Team
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'teams')]
+    #[ORM\ManyToOne(inversedBy: 'teams', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categoryTeam $category = null;
+    private ?CategoryTeam $category = null;
 
     /**
      * @var Collection<int, Member>
      */
-    #[ORM\ManyToMany(targetEntity: Member::class, mappedBy: 'teams')]
+    #[ORM\ManyToMany(targetEntity: Member::class, mappedBy: 'teams', fetch: 'EAGER')]
     private Collection $members;
 
     public function __construct()

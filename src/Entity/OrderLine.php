@@ -26,11 +26,11 @@ class OrderLine
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderLines')]
+    #[ORM\ManyToOne(inversedBy: 'orderLines', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?product $product = null;
+    private ?Product $product = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderLines')]
+    #[ORM\ManyToOne(inversedBy: 'orderLines', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?OrderFull $orderFull = null;
 

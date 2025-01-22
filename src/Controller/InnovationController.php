@@ -16,7 +16,7 @@ class InnovationController extends AbstractController
         ]);
     }
 
-    #[Route('/api/innovations', name: 'api_innovation_all')]
+    /*#[Route('/api/innovations', name: 'api_innovation_all')]
     public function getCollection(): Response
     {
         $innovations = [
@@ -37,5 +37,5 @@ class InnovationController extends AbstractController
             ],
         ];
         return $this->json($innovations);
-    }
+    }*/
 }

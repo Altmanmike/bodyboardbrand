@@ -30,7 +30,7 @@ class Innovation
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'innovations')]
+    #[ORM\ManyToOne(inversedBy: 'innovations', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

@@ -50,14 +50,14 @@ class Member
     #[ORM\Column(nullable: true)]
     private ?int $ranking = null;
 
-    #[ORM\OneToOne(inversedBy: 'member', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'member', cascade: ['persist', 'remove'], fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
     /**
      * @var Collection<int, team>
      */
-    #[ORM\ManyToMany(targetEntity: team::class, inversedBy: 'members')]
+    #[ORM\ManyToMany(targetEntity: team::class, inversedBy: 'members', fetch: 'EAGER')]
     private Collection $teams;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]

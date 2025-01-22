@@ -34,10 +34,10 @@ class OrderFull
     /**
      * @var Collection<int, orderLine>
      */
-    #[ORM\OneToMany(targetEntity: orderLine::class, mappedBy: 'orderFull')]
+    #[ORM\OneToMany(targetEntity: orderLine::class, mappedBy: 'orderFull', fetch: 'EAGER')]
     private Collection $orderLines;
 
-    #[ORM\ManyToOne(inversedBy: 'orderFulls')]
+    #[ORM\ManyToOne(inversedBy: 'orderFulls', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

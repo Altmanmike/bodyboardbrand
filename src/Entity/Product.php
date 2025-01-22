@@ -46,16 +46,16 @@ class Product
     #[ORM\Column(nullable:true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?categoryProduct $category = null;
+    #[ORM\ManyToOne(inversedBy: 'products', fetch: 'EAGER')]
+    private ?CategoryProduct $category = null;
 
     /**
      * @var Collection<int, OrderLine>
      */
-    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product')]
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product', fetch: 'EAGER')]
     private Collection $orderLines;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: 'products', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

@@ -63,27 +63,6 @@ class UserFixtures extends Fixture
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setLastLoginAt(new \DateTimeImmutable());   
             $this->addReference('user_'.$i, $user);    
-            /*if ($i == 1) {
-                $this->addReference('user_1', $user);
-            } elseif ($i == 2) {
-                $this->addReference('user_2', $user);
-            } elseif ($i == 3) {
-                $this->addReference('user_3', $user);
-            } elseif ($i == 4) {
-                $this->addReference('user_4', $user);
-            } elseif ($i == 5) {
-                $this->addReference('user_5', $user);
-            } elseif ($i == 6) {
-                $this->addReference('user_6', $user);
-            } elseif ($i == 7) {
-                $this->addReference('user_7', $user);
-            } elseif ($i == 8) {
-                $this->addReference('user_8', $user);
-            } elseif ($i == 9) {
-                $this->addReference('user_9', $user);
-            } elseif ($i == 10) {
-                $this->addReference('user_10', $user);
-            }*/
             
             $manager->persist($user);        
         }

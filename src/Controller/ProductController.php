@@ -16,7 +16,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/api/products', name: 'api_product_all')]
+    /*#[Route('/api/products', name: 'api_product_all')]
     public function getCollection(): Response
     {
         $products = [
@@ -45,5 +45,5 @@ class ProductController extends AbstractController
             
         ];
         return $this->json($products);
-    }
+    }*/
 }

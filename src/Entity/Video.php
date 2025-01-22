@@ -29,10 +29,10 @@ class Video
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'videos')]
-    private ?categoryVideo $category = null;
+    #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
+    private ?CategoryVideo $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'videos')]
+    #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

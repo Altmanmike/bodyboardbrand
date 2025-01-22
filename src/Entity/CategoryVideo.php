@@ -32,7 +32,7 @@ class CategoryVideo
     /**
      * @var Collection<int, Video>
      */
-    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'category', fetch: 'EAGER')]
     private Collection $videos;
 
     public function __construct()
