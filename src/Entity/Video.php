@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VideoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use OpenApi\Attributes as OA;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 #[ORM\Table(name: '`video`')]
@@ -12,27 +14,38 @@ class Video
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['videos.index'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[OA\Property(type: 'string', maxLength: 255)]
+    #[Groups(['videos.index','videos.show','videos.create','videos.update'])]
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
+    #[OA\Property(type: 'string', maxLength: 255)]
+    #[Groups(['videos.index','videos.show','videos.create','videos.update'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[OA\Property(type: 'string', maxLength: 255)]
+    #[Groups(['videos.show','videos.create','videos.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Groups(['videos.date'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['videos.date'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
+    #[Groups(['videos.show','videos.create','videos.update'])]
     private ?CategoryVideo $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
+    #[Groups(['videos.show','videos.create','videos.update'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

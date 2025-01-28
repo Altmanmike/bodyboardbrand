@@ -79,27 +79,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Member $member = null;
 
     /**
-     * @var Collection<int, post>
+     * @var Collection<int, Post>
      */
-    #[ORM\OneToMany(targetEntity: post::class, mappedBy: 'user', fetch: 'EAGER')]
+    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $posts;
 
     /**
-     * @var Collection<int, orderFull>
+     * @var Collection<int, OrderFull>
      */
-    #[ORM\OneToMany(targetEntity: orderFull::class, mappedBy: 'user', fetch: 'EAGER')]
+    #[ORM\OneToMany(targetEntity: OrderFull::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $orderFulls;
 
     /**
-     * @var Collection<int, innovation>
+     * @var Collection<int, Innovation>
      */
-    #[ORM\OneToMany(targetEntity: innovation::class, mappedBy: 'user', fetch: 'EAGER')]
+    #[ORM\OneToMany(targetEntity: Innovation::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $innovations;
 
     /**
-     * @var Collection<int, video>
+     * @var Collection<int, Video>
      */
-    #[ORM\OneToMany(targetEntity: video::class, mappedBy: 'user', fetch: 'EAGER')]
+    #[ORM\OneToMany(targetEntity: Video::class, mappedBy: 'user', fetch: 'EAGER')]
     private Collection $videos;
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Controller\API;
 
 use App\Entity\Post;
-use App\Entity\CategoryPost;
 use App\Repository\CategoryPostRepository;
 use OpenApi\Attributes as OA;
 use App\Repository\PostRepository;
@@ -19,11 +18,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/api/posts', name:'api_posts')]
-#[OA\Tag(name: "Entity Post Endpoints", description: "Post operations")]
+#[OA\Tag(name: "Post endpoints", description: "Post operations")]
 class PostsController extends AbstractController
 {
-    #[Route('/', name:'_all', methods: ['GET'])]
-    #[OA\Response(response: 200, description: 'Successful response', content: new Model(type: Post::class, groups: ['posts.index','posts.show','posts.date']))]    
+    #[Route('/', name:'_all', methods: ['GET'])]      
     public function getPosts(PostRepository $postRepo, SerializerInterface $serializer)
     {
         $posts = $postRepo->findAll();
@@ -34,8 +32,6 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    #[OA\Response(response: 200, description: 'Successful response', content: new Model(type: Post::class, groups: ['posts.show']))]
-    #[OA\Response(response: 404, description: 'Post not found', content: new Model(type: Post::class, groups: ['posts.show']))]
     public function getPost(PostRepository $postRepo, $id)
     {
         $post = $postRepo->find($id);
@@ -60,10 +56,10 @@ class PostsController extends AbstractController
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
                 new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Technology")
+                        new OA\Property(property: "name", type: "string", example: "Gears")
                     ]),
                 new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "bob@aol.com")
+                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
                 ])
             ]
         )
@@ -78,14 +74,13 @@ class PostsController extends AbstractController
                 new OA\Property(property: "title", type: "string", example: "My first post"),
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
-                new OA\Property(property: "category", type: "string", example: "Politic"),
-                new OA\Property(property: "user", type: "string", example: "mick@aol.fr"),
+                new OA\Property(property: "category", type: "string", example: "Gears"),
+                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
                 new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
                 new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
             ]
         )
     )]
-    #[OA\Response(response: 400, description: "Invalid input data")]
     public function createPost(Request $request, UserRepository $userRepo, CategoryPostRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer)
     {
         $data = json_decode($request->getContent(), true);
@@ -119,9 +114,6 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    #[OA\Parameter(name: 'id', description: 'Id of the post to delete', in: 'query')]
-    #[OA\Response(response: 200, description: 'Post deleted successfully', content: new Model(type: Post::class))]
-    #[OA\Response(response: 404, description: 'Post not found', content: new Model(type: Post::class))]
     public function deletePost(PostRepository $postRepo, $id, EntityManagerInterface $entityManager)
     {
         $post = $postRepo->find($id);
@@ -147,10 +139,10 @@ class PostsController extends AbstractController
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
                 new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Technology")
+                        new OA\Property(property: "name", type: "string", example: "Gears")
                     ]),
                 new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "bob@aol.com")
+                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
                 ])
             ]
         )
@@ -165,15 +157,13 @@ class PostsController extends AbstractController
                 new OA\Property(property: "title", type: "string", example: "My first post"),
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
-                new OA\Property(property: "category", type: "string", example: "Politic"),
-                new OA\Property(property: "user", type: "string", example: "mick@aol.fr"),
+                new OA\Property(property: "category", type: "string", example: "Gears"),
+                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
                 new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
                 new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
             ]
         )
     )]
-    #[OA\Response(response: 400, description: "Invalid input data")]
-    #[OA\Response(response: 404, description: 'Post not found')]
     public function updatePost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
     {
         $post = $postRepo->find($id);
@@ -189,7 +179,7 @@ class PostsController extends AbstractController
 
         $dataSer = $serializer->deserialize($request->getContent(), Post::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $post,
-            'groups' => ['posts.create']
+            'groups' => ['posts.update']
         ]);        
               
         $post->setTitle($dataSer->getTitle());
@@ -221,10 +211,10 @@ class PostsController extends AbstractController
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
                 new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Technology")
+                        new OA\Property(property: "name", type: "string", example: "Gears")
                     ]),
                 new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "bob@aol.com")
+                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
                 ])
             ]
         )
@@ -239,16 +229,14 @@ class PostsController extends AbstractController
                 new OA\Property(property: "title", type: "string", example: "My first post"),
                 new OA\Property(property: "image", type: "string", example: "https://example.com/image.jpg"),
                 new OA\Property(property: "content", type: "string", example: "This is the content of the post."),
-                new OA\Property(property: "category", type: "string", example: "Politic"),
-                new OA\Property(property: "user", type: "string", example: "mick@aol.fr"),
+                new OA\Property(property: "category", type: "string", example: "Gears"),
+                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
                 new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
                 new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
             ]
         )
     )]
-    #[OA\Response(response: 400, description: "Invalid input data")]
-    #[OA\Response(response: 404, description: 'Post not found')]
-    public function updateFieldPost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateFieldPost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
     {
         $post = $postRepo->find($id);
 
@@ -260,7 +248,7 @@ class PostsController extends AbstractController
 
         $dataSer = $serializer->deserialize($request->getContent(), Post::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $post,
-            'groups' => ['posts.create']
+            'groups' => ['posts.update']
         ]);        
            
         if (isset($data['title'])) {
@@ -279,12 +267,14 @@ class PostsController extends AbstractController
         }
 
         if (isset($data['category'])) {
-            $post->setCategory($dataSer->getCategory());
+            $category = $catRepo->findOneBy(['name' => $data['category']]);        
+            $post->setCategory($category); 
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
         if (isset($data['user'])) {
-            $post->setUser($dataSer->getUser());            
+            $user = $userRepo->findOneBy(['email' => $data['user']]);
+            $post->setUser($user);             
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 

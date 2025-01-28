@@ -32,9 +32,9 @@ class OrderFull
     private ?\DateTimeImmutable $completedAt = null;
 
     /**
-     * @var Collection<int, orderLine>
+     * @var Collection<int, OrderLine>
      */
-    #[ORM\OneToMany(targetEntity: orderLine::class, mappedBy: 'orderFull', fetch: 'EAGER')]
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'orderFull', fetch: 'EAGER')]
     private Collection $orderLines;
 
     #[ORM\ManyToOne(inversedBy: 'orderFulls', fetch: 'EAGER')]

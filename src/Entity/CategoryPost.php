@@ -8,6 +8,7 @@ use App\Repository\CategoryPostRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use OpenApi\Attributes as OA;
 
 #[ORM\Entity(repositoryClass: CategoryPostRepository::class)]
 #[ORM\Table(name: '`categoryPost`')]
@@ -16,19 +17,25 @@ class CategoryPost
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['categoryPosts.index'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['posts.show'])]
+    #[OA\Property(type: 'string', maxLength: 255)]
+    #[Groups(['posts.show','categoryPosts.index','categoryPosts.show','categoryPosts.create','categoryPosts.update'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[OA\Property(type: 'string')]
+    #[Groups(['categoryPosts.show','categoryPosts.create','categoryPosts.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Groups(['categoryPosts.date'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['categoryPosts.date'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     /**

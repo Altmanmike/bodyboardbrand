@@ -55,9 +55,9 @@ class Member
     private ?User $user = null;
 
     /**
-     * @var Collection<int, team>
+     * @var Collection<int, Team>
      */
-    #[ORM\ManyToMany(targetEntity: team::class, inversedBy: 'members', fetch: 'EAGER')]
+    #[ORM\ManyToMany(targetEntity: Team::class, inversedBy: 'members', fetch: 'EAGER')]
     private Collection $teams;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]

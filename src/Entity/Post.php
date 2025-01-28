@@ -42,12 +42,12 @@ class Post
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts', fetch: 'EAGER')]
-    #[Groups(['posts.show'/*,'posts.create','posts.update'*/])]
+    #[Groups(['posts.show','posts.create','posts.update'])]
     private ?CategoryPost $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['posts.show'/*,'posts.create','posts.update'*/])]
+    #[Groups(['posts.show','posts.create','posts.update'])]
     private ?User $user = null;
 
     public function __construct()
