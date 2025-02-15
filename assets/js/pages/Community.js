@@ -11,8 +11,8 @@ import ImgPhoto2 from '../../imgs/members/photo2.jpg';
 import ImgCoord from '../../imgs/members/coord.jpg';
 import ImgDev from '../../imgs/members/dev.jpg';
 
-const Community = () => {
-  const members = [
+const Community = ({ members}) => {
+  /*const members = [
     { name: 'Alex Leader', role: 'Leader', photo: ImgLeader, description: 'Champion and motivator', size: 'leader' },
     { name: 'Pro Rider 1', role: 'Pro-Amateur', photo: ImgPro1, description: 'Experienced rider', size: 'pro' },
     { name: 'Pro Rider 2', role: 'Pro-Amateur', photo: ImgPro2, description: 'Wave crusher', size: 'pro' },
@@ -22,14 +22,14 @@ const Community = () => {
     { name: 'Photographer 2', role: 'Photographer', photo: ImgPhoto2, description: 'Creative shots', size: 'small' },
     { name: 'Event Coordinator', role: 'Coordinator', photo: ImgCoord, description: 'Organizing greatness', size: 'small' },
     { name: 'R&D Developer', role: 'Developer', photo: ImgDev, description: 'Innovating gears', size: 'small' },    
-  ];
+  ];*/
 
   return (
     <section id="community" className="community">
       <h2>Meet the Team</h2>
       <div className="community-grid">
-        {members.map((member, index) => (
-          <MemberCard key={index} {...member} />
+        {members.map((member, id) => (
+          <MemberCard key={id} {...member} />
         ))}
       </div>
     </section>

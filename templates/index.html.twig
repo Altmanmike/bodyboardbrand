@@ -3,5 +3,5 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div id="app"></div>
+    <div id="app" data-all='{{ data|json_encode()|raw }}'></div>
 {% endblock %}

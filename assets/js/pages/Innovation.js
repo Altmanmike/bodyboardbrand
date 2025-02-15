@@ -5,8 +5,8 @@ import ImgInnov01 from '../../imgs/innovation/stringers.jpg';
 import ImgInnov02 from '../../imgs/innovation/fins.jpg';
 import ImgInnov03 from '../../imgs/innovation/leash.jpg';
 
-const Innovation = () => {
-  const innovations = [
+const Innovation = ({ innovations }) => {
+  /*const innovations = [
     {
       title: 'Reinforced Board Stringers',
       image: ImgInnov01,
@@ -22,14 +22,14 @@ const Innovation = () => {
       image: ImgInnov03,
       description: 'Sustainable materials to minimize ocean pollution.',
     },
-  ];
+  ];*/
 
   return (
     <section id="innovation" className="innovation">
       <h2>Innovation</h2>
       <div className="innovation-grid">
-        {innovations.map((item, index) => (
-          <InnovationCard key={index} {...item} />
+        {innovations.map((item, id) => (
+          <InnovationCard key={id} {...item} />
         ))}
       </div>
     </section>

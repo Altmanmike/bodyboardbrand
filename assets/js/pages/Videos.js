@@ -3,8 +3,8 @@ import React from 'react';
 import VideoCard from '../components/cards/VideoCard';
 import './Videos.css';
 
-const Videos = () => {
-  const videos = [
+const Videos = ({ videos }) => {
+  /*const videos = [
     {
       videoId: 'ZeivXGDX6Bk', // Remplacez par un ID de vidéo YouTube valide 
       title: 'Another Team Highlights',
@@ -20,14 +20,14 @@ const Videos = () => {
       title: 'Junior Rider Training Day',
       description: 'A day in the life of our junior riders.',
     },
-  ];
+  ];*/
 
   return (
     <section id="videos" className="videos">
       <h2>Our Videos</h2>
       <div className="videos-grid">
-        {videos.map((video, index) => (
-          <VideoCard key={index} {...video} />
+        {videos.map((video, id) => (
+          <VideoCard key={id} {...video} />
         ))}
       </div>
     </section>
