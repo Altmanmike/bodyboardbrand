@@ -405,7 +405,7 @@ a:hover {
   text-align: left!important;
 }
 
-.button-login, .button-register {
+.button-login, .button-register, .button-back {
   background-color: var(--primary-color);
   box-shadow: 2px 2px 2px var(--text-shadow-color);
   color: var(--text-title-color);
@@ -416,7 +416,7 @@ a:hover {
   font-size: 16px;
 }
 
-.button-login:hover, .button-register:hover {
+.button-login:hover, .button-register:hover, .button-back:hover {
   background-color: var(--hover-color);
   color: var(--text-title-color-dark);
 }

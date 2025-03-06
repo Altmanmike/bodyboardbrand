@@ -19,21 +19,21 @@ class PostController extends AbstractController
         $posts = [
             [
                 'title' => 'Exploring the Waves', 
-                'image' => '../../imgs/posts/waves.jpg',
+                'image' => '/build/images/waves.jpg',
                 'content' => 'Discover the best spots for bodyboarding this summer.',
                 'author' => 'Jane Doe',
                 'created_at' => 'November 10, 2024',
             ],
             [
                 'title' => 'Top 5 Bodyboard Tricks', 
-                'image' => '../../imgs/posts/tricks.jpg',
+                'image' => '/build/images/tricks.jpg',
                 'content' => 'Learn the most exciting tricks to level up your skills.',
                 'author' => 'John Smith',
                 'created_at' => 'November 12, 2024',
             ],
             [
                 'title' => 'Maintaining Your Gear', 
-                'image' => '../../imgs/posts/gear.jpg',
+                'image' => '/build/images/gear.jpg',
                 'content' => 'Tips to ensure your bodyboard and fins last longer.',
                 'author' => 'Emily Brown',
                 'created_at' => 'November 14, 2024',

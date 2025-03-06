@@ -22,7 +22,7 @@ class ProductController extends AbstractController
         $products = [
             [
                 'title' => 'Board Alpha', 
-                'cover' => '../../imgs/products/kz-board-01.png',
+                'cover' => '/build/images/kz-board-01.png',
                 'description' => '',
                 'images' => '',
                 'sizes' => '[\'40\', \'41\', \'42\', \'43\', \'44\']',
@@ -33,7 +33,7 @@ class ProductController extends AbstractController
             ],
             [
                 'title' => 'Board Omega', 
-                'cover' => '../../imgs/products/kz-board-02.png',
+                'cover' => '/build/images/kz-board-02.png',
                 'description' => '',
                 'images' => '',
                 'sizes' => '[\'40\', \'41\', \'42\', \'43\', \'44\']',
