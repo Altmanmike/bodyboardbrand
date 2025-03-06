@@ -45,21 +45,19 @@ const Posts = ({ posts }) => {
   return (
     <section id="posts" className="posts">      
       <h2>Latest Articles</h2>
-      <div className="posts-grid">
       {
         selectedPost
         ? <PostDetail {...selectedPost} onBack={handleBack} />
         : <div className="posts-grid">
-            {
-              posts.map((post) => (
-                <div key={post.id} onClick={() => handlePostClick(post)}>
-                  <PostCard {...post} />
-                </div>
-              ))
-            }
+          {
+            posts.map((post) => (
+              <div key={post.id} onClick={() => handlePostClick(post)}>
+                <PostCard key={post.id} {...post} />
+              </div>
+            ))
+          }
         </div>
       }
-      </div>
     </section>
   );
 };

@@ -35,7 +35,7 @@ class AppController extends AbstractController
         $membersJson = $serializer->serialize($members, 'json', ['groups' => ['members.index','members.show','members.date']]);
         $videosJson = $serializer->serialize($videos, 'json', ['groups' => ['videos.index','videos.show','videos.date']]);
         $innovationsJson = $serializer->serialize($innovations, 'json', ['groups' => ['innovations.index','innovations.show','innovations.date']]);
-
+        
         $data = [
             'posts' => $postsJson, 
             'products' => $productsJson, 

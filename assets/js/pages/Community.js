@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MemberCard from '../components/cards/MemberCard';
 import './Community.css';
 import ImgLeader from '../../imgs/members/leader.jpg';
@@ -10,6 +10,7 @@ import ImgPhoto1 from '../../imgs/members/photo1.jpg';
 import ImgPhoto2 from '../../imgs/members/photo2.jpg';
 import ImgCoord from '../../imgs/members/coord.jpg';
 import ImgDev from '../../imgs/members/dev.jpg';
+import MemberDetail from '../components/details/MemberDetail';
 
 const Community = ({ members}) => {
   /*const members = [
@@ -23,15 +24,32 @@ const Community = ({ members}) => {
     { name: 'Event Coordinator', role: 'Coordinator', photo: ImgCoord, description: 'Organizing greatness', size: 'small' },
     { name: 'R&D Developer', role: 'Developer', photo: ImgDev, description: 'Innovating gears', size: 'small' },    
   ];*/
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  const handleMemberClick = (member) => {
+    setSelectedMember(member); 
+  };
+
+  const handleBack = () => {
+    setSelectedMember(null); 
+  };
 
   return (
     <section id="community" className="community">
       <h2>Meet the Team</h2>
-      <div className="community-grid">
-        {members.map((member, id) => (
-          <MemberCard key={id} {...member} />
-        ))}
-      </div>
+      {
+        selectedMember
+        ? <MemberDetail {...selectedMember} onBack={handleBack} />
+        : <div className="community-grid">
+          {
+            members.map((member) => (
+              <div key={member.id} onClick={() => handleMemberClick(member)}>
+                <MemberCard key={member.id} {...member} />
+              </div>
+            ))
+          }
+        </div>
+      }
     </section>
   );
 };

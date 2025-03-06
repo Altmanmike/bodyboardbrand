@@ -1,17 +1,25 @@
 import React from 'react';
 import './MemberCard.css';
 
-const MemberCard = ({ id, nickname, role, photo, sponsor, instagram, youtube }) => {
+const MemberCard = ({ id, nickname, biography, role, photo, sponsors, ranking, facebook, instagram, youtube, createdAt }) => {
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-EN", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   const cardClass = role ? `${role}-card` : 'small-card';
+
   return (
     <div className={`member-card ${cardClass}`}>
-      <img src={photo} alt={`${nickname}`} className="member-photo" />
       <h3>{nickname}</h3>
-      <p><strong>{role}</strong></p>
-      <p>{sponsor}</p>
-      <h2>Social</h2>
-      <p>{instagram}</p>
-      <p>{youtube}</p>
+      <img src={photo} alt={`${nickname}`} className="member-photo" />
+      <div className="member-content">
+        <h3 className="member-title">Role: {role}</h3>
+        <p className="member-snippet">Ranking: {ranking}</p>
+        <div className="member-footer">
+          <span className="member-date">{formattedDate}</span>          
+        </div>
+      </div>
     </div>
   );
 };
