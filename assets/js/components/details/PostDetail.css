@@ -1,0 +1,117 @@
+.post-detail-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 16px 0;
+    padding: 16px;
+    background-color: var(--card-background-color);
+    color: var(--text-title-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .body.dark .post-detail-card {
+    background-color: var(--card-background-color-dark);
+    color: var(--text-title-color-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
+
+  .post-detail-card:hover {
+    transform: scale(1.03);
+  }
+
+.post-detail-card-details {
+    max-width: 900px;
+    width: 800px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    margin: 30px auto;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .post-detail-card-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .post-detail-card-details .post-detail-image {
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .post-detail-card-details .post-image:hover {
+    opacity: 0.9;
+  }
+  
+  .post-detail-card-details .post-detail-content {
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .post-detail-card-details .post-detail-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .post-detail-card-details .post-detail-snippet {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .post-detail-card-details .post-detail-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #777;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  .back-button {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 15px;
+  }
+  
+  .back-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .post-detail-card-details {
+      max-width: 90%;
+    }
+  
+    .post-detail-card-details .post-detail-title {
+      font-size: 20px;
+    }
+  
+    .post-detail-card-details .post-detail-snippet {
+      font-size: 14px;
+    }
+  }
+  

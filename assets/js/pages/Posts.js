@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PostCard from '../components/cards/PostCard';
 import './Posts.css';
 import ImgPost01 from '../../imgs/posts/waves.jpg';
 import ImgPost02 from '../../imgs/posts/tricks.jpg';
 import ImgPost03 from '../../imgs/posts/gear.jpg';
+import PostDetail from '../components/details/PostDetail';
 
-const Posts = () => {
+/*const Posts = ({ posts }) => {  
   const posts = [
     {
       title: 'Exploring the Waves',
@@ -28,18 +29,37 @@ const Posts = () => {
       author: 'Emily Brown',
       date: 'November 14, 2024',
     },
-  ];
+  ];*/
+
+const Posts = ({ posts }) => {  
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  const handlePostClick = (post) => {
+    setSelectedPost(post); 
+  };
+
+  const handleBack = () => {
+    setSelectedPost(null); 
+  };
 
   return (
     <section id="posts" className="posts">      
       <h2>Latest Articles</h2>
-      <div className="posts-grid">
-        {posts.map((post, index) => (
-          <PostCard key={index} {...post} />
-        ))}
-      </div>
+      {
+        selectedPost
+        ? <PostDetail {...selectedPost} onBack={handleBack} />
+        : <div className="posts-grid">
+          {
+            posts.map((post) => (
+              <div key={post.id} onClick={() => handlePostClick(post)}>
+                <PostCard key={post.id} {...post} />
+              </div>
+            ))
+          }
+        </div>
+      }
     </section>
   );
 };
 
-export default Posts; 
+export default Posts;

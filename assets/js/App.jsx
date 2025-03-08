@@ -9,14 +9,17 @@ import toTopButton from '../imgs/totop.png';
 const AppContent = () => {
   const { isDarkMode } = useTheme();
 
+  const rootElement = document.getElementById("app");
+  const data = JSON.parse(rootElement.getAttribute("data-all"));
+
   return (
     <div className={isDarkMode ? 'dark-mode' : 'light-mode'}>              
       <div id="scrollUp" >
           <a href="#top"><img src={toTopButton} alt="GO TOP"/></a>
       </div>
-      <hr class="between"></hr>
-      <Carousel />      
-      <Body />    
+      <hr className="between"></hr>
+      <Carousel />       
+      <Body data={data} />    
       <Footer />
     </div>
   );

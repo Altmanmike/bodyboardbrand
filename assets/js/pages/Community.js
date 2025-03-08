@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MemberCard from '../components/cards/MemberCard';
 import './Community.css';
 import ImgLeader from '../../imgs/members/leader.jpg';
@@ -10,9 +10,10 @@ import ImgPhoto1 from '../../imgs/members/photo1.jpg';
 import ImgPhoto2 from '../../imgs/members/photo2.jpg';
 import ImgCoord from '../../imgs/members/coord.jpg';
 import ImgDev from '../../imgs/members/dev.jpg';
+import MemberDetail from '../components/details/MemberDetail';
 
-const Community = () => {
-  const members = [
+const Community = ({ members}) => {
+  /*const members = [
     { name: 'Alex Leader', role: 'Leader', photo: ImgLeader, description: 'Champion and motivator', size: 'leader' },
     { name: 'Pro Rider 1', role: 'Pro-Amateur', photo: ImgPro1, description: 'Experienced rider', size: 'pro' },
     { name: 'Pro Rider 2', role: 'Pro-Amateur', photo: ImgPro2, description: 'Wave crusher', size: 'pro' },
@@ -22,16 +23,33 @@ const Community = () => {
     { name: 'Photographer 2', role: 'Photographer', photo: ImgPhoto2, description: 'Creative shots', size: 'small' },
     { name: 'Event Coordinator', role: 'Coordinator', photo: ImgCoord, description: 'Organizing greatness', size: 'small' },
     { name: 'R&D Developer', role: 'Developer', photo: ImgDev, description: 'Innovating gears', size: 'small' },    
-  ];
+  ];*/
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  const handleMemberClick = (member) => {
+    setSelectedMember(member); 
+  };
+
+  const handleBack = () => {
+    setSelectedMember(null); 
+  };
 
   return (
     <section id="community" className="community">
       <h2>Meet the Team</h2>
-      <div className="community-grid">
-        {members.map((member, index) => (
-          <MemberCard key={index} {...member} />
-        ))}
-      </div>
+      {
+        selectedMember
+        ? <MemberDetail {...selectedMember} onBack={handleBack} />
+        : <div className="community-grid">
+          {
+            members.map((member) => (
+              <div key={member.id} onClick={() => handleMemberClick(member)}>
+                <MemberCard key={member.id} {...member} />
+              </div>
+            ))
+          }
+        </div>
+      }
     </section>
   );
 };

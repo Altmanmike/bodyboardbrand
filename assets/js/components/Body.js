@@ -15,44 +15,45 @@ import VideosParallax from './parallax/VideosParallax';
 import InnovationParallax from './parallax/InnovationParallax';
 import ContactParallax from './parallax/ContactParallax';
 
-const Body = () => {
+const Body = ({ data }) => {
+  
   const { isDarkMode } = useTheme();
 
   return (
     <main className={`body ${isDarkMode ? 'dark' : ''}`}>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <PostsParallax/>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <div className="posts-content slide-in-fwd-visible">
-        <Posts/>
+        <Posts posts={JSON.parse(data.posts)} />
       </div>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <ProductsParallax/>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <div className='products-content slide-in-fwd-visible'>
-        <Products/>
+        <Products products={JSON.parse(data.products)} />
       </div>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <CommunityParallax/>
-      <hr class="grad"></hr> 
+      <hr className="grad"></hr> 
       <div className="community-content slide-in-fwd-visible">
-        <Community/>
+        <Community members={JSON.parse(data.members)} />
       </div>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <VideosParallax/>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <div className="videos-content slide-in-fwd-visible">
-        <Videos/>
+        <Videos videos={JSON.parse(data.videos)} />
       </div>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <InnovationParallax/>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <div className="innovation-content slide-in-fwd-visible">
-        <Innovation/>
+        <Innovation innovations={JSON.parse(data.innovations)} />
       </div>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <ContactParallax/>
-      <hr class="grad"></hr>
+      <hr className="grad"></hr>
       <div className="contact-content slide-in-fwd-visible">
         <Contact/>
       </div>
