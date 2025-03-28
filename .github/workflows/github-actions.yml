@@ -57,7 +57,7 @@ jobs:
       - name: Installer Node.js et Webpack Encore
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "22"
 
       - name: Installer les dépendances front-end
         run: yarn install
