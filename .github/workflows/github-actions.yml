@@ -1,0 +1,60 @@
+name: CI/CD Symfony & React
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: symfony_db
+          MYSQL_USER: symfony
+          MYSQL_PASSWORD: symfony
+        ports:
+          - 3306:3306
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Installer PHP et Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo, pdo_mysql
+          tools: composer
+
+      - name: Installer les dépendances Symfony
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Vérifier la syntaxe PHP
+        run: php -l src/
+
+      - name: Lancer les migrations et charger les fixtures
+        run: |
+          php bin/console doctrine:migrations:migrate --no-interaction
+          php bin/console doctrine:fixtures:load --no-interaction
+
+      - name: Exécuter les tests PHPUnit
+        run: vendor/bin/phpunit --testdox
+
+      - name: Installer Node.js et Webpack Encore
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Installer les dépendances front-end
+        run: yarn install
+
+      - name: Construire l’application React
+        run: yarn encore production
