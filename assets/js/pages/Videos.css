@@ -5,6 +5,11 @@
   margin: 0 auto;
 }
 
+.videos h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

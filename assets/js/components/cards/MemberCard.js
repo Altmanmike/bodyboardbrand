@@ -7,11 +7,11 @@ const MemberCard = ({ id, nickname, biography, role, photo, sponsors, ranking, f
     month: "long",
     day: "numeric",
   });
-  const cardClass = role ? `${role}-card` : 'small-card';
+  const cardClass = role ? `${role.toLowerCase()}-card` : 'small-card';
 
   return (
     <div className={`member-card ${cardClass}`}>
-      <h3>{nickname}</h3>
+      <h3 className="member-title">{nickname}</h3>
       <img src={photo} alt={`${nickname}`} className="member-photo" />
       <div className="member-content">
         <h3 className="member-title">Role: {role}</h3>
