@@ -23,12 +23,6 @@ jobs:
         ports:
           - 3306:3306
 
-    env:
-      DATABASE_URL: "mysql://symfony:symfony@127.0.0.1:3306/symfony_db"
-      DB_HOST: 127.0.0.1
-      DB_USER: symfony
-      DB_PASSWORD: symfony
-      
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v3
