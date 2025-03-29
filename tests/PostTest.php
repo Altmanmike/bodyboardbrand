@@ -8,20 +8,44 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    public function testPostEntity()
+    public function testPostSettersAndGetters()
     {
+        $user = (new User())
+            ->setFirstname('John')
+            ->setLastname('Doe');
+
+        $title = 'Test Post';
+        $content = 'Ceci est un contenu de test très pertinent pour notre projet.';
+        $image = '/build/images/test.jpg';
+        $createdAt = new \DateTimeImmutable();
+        $updatedAt = new \DateTimeImmutable();
+
         $post = new Post();
-        $user = new User();
-        $user->setFirstname("John")->setLastname("Doe");
+        $post->setTitle($title);
+        $post->setContent($content);
+        $post->setImage($image);
+        $post->setUser($user);
+        $post->setCreatedAt($createdAt);
+        $post->setUpdatedAt($updatedAt);
 
-        $post->setTitle("Mon super post")
-             ->setContent("Ceci est un contenu de test")
-             ->setUser($user)
-             ->setCreatedAt(new \DateTimeImmutable());
+        // Valeurs
+        $this->assertEquals($title, $post->getTitle());
+        $this->assertEquals($content, $post->getContent());
+        $this->assertEquals($image, $post->getImage());
+        $this->assertEquals($user, $post->getUser());
+        $this->assertEquals($createdAt, $post->getCreatedAt());
+        $this->assertEquals($updatedAt, $post->getUpdatedAt());
 
-        $this->assertEquals("Mon super post", $post->getTitle());
-        $this->assertEquals("Ceci est un contenu de test", $post->getContent());
-        $this->assertEquals("Doe", $post->getUser()->getLastname());
+        // Types
+        $this->assertIsString($post->getTitle());
+        $this->assertIsString($post->getContent());
+        $this->assertIsString($post->getImage());
+        $this->assertInstanceOf(User::class, $post->getUser());
         $this->assertInstanceOf(\DateTimeImmutable::class, $post->getCreatedAt());
+        $this->assertInstanceOf(\DateTimeInterface::class, $post->getUpdatedAt());
+
+        // Contenu
+        $this->assertStringContainsString('pertinent', $post->getContent());
+        $this->assertStringStartsWith('/build/', $post->getImage());
     }
 }
