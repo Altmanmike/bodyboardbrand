@@ -22,6 +22,5 @@
         <MixedAssignment errorLevel="info" />
         <MixedArgument errorLevel="info" />
         <MixedReturnStatement errorLevel="info" />
-        <MixedInferredReturnType errorLevel="info" />
     </issueHandlers>
 </psalm>
