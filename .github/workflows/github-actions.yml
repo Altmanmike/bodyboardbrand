@@ -54,6 +54,12 @@ jobs:
       - name: Exécuter les tests PHPUnit
         run: vendor/bin/phpunit --testdox
 
+      - name: PHPStan
+        uses: php-actions/phpstan@v3
+
+      - name: Psalm
+        uses: docker://ghcr.io/psalm/psalm-github-actions
+        
       - name: Installer Node.js et Webpack Encore
         uses: actions/setup-node@v3
         with:
