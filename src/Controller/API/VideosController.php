@@ -31,7 +31,7 @@ class VideosController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    public function getVideo(VideoRepository $videoRepo, $id): JsonResponse
+    public function getVideo(VideoRepository $videoRepo, int $id): JsonResponse
     {
         $video = $videoRepo->find($id);
 
@@ -113,7 +113,7 @@ class VideosController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteVideo(VideoRepository $videoRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deleteVideo(VideoRepository $videoRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $video = $videoRepo->find($id);
 
@@ -163,7 +163,7 @@ class VideosController extends AbstractController
             ]
         )
     )]
-    public function updateVideo(VideoRepository $videoRepo, $id, Request $request, SerializerInterface $serializer, CategoryVideoRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updateVideo(VideoRepository $videoRepo, int $id, Request $request, SerializerInterface $serializer, CategoryVideoRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $video = $videoRepo->find($id);
 
@@ -235,7 +235,7 @@ class VideosController extends AbstractController
             ]
         )
     )]
-    public function updateFieldVideo(VideoRepository $videoRepo, $id, Request $request, SerializerInterface $serializer, CategoryVideoRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldVideo(VideoRepository $videoRepo, int $id, Request $request, SerializerInterface $serializer, CategoryVideoRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $video = $videoRepo->find($id);
 

@@ -231,12 +231,12 @@ class Member
         return $this;
     } 
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(user $user): static
+    public function setUser(User $user): static
     {
         $this->user = $user;
 
@@ -244,14 +244,14 @@ class Member
     }
 
     /**
-     * @return Collection<int, team>
+     * @return Collection<int, Team>
      */
     public function getTeams(): Collection
     {
         return $this->teams;
     }
 
-    public function addTeam(team $team): static
+    public function addTeam(Team $team): static
     {
         if (!$this->teams->contains($team)) {
             $this->teams->add($team);
@@ -260,7 +260,7 @@ class Member
         return $this;
     }
 
-    public function removeTeam(team $team): static
+    public function removeTeam(Team $team): static
     {
         $this->teams->removeElement($team);
 

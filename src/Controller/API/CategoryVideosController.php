@@ -29,7 +29,7 @@ class CategoryVideosController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]    
-    public function getCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id): JsonResponse
+    public function getCategoryVideo(CategoryVideoRepository $categoryVideoRepo, int $id): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -95,7 +95,7 @@ class CategoryVideosController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deleteCategoryVideo(CategoryVideoRepository $categoryVideoRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -134,7 +134,7 @@ class CategoryVideosController extends AbstractController
             ]             
         )
     )]    
-    public function updateCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateCategoryVideo(CategoryVideoRepository $categoryVideoRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -190,7 +190,7 @@ class CategoryVideosController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldCategoryVideo(CategoryVideoRepository $categoryVideoRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 

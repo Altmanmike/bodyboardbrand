@@ -32,7 +32,7 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    public function getPost(PostRepository $postRepo, $id): JsonResponse
+    public function getPost(PostRepository $postRepo, int $id): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -114,7 +114,7 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deletePost(PostRepository $postRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deletePost(PostRepository $postRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -164,7 +164,7 @@ class PostsController extends AbstractController
             ]
         )
     )]
-    public function updatePost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updatePost(PostRepository $postRepo, int $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -236,7 +236,7 @@ class PostsController extends AbstractController
             ]
         )
     )]
-    public function updateFieldPost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldPost(PostRepository $postRepo, int $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 

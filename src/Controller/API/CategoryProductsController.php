@@ -29,7 +29,7 @@ class CategoryProductsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    public function getCategoryProduct(CategoryProductRepository $categoryProductRepo, $id): JsonResponse
+    public function getCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -95,7 +95,7 @@ class CategoryProductsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deleteCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -134,7 +134,7 @@ class CategoryProductsController extends AbstractController
             ]             
         )
     )]
-    public function updateCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -190,7 +190,7 @@ class CategoryProductsController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 

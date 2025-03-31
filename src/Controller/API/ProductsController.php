@@ -32,7 +32,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]  
-    public function getProduct(ProductRepository $productRepo, $id): JsonResponse
+    public function getProduct(ProductRepository $productRepo, int $id): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -157,7 +157,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteProduct(ProductRepository $productRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deleteProduct(ProductRepository $productRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -245,7 +245,7 @@ class ProductsController extends AbstractController
             ]
         )
     )]
-    public function updateProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updateProduct(ProductRepository $productRepo, int $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -360,7 +360,7 @@ class ProductsController extends AbstractController
             ]
         )
     )]
-    public function updateFieldProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldProduct(ProductRepository $productRepo, int $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 

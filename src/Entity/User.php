@@ -368,14 +368,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, post>
+     * @return Collection<int, Post>
      */
     public function getPosts(): Collection
     {
         return $this->posts;
     }
 
-    public function addPost(post $post): static
+    public function addPost(Post $post): static
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
@@ -385,7 +385,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removePost(post $post): static
+    public function removePost(Post $post): static
     {
         if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
@@ -398,14 +398,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, orderFull>
+     * @return Collection<int, OrderFull>
      */
     public function getOrderFulls(): Collection
     {
         return $this->orderFulls;
     }
 
-    public function addorderFull(orderFull $orderFull): static
+    public function addOrderFull(OrderFull $orderFull): static
     {
         if (!$this->orderFulls->contains($orderFull)) {
             $this->orderFulls->add($orderFull);
@@ -415,7 +415,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeOrder(orderFull $orderFull): static
+    public function removeOrderFull(OrderFull $orderFull): static
     {
         if ($this->orderFulls->removeElement($orderFull)) {
             // set the owning side to null (unless already changed)
@@ -428,14 +428,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, innovation>
+     * @return Collection<int, Innovation>
      */
     public function getInnovations(): Collection
     {
         return $this->innovations;
     }
 
-    public function addInnovation(innovation $innovation): static
+    public function addInnovation(Innovation $innovation): static
     {
         if (!$this->innovations->contains($innovation)) {
             $this->innovations->add($innovation);
@@ -445,7 +445,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeInnovation(innovation $innovation): static
+    public function removeInnovation(Innovation $innovation): static
     {
         if ($this->innovations->removeElement($innovation)) {
             // set the owning side to null (unless already changed)
@@ -458,14 +458,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, video>
+     * @return Collection<int, Video>
      */
     public function getVideos(): Collection
     {
         return $this->videos;
     }
 
-    public function addVideo(video $video): static
+    public function addVideo(Video $video): static
     {
         if (!$this->videos->contains($video)) {
             $this->videos->add($video);
@@ -475,7 +475,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeVideo(video $video): static
+    public function removeVideo(Video $video): static
     {
         if ($this->videos->removeElement($video)) {
             // set the owning side to null (unless already changed)

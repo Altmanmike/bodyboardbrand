@@ -29,7 +29,7 @@ class CategoryPostsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]    
-    public function getCategoryPost(CategoryPostRepository $categoryPostRepo, $id): JsonResponse
+    public function getCategoryPost(CategoryPostRepository $categoryPostRepo, int $id): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -96,7 +96,7 @@ class CategoryPostsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryPost(CategoryPostRepository $categoryPostRepo, $id, EntityManagerInterface $entityManager): JsonResponse
+    public function deleteCategoryPost(CategoryPostRepository $categoryPostRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -135,7 +135,7 @@ class CategoryPostsController extends AbstractController
             ]             
         )
     )]
-    public function updateCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateCategoryPost(CategoryPostRepository $categoryPostRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -191,7 +191,7 @@ class CategoryPostsController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function updateFieldCategoryPost(CategoryPostRepository $categoryPostRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
