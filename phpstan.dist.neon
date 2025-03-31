@@ -1,16 +1,14 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
 parameters:
     level: 1
     paths:
-        - bin/
-        - config/
-        - public/
-        - src/
-        - tests/
-    autoload_directories:
-        - bin
-    checkMissingIterableValueType: false
-    checkMissingCallableSignature: false
+        - src
+        - tests
     inferPrivatePropertyTypeFromConstructor: true
+
+    # Tu peux ignorer certaines erreurs fréquentes pendant le développement
     ignoreErrors:
         - '#Call to an undefined method .*#'
         - '#Property .* does not accept .*#'
