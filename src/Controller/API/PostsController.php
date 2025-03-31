@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class PostsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]      
-    public function getPosts(PostRepository $postRepo, SerializerInterface $serializer)
+    public function getPosts(PostRepository $postRepo, SerializerInterface $serializer): JsonResponse
     {
         $posts = $postRepo->findAll();
 
@@ -32,7 +32,7 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    public function getPost(PostRepository $postRepo, $id)
+    public function getPost(PostRepository $postRepo, int $id): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -81,7 +81,7 @@ class PostsController extends AbstractController
             ]
         )
     )]
-    public function createPost(Request $request, UserRepository $userRepo, CategoryPostRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer)
+    public function createPost(Request $request, UserRepository $userRepo, CategoryPostRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['title'], $data['image'], $data['content'], $data['category'], $data['user'])) {            
@@ -114,7 +114,7 @@ class PostsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deletePost(PostRepository $postRepo, $id, EntityManagerInterface $entityManager)
+    public function deletePost(PostRepository $postRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -164,7 +164,7 @@ class PostsController extends AbstractController
             ]
         )
     )]
-    public function updatePost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
+    public function updatePost(PostRepository $postRepo, int $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 
@@ -236,7 +236,7 @@ class PostsController extends AbstractController
             ]
         )
     )]
-    public function updateFieldPost(PostRepository $postRepo, $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
+    public function updateFieldPost(PostRepository $postRepo, int $id, Request $request, SerializerInterface $serializer, CategoryPostRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $post = $postRepo->find($id);
 

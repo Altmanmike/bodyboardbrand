@@ -98,12 +98,12 @@ class Team
         return $this;
     }
 
-    public function getCategory(): ?categoryTeam
+    public function getCategory(): ?CategoryTeam
     {
         return $this->category;
     }
 
-    public function setCategory(?categoryTeam $category): static
+    public function setCategory(?CategoryTeam $category): static
     {
         $this->category = $category;
 

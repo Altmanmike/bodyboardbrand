@@ -213,12 +213,12 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?categoryProduct
+    public function getCategory(): ?CategoryProduct
     {
         return $this->category;
     }
 
-    public function setCategory(?categoryProduct $category): static
+    public function setCategory(?CategoryProduct $category): static
     {
         $this->category = $category;
 
