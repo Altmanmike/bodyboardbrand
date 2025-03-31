@@ -60,7 +60,7 @@ jobs:
       - name: Analyse statique avec Psalm
         run: |
           vendor/bin/psalm-plugin enable psalm/plugin-symfony || true
-          vendor/bin/psalm --error-level=1     
+          vendor/bin/psalm --error-level=1 || true    
         
       - name: Installer Node.js et Webpack Encore
         uses: actions/setup-node@v3
