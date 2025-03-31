@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class CategoryVideosController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]    
-    public function getCategoryVideos(CategoryVideoRepository $categoryVideoRepo, SerializerInterface $serializer)
+    public function getCategoryVideos(CategoryVideoRepository $categoryVideoRepo, SerializerInterface $serializer): JsonResponse
     {
         $categoryVideos = $categoryVideoRepo->findAll();
 
@@ -29,7 +29,7 @@ class CategoryVideosController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]    
-    public function getCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id)
+    public function getCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -67,7 +67,7 @@ class CategoryVideosController extends AbstractController
             ]             
         )
     )]
-    public function createCategoryVideo(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer)
+    public function createCategoryVideo(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['name'], $data['description'])) {            
@@ -95,7 +95,7 @@ class CategoryVideosController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, EntityManagerInterface $entityManager)
+    public function deleteCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -134,7 +134,7 @@ class CategoryVideosController extends AbstractController
             ]             
         )
     )]    
-    public function updateCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 
@@ -190,7 +190,7 @@ class CategoryVideosController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateFieldCategoryVideo(CategoryVideoRepository $categoryVideoRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryVideo = $categoryVideoRepo->find($id);
 

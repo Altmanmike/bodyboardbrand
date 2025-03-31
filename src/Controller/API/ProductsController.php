@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class ProductsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]   
-    public function getProducts(ProductRepository $productRepo, SerializerInterface $serializer)
+    public function getProducts(ProductRepository $productRepo, SerializerInterface $serializer): JsonResponse
     {
         $products = $productRepo->findAll();
 
@@ -32,7 +32,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]  
-    public function getProduct(ProductRepository $productRepo, $id)
+    public function getProduct(ProductRepository $productRepo, $id): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -119,7 +119,7 @@ class ProductsController extends AbstractController
             ]
         )
     )]
-    public function createProduct(Request $request, UserRepository $userRepo, CategoryProductRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer)
+    public function createProduct(Request $request, UserRepository $userRepo, CategoryProductRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['title'], $data['cover'], $data['images'], $data['colors'], $data['sizes'], $data['stock'], $data['price'], $data['description'], $data['category'], $data['user'])) {            
@@ -157,7 +157,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteProduct(ProductRepository $productRepo, $id, EntityManagerInterface $entityManager)
+    public function deleteProduct(ProductRepository $productRepo, $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -245,7 +245,7 @@ class ProductsController extends AbstractController
             ]
         )
     )]
-    public function updateProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
+    public function updateProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 
@@ -360,7 +360,7 @@ class ProductsController extends AbstractController
             ]
         )
     )]
-    public function updateFieldProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager)
+    public function updateFieldProduct(ProductRepository $productRepo, $id, Request $request, SerializerInterface $serializer, CategoryProductRepository $catRepo, UserRepository $userRepo, EntityManagerInterface $entityManager): JsonResponse
     {
         $product = $productRepo->find($id);
 

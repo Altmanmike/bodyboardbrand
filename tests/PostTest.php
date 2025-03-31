@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    public function testPostEntity()
+    public function testPostEntity(): void
     {
         $post = new Post();
         $user = new User();

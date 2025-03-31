@@ -1,0 +1,16 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    level: 1
+    paths:
+        - src
+        - tests
+    inferPrivatePropertyTypeFromConstructor: true
+
+    # Tu peux ignorer certaines erreurs fréquentes pendant le développement
+    ignoreErrors:
+        - '#Call to an undefined method .*#'
+        - '#Property .* does not accept .*#'
+        - '#Access to an undefined property .*#'
+    reportUnmatchedIgnoredErrors: false

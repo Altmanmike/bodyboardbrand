@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class CategoryPostsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]    
-    public function getcategoryPosts(CategoryPostRepository $categoryPostRepo, SerializerInterface $serializer)
+    public function getcategoryPosts(CategoryPostRepository $categoryPostRepo, SerializerInterface $serializer): JsonResponse
     {
         $categoryPosts = $categoryPostRepo->findAll();
 
@@ -29,7 +29,7 @@ class CategoryPostsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]    
-    public function getCategoryPost(CategoryPostRepository $categoryPostRepo, $id)
+    public function getCategoryPost(CategoryPostRepository $categoryPostRepo, $id): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -68,7 +68,7 @@ class CategoryPostsController extends AbstractController
         )
     )]
     #[OA\Response(response: 400, description: "Invalid input data")]
-    public function createCategoryPost(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer)
+    public function createCategoryPost(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['name'], $data['description'])) {            
@@ -96,7 +96,7 @@ class CategoryPostsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryPost(CategoryPostRepository $categoryPostRepo, $id, EntityManagerInterface $entityManager)
+    public function deleteCategoryPost(CategoryPostRepository $categoryPostRepo, $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -135,7 +135,7 @@ class CategoryPostsController extends AbstractController
             ]             
         )
     )]
-    public function updateCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
@@ -191,7 +191,7 @@ class CategoryPostsController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateFieldCategoryPost(CategoryPostRepository $categoryPostRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryPost = $categoryPostRepo->find($id);
 
