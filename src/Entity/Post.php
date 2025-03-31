@@ -120,12 +120,12 @@ class Post
         return $this;
     }
  
-    public function getCategory(): ?categoryPost
+    public function getCategory(): ?CategoryPost
     {
         return $this->category;
     }
 
-    public function setCategory(?categoryPost $category): static
+    public function setCategory(?CategoryPost $category): static
     {
         $this->category = $category;
 

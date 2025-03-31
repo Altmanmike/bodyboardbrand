@@ -119,12 +119,12 @@ class Video
         return $this;
     }
 
-    public function getCategory(): ?categoryVideo
+    public function getCategory(): ?CategoryVideo
     {
         return $this->category;
     }
 
-    public function setCategory(?categoryVideo $category): static
+    public function setCategory(?CategoryVideo $category): static
     {
         $this->category = $category;
 

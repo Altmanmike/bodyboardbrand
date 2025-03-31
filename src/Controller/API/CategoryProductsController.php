@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class CategoryProductsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]    
-    public function getcategoryProducts(CategoryProductRepository $categoryProductRepo, SerializerInterface $serializer)
+    public function getcategoryProducts(CategoryProductRepository $categoryProductRepo, SerializerInterface $serializer): JsonResponse
     {
         $categoryProducts = $categoryProductRepo->findAll();
 
@@ -29,7 +29,7 @@ class CategoryProductsController extends AbstractController
     }
 
     #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
-    public function getCategoryProduct(CategoryProductRepository $categoryProductRepo, $id)
+    public function getCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -67,7 +67,7 @@ class CategoryProductsController extends AbstractController
             ]             
         )
     )]
-    public function createCategoryProduct(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer)
+    public function createCategoryProduct(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         if (!isset($data['name'], $data['description'])) {            
@@ -95,7 +95,7 @@ class CategoryProductsController extends AbstractController
     }
 
     #[Route('/{id}', name: '_del', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function deleteCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, EntityManagerInterface $entityManager)
+    public function deleteCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -134,7 +134,7 @@ class CategoryProductsController extends AbstractController
             ]             
         )
     )]
-    public function updateCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 
@@ -190,7 +190,7 @@ class CategoryProductsController extends AbstractController
             ]             
         )
     )]
-    public function updateFieldCategoryProduct(CategoryProductRepository $categoryProductRepo, $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function updateFieldCategoryProduct(CategoryProductRepository $categoryProductRepo, int $id, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $categoryProduct = $categoryProductRepo->find($id);
 

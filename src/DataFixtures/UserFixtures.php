@@ -28,7 +28,7 @@ class UserFixtures extends Fixture
         $admin->setCountry('France');
         $admin->setDepartment('Rhône');
         $admin->setRegion('Auvergne-Rhône-Alpes');
-        $admin->setVerified(1);
+        $admin->setVerified(true);
         $admin->setPassword(
             $this->passwordEncoder->hashPassword($admin, 'admin') // l'admin devra changer le mdp      
         );      
@@ -56,7 +56,7 @@ class UserFixtures extends Fixture
             $user->setCountry(country: 'France');
             $user->setDepartment($faker->departmentName());
             $user->setRegion($faker->region());
-            $user->setVerified(0);
+            $user->setVerified(false);
             $user->setPassword(
                 $this->passwordEncoder->hashPassword($user, $faker->password())    
             );
