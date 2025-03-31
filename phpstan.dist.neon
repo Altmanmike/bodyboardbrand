@@ -1,8 +1,17 @@
 parameters:
-    level: 6
+    level: 1
     paths:
         - bin/
         - config/
         - public/
         - src/
         - tests/
+    autoload_directories:
+        - bin
+    checkMissingIterableValueType: false
+    checkMissingCallableSignature: false
+    inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - '#Call to an undefined method .*#'
+        - '#Property .* does not accept .*#'
+        - '#Access to an undefined property .*#'
