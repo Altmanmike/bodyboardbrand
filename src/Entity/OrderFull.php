@@ -113,14 +113,14 @@ class OrderFull
     }
 
     /**
-     * @return Collection<int, orderLine>
+     * @return Collection<int, OrderLine>
      */
     public function getOrderLines(): Collection
     {
         return $this->orderLines;
     }
 
-    public function addOrderLine(orderLine $orderLine): static
+    public function addOrderLine(OrderLine $orderLine): static
     {
         if (!$this->orderLines->contains($orderLine)) {
             $this->orderLines->add($orderLine);
@@ -130,7 +130,7 @@ class OrderFull
         return $this;
     }
 
-    public function removeOrderLine(orderLine $orderLine): static
+    public function removeOrderLine(OrderLine $orderLine): static
     {
         if ($this->orderLines->removeElement($orderLine)) {
             // set the owning side to null (unless already changed)

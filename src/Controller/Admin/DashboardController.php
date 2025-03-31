@@ -5,11 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use App\Entity\Team;
 use App\Entity\User;
-use App\Entity\Order;
 use App\Entity\Video;
 use App\Entity\Member;
 use App\Entity\Product;
 use App\Entity\OrderLine;
+use App\Entity\OrderFull;
 use App\Entity\Innovation;
 use App\Entity\CategoryPost;
 use App\Entity\CategoryTeam;
@@ -56,7 +56,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Category Teams','fas fa-people-group', CategoryTeam::class);
         yield MenuItem::linkToCrud('Category Videos','fa-brands fa-youtube', CategoryVideo::class);
         yield MenuItem::section('ORDERS');
-        yield MenuItem::linkToCrud('Orders','fas fa-list-check', Order::class);
+        yield MenuItem::linkToCrud('OrderFulls','fas fa-list-check', OrderFull::class);
         yield MenuItem::linkToCrud('OrderLines','fas fa-list-ul', OrderLine::class);
     }
 }

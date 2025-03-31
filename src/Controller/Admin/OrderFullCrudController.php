@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Order;
+use App\Entity\OrderFull;
 use App\Controller\Admin\Trait\ReadOnlyTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -10,13 +10,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class OrderCrudController extends AbstractCrudController
+class OrderFullCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
     
     public static function getEntityFqcn(): string
     {
-        return Order::class;
+        return OrderFull::class;
     }
 
     
@@ -25,7 +25,7 @@ class OrderCrudController extends AbstractCrudController
         return [
             IdField::new('id'),          
             TextField::new('status'),
-            NumberField::new('price'),           
+            NumberField::new('totalPrice'),           
             DateField::new('created_at'),
             DateField::new('updated_at'),
             DateField::new('completed_at'),

@@ -52,18 +52,24 @@ class UserController extends AbstractController
     public function index(UserRepository $repo): Response
     {
         // Récupération d'un utilisateur avec informations (array)
-        $u = $this->getUser()->getUserIdentifier();        
-        $user = $repo->findByEmail($u);
+        if($this->getUser()) {
+            $u = $this->getUser()->getUserIdentifier();
 
-        // Si l'utilisateur est un admin
-        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
-            return $this->redirectToRoute('app_admin_dash');
+            $user = $repo->findBy($u);
+
+            // Si l'utilisateur est un admin
+            if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+                return $this->redirectToRoute('app_admin_dash');
+            }
+
+            return $this->render('user/index.html.twig', [
+                'controller_name' => 'UserController',
+                 'user' => $user[0]
+            ]);
+            
+        } else {
+            return $this->redirectToRoute('app');
         }
-
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-             'user' => $user[0]
-        ]);
     }
 
     #[Route('/admin_dash', name: 'app_admin_dash')]
