@@ -54,10 +54,7 @@ class Video
         $this->createdAt = new \DateTimeImmutable();   
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getUrl(): ?string
     {
@@ -95,10 +92,7 @@ class Video
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -107,10 +101,7 @@ class Video
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {

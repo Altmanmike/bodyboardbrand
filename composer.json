@@ -117,6 +117,6 @@
         "symfony/phpunit-bridge": "^7.1",
         "symfony/stopwatch": "7.1.*",
         "symfony/web-profiler-bundle": "7.1.*",
-        "vimeo/psalm": "6.0.0"
+        "vimeo/psalm": "6.5"
     }
 }

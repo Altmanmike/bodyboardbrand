@@ -16,28 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, CategoryProduct::class);
-    }
 
-    public function add(CategoryProduct $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
-    public function remove(CategoryProduct $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
 
     //    /**
     //     * @return CategoryProduct[] Returns an array of CategoryProduct objects

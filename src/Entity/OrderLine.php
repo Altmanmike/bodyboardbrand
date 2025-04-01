@@ -39,15 +39,9 @@ class OrderLine
         $this->createdAt = new \DateTimeImmutable();       
     }
     
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
+
+
 
     public function setQuantity(?int $quantity): static
     {
@@ -56,10 +50,7 @@ class OrderLine
         return $this;
     }
 
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
+
 
     public function setPrice(?float $price): static
     {
@@ -68,10 +59,7 @@ class OrderLine
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -80,10 +68,7 @@ class OrderLine
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {

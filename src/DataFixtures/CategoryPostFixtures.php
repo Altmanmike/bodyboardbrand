@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class CategoryPostFixtures extends Fixture
 {
-    public function __construct(private CategoryPostRepository $repo) {}    
+
 
     public function load(ObjectManager $manager): void
     {

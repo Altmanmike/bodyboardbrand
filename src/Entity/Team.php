@@ -45,15 +45,9 @@ class Team
         $this->members = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+
+
 
     public function setName(string $name): static
     {
@@ -62,10 +56,7 @@ class Team
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
+
 
     public function setDescription(string $description): static
     {
@@ -74,10 +65,7 @@ class Team
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -86,10 +74,7 @@ class Team
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
@@ -110,30 +95,9 @@ class Team
         return $this;
     }
 
-    /**
-     * @return Collection<int, Member>
-     */
-    public function getMembers(): Collection
-    {
-        return $this->members;
-    }
 
-    public function addMember(Member $member): static
-    {
-        if (!$this->members->contains($member)) {
-            $this->members->add($member);
-            $member->addTeam($this);
-        }
 
-        return $this;
-    }
 
-    public function removeMember(Member $member): static
-    {
-        if ($this->members->removeElement($member)) {
-            $member->removeTeam($this);
-        }
 
-        return $this;
-    }
+
 }

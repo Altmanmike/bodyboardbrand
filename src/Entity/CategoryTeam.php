@@ -41,26 +41,13 @@ class CategoryTeam
         $this->teams = new ArrayCollection();       
     }
     
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
 
     public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
     }
 
     public function setDescription(string $description): static
@@ -70,11 +57,6 @@ class CategoryTeam
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -82,44 +64,9 @@ class CategoryTeam
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Team>
-     */
-    public function getTeams(): Collection
-    {
-        return $this->teams;
-    }
-
-    public function addTeam(Team $team): static
-    {
-        if (!$this->teams->contains($team)) {
-            $this->teams->add($team);
-            $team->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTeam(Team $team): static
-    {
-        if ($this->teams->removeElement($team)) {
-            // set the owning side to null (unless already changed)
-            if ($team->getCategory() === $this) {
-                $team->setCategory(null);
-            }
-        }
 
         return $this;
     }

@@ -88,10 +88,7 @@ class Product
         $this->orderLines = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getTitle(): ?string
     {
@@ -189,10 +186,7 @@ class Product
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -201,10 +195,7 @@ class Product
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
@@ -225,35 +216,11 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, OrderLine>
-     */
-    public function getOrderLines(): Collection
-    {
-        return $this->orderLines;
-    }
 
-    public function addOrderLine(OrderLine $orderLine): static
-    {
-        if (!$this->orderLines->contains($orderLine)) {
-            $this->orderLines->add($orderLine);
-            $orderLine->setProduct($this);
-        }
 
-        return $this;
-    }
 
-    public function removeOrderLine(OrderLine $orderLine): static
-    {
-        if ($this->orderLines->removeElement($orderLine)) {
-            // set the owning side to null (unless already changed)
-            if ($orderLine->getProduct() === $this) {
-                $orderLine->setProduct(null);
-            }
-        }
 
-        return $this;
-    }
+
 
     public function getUser(): ?User
     {

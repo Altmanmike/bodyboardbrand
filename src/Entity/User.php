@@ -194,10 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
+
 
     public function setFirstname(string $firstname): static
     {
@@ -218,10 +215,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
+
 
     public function setPhone(string $phone): static
     {
@@ -230,10 +224,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
+
 
     public function setCity(string $city): static
     {
@@ -242,10 +233,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getZipcode(): ?string
-    {
-        return $this->zipcode;
-    }
+
 
     public function setZipcode(string $zipcode): static
     {
@@ -254,10 +242,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
+
 
     public function setLocation(string $location): static
     {
@@ -266,10 +251,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
+
 
     public function setCountry(string $country): static
     {
@@ -278,10 +260,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDepartment(): ?string
-    {
-        return $this->department;
-    }
+
 
     public function setDepartment(?string $department): static
     {
@@ -290,10 +269,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
+
 
     public function setRegion(?string $region): static
     {
@@ -302,10 +278,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -314,22 +287,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
 
-        return $this;
-    }
 
-    public function getLastLoginAt(): ?\DateTimeImmutable
-    {
-        return $this->lastLoginAt;
-    }
+
+
 
     public function setLastLoginAt(\DateTimeImmutable $lastLoginAt): static
     {
@@ -338,10 +300,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
+
 
     public function setVerified(bool $isVerified): static
     {
@@ -350,170 +309,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getMember(): ?Member
-    {
-        return $this->member;
-    }
 
-    public function setMember(Member $member): static
-    {
-        // set the owning side of the relation if necessary
-        if ($member->getUser() !== $this) {
-            $member->setUser($this);
-        }
 
-        $this->member = $member;
 
-        return $this;
-    }
 
-    /**
-     * @return Collection<int, Post>
-     */
-    public function getPosts(): Collection
-    {
-        return $this->posts;
-    }
 
-    public function addPost(Post $post): static
-    {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setUser($this);
-        }
 
-        return $this;
-    }
 
-    public function removePost(Post $post): static
-    {
-        if ($this->posts->removeElement($post)) {
-            // set the owning side to null (unless already changed)
-            if ($post->getUser() === $this) {
-                $post->setUser(null);
-            }
-        }
 
-        return $this;
-    }
 
-    /**
-     * @return Collection<int, OrderFull>
-     */
-    public function getOrderFulls(): Collection
-    {
-        return $this->orderFulls;
-    }
 
-    public function addOrderFull(OrderFull $orderFull): static
-    {
-        if (!$this->orderFulls->contains($orderFull)) {
-            $this->orderFulls->add($orderFull);
-            $orderFull->setUser($this);
-        }
 
-        return $this;
-    }
 
-    public function removeOrderFull(OrderFull $orderFull): static
-    {
-        if ($this->orderFulls->removeElement($orderFull)) {
-            // set the owning side to null (unless already changed)
-            if ($orderFull->getUser() === $this) {
-                $orderFull->setUser(null);
-            }
-        }
 
-        return $this;
-    }
 
-    /**
-     * @return Collection<int, Innovation>
-     */
-    public function getInnovations(): Collection
-    {
-        return $this->innovations;
-    }
 
-    public function addInnovation(Innovation $innovation): static
-    {
-        if (!$this->innovations->contains($innovation)) {
-            $this->innovations->add($innovation);
-            $innovation->setUser($this);
-        }
 
-        return $this;
-    }
 
-    public function removeInnovation(Innovation $innovation): static
-    {
-        if ($this->innovations->removeElement($innovation)) {
-            // set the owning side to null (unless already changed)
-            if ($innovation->getUser() === $this) {
-                $innovation->setUser(null);
-            }
-        }
 
-        return $this;
-    }
 
-    /**
-     * @return Collection<int, Video>
-     */
-    public function getVideos(): Collection
-    {
-        return $this->videos;
-    }
 
-    public function addVideo(Video $video): static
-    {
-        if (!$this->videos->contains($video)) {
-            $this->videos->add($video);
-            $video->setUser($this);
-        }
 
-        return $this;
-    }
 
-    public function removeVideo(Video $video): static
-    {
-        if ($this->videos->removeElement($video)) {
-            // set the owning side to null (unless already changed)
-            if ($video->getUser() === $this) {
-                $video->setUser(null);
-            }
-        }
 
-        return $this;
-    }
 
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
 
-    public function addProduct(Product $product): static
-    {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setUser($this);
-        }
 
-        return $this;
-    }
 
-    public function removeProduct(Product $product): static
-    {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getUser() === $this) {
-                $product->setUser(null);
-            }
-        }
 
-        return $this;
-    }
+
+
+
+
+
 }

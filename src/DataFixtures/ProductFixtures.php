@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class ProductFixtures extends Fixture
 {
-    public function __construct(private ProductRepository $repo) {}    
+
 
     public function load(ObjectManager $manager): void
     {
@@ -275,11 +275,5 @@ class ProductFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getDependencies(): array
-    {
-        return [
-            UserFixtures::class,
-            CategoryProductFixtures::class
-        ]; 
-    }
+
 }
