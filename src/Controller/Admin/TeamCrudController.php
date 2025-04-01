@@ -14,11 +14,13 @@ final class TeamCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return Team::class;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [

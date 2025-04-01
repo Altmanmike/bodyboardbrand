@@ -83,8 +83,13 @@ final class VideosController extends AbstractController
     public function createVideo(Request $request, UserRepository $userRepo, CategoryVideoRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['url'], $data['title'], $data['description'], $data['category'], $data['user'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
+        if (!array_key_exists('url', $data) || !array_key_exists('title', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "url", "title", "description", "category" and "user" are required.'], 400);
         }
 
         $video = new Video();
@@ -172,8 +177,13 @@ final class VideosController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['url'], $data['title'], $data['description'], $data['category'], $data['user'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('url', $data) || !array_key_exists('title', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "url", "title", "description", "category" and "user" are required.'], 400);
         }
 
         $dataSer = $serializer->deserialize($request->getContent(), Video::class, 'json', [
@@ -245,34 +255,56 @@ final class VideosController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
         $dataSer = $serializer->deserialize($request->getContent(), Video::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $video,
             'groups' => ['videos.update'],
         ]);
 
-        if (isset($data['url'])) {
-            $video->setUrl($dataSer->getUrl());
+        if (array_key_exists('url', $data)) {
+            $url = $dataSer->getUrl();
+            if ($url === null) {
+                return $this->json(['error' => 'The "url" field cannot be null'], 400);
+            }
+            $video->setUrl($url);
             $video->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['title'])) {
-            $video->setTitle($dataSer->getTitle());
+        if (array_key_exists('title', $data)) {
+            $title = $dataSer->getTitle();
+            if ($title === null) {
+                return $this->json(['error' => 'The "title" field cannot be null'], 400);
+            }
+            $video->setTitle($title);
             $video->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['description'])) {
-            $video->setDescription($dataSer->getDescription());
+        if (array_key_exists('description', $data)) {
+            $description = $dataSer->getDescription();
+            if ($description === null) {
+                return $this->json(['error' => 'The "description" field cannot be null'], 400);
+            }
+            $video->setDescription($description);
             $video->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['category'])) {
+        if (array_key_exists('category', $data)) {
             $category = $catRepo->findOneBy(['name' => $data['category']]);
+            if ($category === null) {
+                return $this->json(['error' => 'The "category" field cannot be null'], 400);
+            }
             $video->setCategory($category);
             $video->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['user'])) {
+        if (array_key_exists('user', $data)) {
             $user = $userRepo->findOneBy(['email' => $data['user']]);
+            if ($user === null) {
+                return $this->json(['error' => 'The "user" field cannot be null'], 400);
+            }
             $video->setUser($user);
             $video->setUpdatedAt(new \DateTimeImmutable());
         }

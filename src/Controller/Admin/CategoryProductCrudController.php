@@ -14,11 +14,13 @@ final class CategoryProductCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return CategoryProduct::class;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [

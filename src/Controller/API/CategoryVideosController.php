@@ -70,8 +70,13 @@ final class CategoryVideosController extends AbstractController
     public function createCategoryVideo(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['name'], $data['description'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('name', $data) || !array_key_exists('description', $data)) {
+            return $this->json(['error' => 'Fields "name" and "description" are required.'], 400);
         }
 
         $categoryVideo = new CategoryVideo();
@@ -143,8 +148,13 @@ final class CategoryVideosController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['name'], $data['description'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('name', $data) || !array_key_exists('description', $data)) {
+            return $this->json(['error' => 'Fields "name" and "description" are required.'], 400);
         }
 
         $dataSer = $serializer->deserialize($request->getContent(), CategoryVideo::class, 'json', [
@@ -200,18 +210,30 @@ final class CategoryVideosController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
         $dataSer = $serializer->deserialize($request->getContent(), CategoryVideo::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $categoryVideo,
             'groups' => ['categoryVideos.update'],
         ]);
 
-        if (isset($data['name'])) {
-            $categoryVideo->setName($dataSer->getName());
+        if (array_key_exists('name', $data)) {
+            $name = $dataSer->getName();
+            if ($name === null) {
+                return $this->json(['error' => 'The "name" field cannot be null'], 400);
+            }
+            $categoryVideo->setName($name);
             $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['description'])) {
-            $categoryVideo->setDescription($dataSer->getDescription());
+        if (array_key_exists('description', $data)) {
+            $description = $dataSer->getDescription();
+            if ($description === null) {
+                return $this->json(['error' => 'The "description" field cannot be null'], 400);
+            }
+            $categoryVideo->setDescription($description);
             $categoryVideo->setUpdatedAt(new \DateTimeImmutable());
         }
 

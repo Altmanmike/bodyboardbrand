@@ -13,6 +13,7 @@ final class UserCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return User::class;

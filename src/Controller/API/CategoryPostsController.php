@@ -71,8 +71,13 @@ final class CategoryPostsController extends AbstractController
     public function createCategoryPost(Request $request, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['name'], $data['description'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('name', $data) || !array_key_exists('description', $data)) {
+            return $this->json(['error' => 'Fields "name" and "description" are required.'], 400);
         }
 
         $categoryPost = new CategoryPost();
@@ -144,9 +149,14 @@ final class CategoryPostsController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['name'], $data['description'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
         }
+
+        if (!array_key_exists('name', $data) || !array_key_exists('description', $data)) {
+            return $this->json(['error' => 'Fields "name" and "description" are required.'], 400);
+        }       
 
         $dataSer = $serializer->deserialize($request->getContent(), CategoryPost::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $categoryPost,
@@ -201,18 +211,30 @@ final class CategoryPostsController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
         $dataSer = $serializer->deserialize($request->getContent(), CategoryPost::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $categoryPost,
             'groups' => ['categoryPosts.update'],
         ]);
 
-        if (isset($data['name'])) {
-            $categoryPost->setName($dataSer->getName());
+        if (array_key_exists('name', $data)) {
+            $name = $dataSer->getName();
+            if ($name === null) {
+                return $this->json(['error' => 'The "name" field cannot be null'], 400);
+            }
+            $categoryPost->setName($name);
             $categoryPost->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['description'])) {
-            $categoryPost->setDescription($dataSer->getDescription());
+        if (array_key_exists('description', $data)) {
+            $description = $dataSer->getDescription();
+            if ($description === null) {
+                return $this->json(['error' => 'The "description" field cannot be null'], 400);
+            }
+            $categoryPost->setDescription($description);
             $categoryPost->setUpdatedAt(new \DateTimeImmutable());
         }
 

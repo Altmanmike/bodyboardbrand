@@ -115,8 +115,13 @@ final class ProductsController extends AbstractController
     public function createProduct(Request $request, UserRepository $userRepo, CategoryProductRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['cover'], $data['images'], $data['colors'], $data['sizes'], $data['stock'], $data['price'], $data['description'], $data['category'], $data['user'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
+        if (!array_key_exists('title', $data) || !array_key_exists('cover', $data) || !array_key_exists('images', $data) || !array_key_exists('colors', $data) || !array_key_exists('sizes', $data) || !array_key_exists('stock', $data) || !array_key_exists('price', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "cover", "images", "content", "category" and "user" are required.'], 400);
         }
 
         $product = new Product();
@@ -241,8 +246,13 @@ final class ProductsController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['cover'], $data['images'], $data['colors'], $data['sizes'], $data['stock'], $data['price'], $data['description'], $data['user'], $data['category'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('title', $data) || !array_key_exists('cover', $data) || !array_key_exists('images', $data) || !array_key_exists('colors', $data) || !array_key_exists('sizes', $data) || !array_key_exists('stock', $data) || !array_key_exists('price', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "cover", "images", "content", "category" and "user" are required.'], 400);
         }
 
         $dataSer = $serializer->deserialize($request->getContent(), Product::class, 'json', [
@@ -351,59 +361,101 @@ final class ProductsController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
         $dataSer = $serializer->deserialize($request->getContent(), Product::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $product,
             'groups' => ['products.update'],
         ]);
 
-        if (isset($data['title'])) {
-            $product->setTitle($dataSer->getTitle());
+        if (array_key_exists('title', $data)) {
+            $title = $dataSer->getTitle();
+            if ($title === null) {
+                return $this->json(['error' => 'The "title" field cannot be null'], 400);
+            }
+            $product->setTitle($title);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['cover'])) {
-            $product->setCover($dataSer->getCover());
+        if (array_key_exists('cover', $data)) {
+            $cover = $dataSer->getCover();
+            if ($cover === null) {
+                return $this->json(['error' => 'The "cover" field cannot be null'], 400);
+            }
+            $product->setTitle($cover);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['images'])) {
-            $product->setImages($dataSer->getImages());
+        if (array_key_exists('images', $data)) {
+            $images = $dataSer->getImages();
+            if ($images === null) {
+                return $this->json(['error' => 'The "images" field cannot be null'], 400);
+            }
+            $product->setImages($images);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['colors'])) {
-            $product->setColors($dataSer->getColors());
+        if (array_key_exists('colors', $data)) {
+            $colors = $dataSer->getColors();
+            if ($colors === null) {
+                return $this->json(['error' => 'The "colors" field cannot be null'], 400);
+            }
+            $product->setColors($colors);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['sizes'])) {
-            $product->setSizes($dataSer->getSizes());
+        if (array_key_exists('sizes', $data)) {
+            $sizes = $dataSer->getSizes();
+            if ($sizes === null) {
+                return $this->json(['error' => 'The "sizes" field cannot be null'], 400);
+            }
+            $product->setSizes($sizes);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['stock'])) {
-            $product->setStock($dataSer->getStock());
+        if (array_key_exists('stock', $data)) {
+            $stock = $dataSer->getStock();
+            if ($stock === null) {
+                return $this->json(['error' => 'The "stock" field cannot be null'], 400);
+            }
+            $product->setStock($stock);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['price'])) {
-            $product->setPrice($dataSer->getPrice());
+        if (array_key_exists('price', $data)) {
+            $price = $dataSer->getPrice();
+            if ($price === null) {
+                return $this->json(['error' => 'The "price" field cannot be null'], 400);
+            }
+            $product->setPrice($price);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['description'])) {
-            $product->setDescription($dataSer->getDescription());
+        if (array_key_exists('description', $data)) {
+            $description = $dataSer->getDescription();
+            if ($description === null) {
+                return $this->json(['error' => 'The "description" field cannot be null'], 400);
+            }
+            $product->setDescription($description);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['category'])) {
+        if (array_key_exists('category', $data)) {
             $category = $catRepo->findOneBy(['name' => $data['category']]);
+            if ($category === null) {
+                return $this->json(['error' => 'The "category" field cannot be null'], 400);
+            }
             $product->setCategory($category);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['user'])) {
+        if (array_key_exists('user', $data)) {
             $user = $userRepo->findOneBy(['email' => $data['user']]);
+            if ($user === null) {
+                return $this->json(['error' => 'The "user" field cannot be null'], 400);
+            }
             $product->setUser($user);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }

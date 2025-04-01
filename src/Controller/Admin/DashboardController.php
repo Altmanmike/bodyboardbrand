@@ -24,6 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class DashboardController extends AbstractDashboardController
 {
+    #[\Override]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -32,6 +33,7 @@ final class DashboardController extends AbstractDashboardController
         return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
     }
 
+    #[\Override]
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -39,6 +41,7 @@ final class DashboardController extends AbstractDashboardController
             ->setTitle('<div style="text-align:center;"><img src="/assets/logo.png" alt="logo" class="logo-image" style="width:150px;"/><span class="text-small">Bodyboards</span></div>');
     }
 
+    #[\Override]
     public function configureMenuItems(): iterable
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

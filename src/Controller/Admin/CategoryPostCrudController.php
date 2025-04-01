@@ -14,11 +14,13 @@ final class CategoryPostCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return CategoryPost::class;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [

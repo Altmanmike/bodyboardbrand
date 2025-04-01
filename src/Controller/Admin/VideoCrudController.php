@@ -14,11 +14,13 @@ final class VideoCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return Video::class;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [

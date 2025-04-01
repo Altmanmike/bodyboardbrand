@@ -83,8 +83,13 @@ final class PostsController extends AbstractController
     public function createPost(Request $request, UserRepository $userRepo, CategoryPostRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['image'], $data['content'], $data['category'], $data['user'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
+        if (!array_key_exists('title', $data) || !array_key_exists('image', $data) || !array_key_exists('content', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "image", "content", "category" and "user" are required.'], 400);
         }
 
         $post = new Post();
@@ -172,8 +177,13 @@ final class PostsController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['image'], $data['content'], $data['category'], $data['user'])) {
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('title', $data) || !array_key_exists('image', $data) || !array_key_exists('content', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "image", "content", "category" and "user" are required.'], 400);
         }
 
         $dataSer = $serializer->deserialize($request->getContent(), Post::class, 'json', [
@@ -245,34 +255,56 @@ final class PostsController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
         $dataSer = $serializer->deserialize($request->getContent(), Post::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $post,
             'groups' => ['posts.update'],
         ]);
 
-        if (isset($data['title'])) {
-            $post->setTitle($dataSer->getTitle());
+        if (array_key_exists('title', $data)) {
+            $title = $dataSer->getTitle();
+            if ($title === null) {
+                return $this->json(['error' => 'The "title" field cannot be null'], 400);
+            }
+            $post->setTitle($title);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['image'])) {
-            $post->setImage($dataSer->getImage());
+        if (array_key_exists('image', $data)) {
+            $image = $dataSer->getImage();
+            if ($image === null) {
+                return $this->json(['error' => 'The "image" field cannot be null'], 400);
+            }
+            $post->setTitle($title);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['content'])) {
-            $post->setContent($dataSer->getContent());
+        if (array_key_exists('content', $data)) {
+            $content = $dataSer->getContent();
+            if ($content === null) {
+                return $this->json(['error' => 'The "content" field cannot be null'], 400);
+            }
+            $post->setContent($content);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['category'])) {
+        if (array_key_exists('category', $data)) {
             $category = $catRepo->findOneBy(['name' => $data['category']]);
+            if ($category === null) {
+                return $this->json(['error' => 'The "category" field cannot be null'], 400);
+            }
             $post->setCategory($category);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['user'])) {
+        if (array_key_exists('user', $data)) {
             $user = $userRepo->findOneBy(['email' => $data['user']]);
+            if ($user === null) {
+                return $this->json(['error' => 'The "user" field cannot be null'], 400);
+            }
             $post->setUser($user);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }

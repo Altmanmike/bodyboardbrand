@@ -14,11 +14,13 @@ final class OrderLineCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return OrderLine::class;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [
