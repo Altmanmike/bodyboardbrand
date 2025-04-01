@@ -16,7 +16,28 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryVideoRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, CategoryVideo::class);
+    }
 
+    public function add(CategoryVideo $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(CategoryVideo $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
     //    /**
     //     * @return CategoryVideo[] Returns an array of CategoryVideo objects

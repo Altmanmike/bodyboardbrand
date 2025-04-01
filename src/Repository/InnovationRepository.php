@@ -16,7 +16,28 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InnovationRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Innovation::class);
+    }
 
+    public function add(Innovation $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Innovation $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
     //    /**
     //     * @return Innovation[] Returns an array of Innovation objects

@@ -16,7 +16,28 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryPostRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, CategoryPost::class);
+    }
 
+    public function add(CategoryPost $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(CategoryPost $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
     //    /**
     //     * @return CategoryPost[] Returns an array of CategoryPost objects

@@ -16,7 +16,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderLineRepository extends ServiceEntityRepository
 {
-
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, OrderLine::class);
+    }
 
     //    /**
     //     * @return OrderLine[] Returns an array of OrderLine objects

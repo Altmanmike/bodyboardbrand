@@ -55,7 +55,10 @@ class Post
         $this->createdAt = new \DateTimeImmutable();       
     }
 
-
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
  
     public function getTitle(): ?string
     {
@@ -105,7 +108,10 @@ class Post
         return $this;
     }
 
-
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {

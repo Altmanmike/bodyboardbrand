@@ -94,9 +94,15 @@ class Member
         $this->teams = new ArrayCollection();
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-
-
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
 
     public function setFirstname(string $firstname): static
     {
@@ -105,7 +111,10 @@ class Member
         return $this;
     }
 
-
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
 
     public function setLastname(string $lastname): static
     {
@@ -114,7 +123,10 @@ class Member
         return $this;
     }
 
-
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
 
     public function setNickname(?string $nickname): static
     {
@@ -123,7 +135,10 @@ class Member
         return $this;
     }
 
-
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
 
     public function setPhoto(?string $photo): static
     {
@@ -132,7 +147,10 @@ class Member
         return $this;
     }
 
-
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
 
     public function setBiography(?string $biography): static
     {
@@ -141,7 +159,10 @@ class Member
         return $this;
     }
 
-
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
 
     public function setRole(?string $role): static
     {
@@ -150,7 +171,10 @@ class Member
         return $this;
     }
 
-
+    public function getSponsors(): ?string
+    {
+        return $this->sponsors;
+    }
 
     public function setSponsors(?string $sponsors): static
     {
@@ -159,7 +183,10 @@ class Member
         return $this;
     }
 
-
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
 
     public function setInstagram(?string $instagram): static
     {
@@ -168,7 +195,10 @@ class Member
         return $this;
     }
 
-
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
 
     public function setFacebook(?string $facebook): static
     {
@@ -177,7 +207,10 @@ class Member
         return $this;
     }
 
-
+    public function getYoutube(): ?string
+    {
+        return $this->youtube;
+    }
 
     public function setYoutube(?string $youtube): static
     {
@@ -186,7 +219,10 @@ class Member
         return $this;
     }
 
-
+    public function getRanking(): ?int
+    {
+        return $this->ranking;
+    }
 
     public function setRanking(?int $ranking): static
     {
@@ -207,7 +243,13 @@ class Member
         return $this;
     }
 
-
+    /**
+     * @return Collection<int, Team>
+     */
+    public function getTeams(): Collection
+    {
+        return $this->teams;
+    }
 
     public function addTeam(Team $team): static
     {
@@ -225,7 +267,10 @@ class Member
         return $this;
     }
 
-
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -234,7 +279,15 @@ class Member
         return $this;
     }
 
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
 
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
-
+        return $this;
+    }
 }

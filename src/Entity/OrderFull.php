@@ -47,9 +47,15 @@ class OrderFull
         $this->orderLines = new ArrayCollection();       
     }
     
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-
-
+    public function getTotalPrice(): ?float
+    {
+        return $this->totalPrice;
+    }
 
     public function setTotalPrice(?float $totalPrice): static
     {
@@ -58,7 +64,10 @@ class OrderFull
         return $this;
     }
 
-
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
 
     public function setStatus(?string $status): static
     {
@@ -67,7 +76,10 @@ class OrderFull
         return $this;
     }
 
-
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -76,7 +88,10 @@ class OrderFull
         return $this;
     }
 
-
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
 
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
@@ -85,7 +100,10 @@ class OrderFull
         return $this;
     }
 
-
+    public function getCompletedAt(): ?\DateTimeImmutable
+    {
+        return $this->completedAt;
+    }
 
     public function setCompletedAt(?\DateTimeImmutable $completedAt): static
     {
@@ -94,11 +112,35 @@ class OrderFull
         return $this;
     }
 
+    /**
+     * @return Collection<int, OrderLine>
+     */
+    public function getOrderLines(): Collection
+    {
+        return $this->orderLines;
+    }
 
+    public function addOrderLine(OrderLine $orderLine): static
+    {
+        if (!$this->orderLines->contains($orderLine)) {
+            $this->orderLines->add($orderLine);
+            $orderLine->setOrderFull($this);
+        }
 
+        return $this;
+    }
 
+    public function removeOrderLine(OrderLine $orderLine): static
+    {
+        if ($this->orderLines->removeElement($orderLine)) {
+            // set the owning side to null (unless already changed)
+            if ($orderLine->getOrderFull() === $this) {
+                $orderLine->setOrderFull(null);
+            }
+        }
 
-
+        return $this;
+    }
 
     public function getUser(): ?User
     {

@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class CategoryVideoFixtures extends Fixture
 {
-
+    public function __construct(private CategoryVideoRepository $repo) {}    
 
     public function load(ObjectManager $manager): void
     {

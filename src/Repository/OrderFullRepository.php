@@ -16,7 +16,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderFullRepository extends ServiceEntityRepository
 {
-
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, OrderFull::class);
+    }
 
     //    /**
     //     * @return OrderFull[] Returns an array of OrderFull objects
