@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/api/categoryPosts', name:'api_categoryPosts')]
 #[OA\Tag(name: "CategoryPosts endpoints", description: "CategoryPosts operations")]
-class CategoryPostsController extends AbstractController
+final class CategoryPostsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]    
     public function getcategoryPosts(CategoryPostRepository $categoryPostRepo, SerializerInterface $serializer): JsonResponse

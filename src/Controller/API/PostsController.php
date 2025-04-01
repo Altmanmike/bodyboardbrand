@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/api/posts', name:'api_posts')]
 #[OA\Tag(name: "Post endpoints", description: "Post operations")]
-class PostsController extends AbstractController
+final class PostsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]      
     public function getPosts(PostRepository $postRepo, SerializerInterface $serializer): JsonResponse

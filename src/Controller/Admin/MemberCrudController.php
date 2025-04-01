@@ -10,7 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class MemberCrudController extends AbstractCrudController
+final class MemberCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
     

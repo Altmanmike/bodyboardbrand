@@ -9,7 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserCrudController extends AbstractCrudController
+final class UserCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
 

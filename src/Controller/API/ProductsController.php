@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 #[Route('/api/products', name:'api_products')]
 #[OA\Tag(name: "Product endpoints", description: "Product operations")]
-class ProductsController extends AbstractController
+final class ProductsController extends AbstractController
 {
     #[Route('/', name:'_all', methods: ['GET'])]   
     public function getProducts(ProductRepository $productRepo, SerializerInterface $serializer): JsonResponse

@@ -22,7 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
-class DashboardController extends AbstractDashboardController
+final class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
     public function index(): Response

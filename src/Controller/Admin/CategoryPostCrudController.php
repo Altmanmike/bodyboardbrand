@@ -10,7 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class CategoryPostCrudController extends AbstractCrudController
+final class CategoryPostCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
     

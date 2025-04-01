@@ -13,7 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class ProductCrudController extends AbstractCrudController
+final class ProductCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
     
