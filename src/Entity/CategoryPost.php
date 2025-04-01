@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\CategoryPostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\CategoryPostRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryPostRepository::class)]
 #[ORM\Table(name: '`categoryPost`')]
@@ -22,12 +22,12 @@ class CategoryPost
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['posts.show','categoryPosts.index','categoryPosts.show','categoryPosts.create','categoryPosts.update'])]
+    #[Groups(['posts.show', 'categoryPosts.index', 'categoryPosts.show', 'categoryPosts.create', 'categoryPosts.update'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[OA\Property(type: 'string')]
-    #[Groups(['categoryPosts.show','categoryPosts.create','categoryPosts.update'])]
+    #[Groups(['categoryPosts.show', 'categoryPosts.create', 'categoryPosts.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -45,11 +45,11 @@ class CategoryPost
     private Collection $posts;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
-        $this->posts = new ArrayCollection();       
+        $this->posts = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_user');
-        } 
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -24,24 +24,24 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername, 
-            'error' => $error
+            'last_username' => $lastUsername,
+            'error' => $error,
         ]);
     }
 
     #[Route(path: '/predec', name: 'app_pre_logout')]
     public function pre_logout(EntityManagerInterface $entityManager, UserRepository $repo): Response
-    {        
-        $u = $this->getUser()->getUserIdentifier();        
-        $user = $repo->findByEmail($u); 
+    {
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
         $user[0]->setLastLoginAt(new \DateTimeImmutable());
 
         $entityManager->persist($user[0]);
-        $entityManager->flush();        
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_logout');
 
-        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     #[Route(path: '/logout', name: 'app_logout')]

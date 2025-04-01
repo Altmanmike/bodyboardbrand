@@ -4,12 +4,14 @@ namespace App\DataFixtures;
 
 use App\Entity\CategoryTeam;
 use App\Repository\CategoryTeamRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 
 class CategoryTeamFixtures extends Fixture
 {
-    public function __construct(private CategoryTeamRepository $repo) {}    
+    public function __construct(private CategoryTeamRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -27,12 +29,12 @@ class CategoryTeamFixtures extends Fixture
                 Activités :
                 Compétitions nationales et internationales.
                 Production de contenu (vidéos, photos).
-                Sessions de test pour les nouveaux produits.'); 
+                Sessions de test pour les nouveaux produits.');
         $categoryTeam->setCreatedAt(new \DateTimeImmutable());
         $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         $this->addReference('categoryTeam_0', $categoryTeam);
         $manager->persist($categoryTeam);
-  
+
         $categoryTeam = new CategoryTeam();
         $categoryTeam->setName('R&D');
         $categoryTeam->setDescription('Concevoir et améliorer les produits (planches, palmes, leash, etc.) en intégrant les retours des riders et les tendances du marché.
@@ -47,14 +49,14 @@ class CategoryTeamFixtures extends Fixture
                 Prototypage et tests des produits.
                 Innovation sur les formes et les matériaux.
                 Analyse des impacts (A.R.S., Invert, etc.).
-                Collaboration avec les riders pour améliorer les produits.'); 
+                Collaboration avec les riders pour améliorer les produits.');
         $categoryTeam->setCreatedAt(new \DateTimeImmutable());
         $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         $this->addReference('categoryTeam_1', $categoryTeam);
         $manager->persist($categoryTeam);
 
         $categoryTeam = new CategoryTeam();
-        $categoryTeam->setName('Marketing and Communication');         
+        $categoryTeam->setName('Marketing and Communication');
         $categoryTeam->setDescription('Assurer la visibilité et la promotion de la marque auprès des communautés locales et internationales.
                 
                 Composition :
@@ -105,7 +107,7 @@ class CategoryTeamFixtures extends Fixture
                 Activités :
                 Suivi des commandes et réclamations.
                 Conseils personnalisés pour les clients.
-                Organisation d\'ateliers et webinaires pour expliquer les produits.');        
+                Organisation d\'ateliers et webinaires pour expliquer les produits.');
         $categoryTeam->setCreatedAt(new \DateTimeImmutable());
         $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         $this->addReference('categoryTeam_4', $categoryTeam);
@@ -124,13 +126,12 @@ class CategoryTeamFixtures extends Fixture
                 Planification stratégique.
                 Gestion des contrats des riders et des employés.
                 Recherche de financements ou investisseurs.');
-         
+
         $categoryTeam->setCreatedAt(new \DateTimeImmutable());
         $categoryTeam->setUpdatedAt(new \DateTimeImmutable());
         $this->addReference('categoryTeam_5', $categoryTeam);
         $manager->persist($categoryTeam);
 
         $manager->flush();
- 
     }
 }

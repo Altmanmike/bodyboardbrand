@@ -38,7 +38,7 @@ class MemberRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     //    /**
     //     * @return Member[] Returns an array of Member objects
     //     */

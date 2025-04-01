@@ -2,8 +2,8 @@
 
 namespace App\Tests;
 
-use App\Entity\Video;
 use App\Entity\CategoryVideo;
+use App\Entity\Video;
 use PHPUnit\Framework\TestCase;
 
 class VideoTest extends TestCase

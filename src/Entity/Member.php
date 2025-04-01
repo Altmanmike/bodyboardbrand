@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
 #[ORM\Table(name: '`member`')]
@@ -28,47 +28,47 @@ class Member
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.index','members.show','members.create','members.update'])]
+    #[Groups(['members.index', 'members.show', 'members.create', 'members.update'])]
     private ?string $nickname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.index','members.show','members.create','members.update'])]
+    #[Groups(['members.index', 'members.show', 'members.create', 'members.update'])]
     private ?string $photo = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[OA\Property(type: 'string')]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $biography = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 100)]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $role = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $sponsors = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $instagram = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $facebook = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?string $youtube = null;
 
     #[ORM\Column(nullable: true)]
     #[OA\Property(type: 'integer')]
-    #[Groups(['members.show','members.create','members.update'])]
+    #[Groups(['members.show', 'members.create', 'members.update'])]
     private ?int $ranking = null;
 
     #[ORM\OneToOne(inversedBy: 'member', cascade: ['persist', 'remove'], fetch: 'EAGER')]
@@ -85,11 +85,11 @@ class Member
     #[Groups(['members.date'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
         $this->teams = new ArrayCollection();
     }
@@ -229,7 +229,7 @@ class Member
         $this->ranking = $ranking;
 
         return $this;
-    } 
+    }
 
     public function getUser(): ?User
     {

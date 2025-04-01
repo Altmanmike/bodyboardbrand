@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\InnovationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: InnovationRepository::class)]
 #[ORM\Table(name: '`innovation`')]
@@ -20,35 +20,35 @@ class Innovation
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['innovations.index','innovations.show','innovations.create','innovations.update'])]
+    #[Groups(['innovations.index', 'innovations.show', 'innovations.create', 'innovations.update'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['innovations.index','innovations.show','innovations.create','innovations.update'])]
+    #[Groups(['innovations.index', 'innovations.show', 'innovations.create', 'innovations.update'])]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[OA\Property(type: 'string')]
-    #[Groups(['innovations.show','innovations.create','innovations.update'])]
+    #[Groups(['innovations.show', 'innovations.create', 'innovations.update'])]
     private ?string $content = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     #[Groups(['innovations.date'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     #[Groups(['innovations.date'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'innovations', fetch: 'EAGER')]
-    #[Groups(['innovations.show','innovations.create','innovations.update'])]
+    #[Groups(['innovations.show', 'innovations.create', 'innovations.update'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    public function __construct() 
+    public function __construct()
     {
-         $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

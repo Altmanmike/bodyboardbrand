@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VideoRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 #[ORM\Table(name: '`video`')]
@@ -19,17 +19,17 @@ class Video
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['videos.index','videos.show','videos.create','videos.update'])]
+    #[Groups(['videos.index', 'videos.show', 'videos.create', 'videos.update'])]
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['videos.index','videos.show','videos.create','videos.update'])]
+    #[Groups(['videos.index', 'videos.show', 'videos.create', 'videos.update'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['videos.show','videos.create','videos.update'])]
+    #[Groups(['videos.show', 'videos.create', 'videos.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -41,17 +41,17 @@ class Video
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
-    #[Groups(['videos.show','videos.create','videos.update'])]
+    #[Groups(['videos.show', 'videos.create', 'videos.update'])]
     private ?CategoryVideo $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos', fetch: 'EAGER')]
-    #[Groups(['videos.show','videos.create','videos.update'])]
+    #[Groups(['videos.show', 'videos.create', 'videos.update'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     public function __construct()
-    {     
-        $this->createdAt = new \DateTimeImmutable();   
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

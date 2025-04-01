@@ -38,7 +38,7 @@ class TeamRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     //    /**
     //     * @return Team[] Returns an array of Team objects
     //     */

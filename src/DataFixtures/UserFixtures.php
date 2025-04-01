@@ -2,16 +2,18 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private UserRepository $repo) {}    
+    public function __construct(private UserPasswordHasherInterface $passwordEncoder, private UserRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -30,27 +32,26 @@ class UserFixtures extends Fixture
         $admin->setRegion('Auvergne-Rhône-Alpes');
         $admin->setVerified(true);
         $admin->setPassword(
-            $this->passwordEncoder->hashPassword($admin, 'admin') // l'admin devra changer le mdp      
-        );      
+            $this->passwordEncoder->hashPassword($admin, 'admin') // l'admin devra changer le mdp
+        );
         $admin->setCreatedAt(new \DateTimeImmutable());
         $admin->setLastLoginAt(new \DateTimeImmutable());
-       
+
         $this->addReference('user_0', $admin);
-        
+
         $manager->persist($admin);
 
         // Génération d'une DataFixtures de fausses données d'utilisateurs via FakerPHP
         $faker = Factory::create('fr_FR');
 
-        for($i=1; $i <= 10; $i++)
-        {
+        for ($i = 1; $i <= 10; ++$i) {
             $user = new User();
             $user->setEmail($faker->email());
             $user->setRoles(['ROLE_USER']);
             $user->setFirstname($faker->firstname());
-            $user->setLastname($faker->lastname()); 
-            $user->setPhone($faker->e164PhoneNumber()); 
-            $user->setZipcode(str_replace(' ', '', $faker->postcode()));            
+            $user->setLastname($faker->lastname());
+            $user->setPhone($faker->e164PhoneNumber());
+            $user->setZipcode(str_replace(' ', '', $faker->postcode()));
             $user->setCity($faker->city());
             $user->setLocation($faker->secondaryAddress());
             $user->setCountry(country: 'France');
@@ -58,15 +59,15 @@ class UserFixtures extends Fixture
             $user->setRegion($faker->region());
             $user->setVerified(false);
             $user->setPassword(
-                $this->passwordEncoder->hashPassword($user, $faker->password())    
+                $this->passwordEncoder->hashPassword($user, $faker->password())
             );
             $user->setCreatedAt(new \DateTimeImmutable());
-            $user->setLastLoginAt(new \DateTimeImmutable());   
-            $this->addReference('user_'.$i, $user);    
-            
-            $manager->persist($user);        
+            $user->setLastLoginAt(new \DateTimeImmutable());
+            $this->addReference('user_'.$i, $user);
+
+            $manager->persist($user);
         }
 
-        $manager->flush();     
+        $manager->flush();
     }
 }

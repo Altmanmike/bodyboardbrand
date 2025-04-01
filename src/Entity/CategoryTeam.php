@@ -36,11 +36,11 @@ class CategoryTeam
     private Collection $teams;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
-        $this->teams = new ArrayCollection();       
+        $this->teams = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

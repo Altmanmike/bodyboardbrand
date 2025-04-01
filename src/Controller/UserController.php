@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
@@ -14,7 +14,7 @@ class UserController extends AbstractController
     {
         $users = [
             [
-                'email' => 'altman_mike@yahoo.fr', 
+                'email' => 'altman_mike@yahoo.fr',
                 'roles' => '["ROLE_ADMIN"]',
                 'firstname' => 'Michael',
                 'lastname' => 'ALTMAN',
@@ -29,7 +29,7 @@ class UserController extends AbstractController
                 'last_login_at' => 'fghfgh',
             ],
             [
-                'email' => 'pguillaume@fontaine.com', 
+                'email' => 'pguillaume@fontaine.com',
                 'roles' => '["ROLE_USER"]',
                 'firstname' => 'zerzerzer',
                 'lastname' => 'zerzer',
@@ -43,7 +43,7 @@ class UserController extends AbstractController
                 'created_at' => 'fsfsdf',
                 'last_login_at' => 'sdfsdf',
             ],
-            
+
         ];
         return $this->json($users);
     }*/
@@ -52,7 +52,7 @@ class UserController extends AbstractController
     public function index(UserRepository $repo): Response
     {
         // Récupération d'un utilisateur avec informations (array)
-        if($this->getUser()) {
+        if ($this->getUser()) {
             $u = $this->getUser()->getUserIdentifier();
 
             $user = $repo->findBy($u);
@@ -64,9 +64,8 @@ class UserController extends AbstractController
 
             return $this->render('user/index.html.twig', [
                 'controller_name' => 'UserController',
-                 'user' => $user[0]
+                'user' => $user[0],
             ]);
-            
         } else {
             return $this->redirectToRoute('app');
         }

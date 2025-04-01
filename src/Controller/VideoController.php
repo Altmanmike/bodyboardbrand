@@ -21,12 +21,12 @@ class VideoController extends AbstractController
     {
         $videos = [
             [
-                'videoId' => 'ZeivXGDX6Bk', // Remplacez par un ID de vidéo YouTube valide 
+                'videoId' => 'ZeivXGDX6Bk', // Remplacez par un ID de vidéo YouTube valide
                 'title' => 'Another Team Highlights',
                 'description' => 'Best moments from the K&Z team in 2024 competitions.',
             ],
             [
-                'videoId' => 'S6Twm_oofew', 
+                'videoId' => 'S6Twm_oofew',
                 'title' => 'How to Master Aerial Tricks',
                 'description' => 'Step-by-step tutorial by our pro riders.',
             ],

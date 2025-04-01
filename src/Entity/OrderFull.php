@@ -25,7 +25,7 @@ class OrderFull
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
@@ -42,11 +42,11 @@ class OrderFull
     private ?User $user = null;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
-        $this->orderLines = new ArrayCollection();       
+        $this->orderLines = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

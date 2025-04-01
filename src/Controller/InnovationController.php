@@ -21,17 +21,17 @@ class InnovationController extends AbstractController
     {
         $innovations = [
             [
-                'title' => 'Reinforced Board Stringers', 
+                'title' => 'Reinforced Board Stringers',
                 'image' => '/build/images/stringers.jpg',
                 'description' => 'New stringer technology for improved board flexibility and strength.',
             ],
             [
-                'title' => 'Hydrodynamic Fins', 
+                'title' => 'Hydrodynamic Fins',
                 'image' => '/build/images/fins.jpg',
                 'description' => 'Innovative fins design for better water flow and speed.',
             ],
             [
-                'title' => 'Eco-Friendly Leash', 
+                'title' => 'Eco-Friendly Leash',
                 'image' => '/build/images/leash.jpg',
                 'description' => 'Sustainable materials to minimize ocean pollution.',
             ],

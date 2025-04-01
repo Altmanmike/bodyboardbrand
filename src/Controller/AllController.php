@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Repository\PostRepository;
-use App\Repository\VideoRepository;
-use App\Repository\MemberRepository;
-use App\Repository\ProductRepository;
 use App\Repository\InnovationRepository;
-use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\MemberRepository;
+use App\Repository\PostRepository;
+use App\Repository\ProductRepository;
+use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/all', name:'app_all')]
+#[Route('/all', name: 'app_all')]
 class AllController extends AbstractController
 {
     #[Route('/', name: '')]
@@ -20,8 +20,7 @@ class AllController extends AbstractController
         MemberRepository $memberRepo,
         VideoRepository $videoRepo,
         InnovationRepository $innovRepo,
-    ): Array
-    {
+    ): array {
         $posts = $postRepo->findAll();
         $products = $productRepo->findAll();
         $members = $memberRepo->findAll();
@@ -29,6 +28,6 @@ class AllController extends AbstractController
         $innovations = $innovRepo->findAll();
         $data = [$posts, $products, $members, $videos, $innovations];
 
-        return $data;    
+        return $data;
     }
 }

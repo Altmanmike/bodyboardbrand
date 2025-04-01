@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryProductRepository::class)]
 #[ORM\Table(name: '`categoryProduct`')]
@@ -22,12 +22,12 @@ class CategoryProduct
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['products.show','categoryProducts.index','categoryProducts.show','categoryProducts.create','categoryProducts.update'])]
+    #[Groups(['products.show', 'categoryProducts.index', 'categoryProducts.show', 'categoryProducts.create', 'categoryProducts.update'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[OA\Property(type: 'string')]
-    #[Groups(['categoryPosts.index','categoryProducts.show','categoryProducts.create','categoryProducts.update'])]
+    #[Groups(['categoryPosts.index', 'categoryProducts.show', 'categoryProducts.create', 'categoryProducts.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -45,11 +45,11 @@ class CategoryProduct
     private Collection $products;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
-        $this->products = new ArrayCollection();       
+        $this->products = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

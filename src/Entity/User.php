@@ -109,7 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $products;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLoginAt = new \DateTimeImmutable();
         $this->posts = new ArrayCollection();
