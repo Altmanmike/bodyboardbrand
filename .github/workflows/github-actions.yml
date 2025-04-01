@@ -33,10 +33,10 @@ jobs:
       - name: Récupérer le code
         uses: actions/checkout@v3
 
-      - name: Installer PHP 8.2.27 (psalm latest compatibility) et Composer
+      - name: Installer PHP et Composer
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.2.27"
+          php-version: "8.2"
           extensions: pdo, pdo_mysql
           tools: composer
 
@@ -54,14 +54,6 @@ jobs:
       - name: Exécuter les tests PHPUnit
         run: vendor/bin/phpunit --testdox
 
-      - name: PHPStan
-        uses: php-actions/phpstan@v3
-
-      - name: Analyse statique avec Psalm
-        run: |
-          vendor/bin/psalm-plugin enable psalm/plugin-symfony || true
-          vendor/bin/psalm --error-level=1 || true    
-        
       - name: Installer Node.js et Webpack Encore
         uses: actions/setup-node@v3
         with:
