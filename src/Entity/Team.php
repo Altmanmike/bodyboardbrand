@@ -26,7 +26,7 @@ class Team
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'teams', fetch: 'EAGER')]
@@ -40,7 +40,7 @@ class Team
     private Collection $members;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
         $this->members = new ArrayCollection();
     }

@@ -2,27 +2,29 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Member;
 use App\Controller\Admin\Trait\ReadOnlyTrait;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use App\Entity\Member;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class MemberCrudController extends AbstractCrudController
+final class MemberCrudController extends AbstractCrudController
 {
     use ReadOnlyTrait;
-    
+
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return Member::class;
     }
-    
+
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),            
+            IdField::new('id'),
             TextField::new('firstname'),
             TextField::new('lastname'),
             TextField::new('nickname'),
@@ -34,7 +36,7 @@ class MemberCrudController extends AbstractCrudController
             TextField::new('facebook'),
             TextField::new('youtube'),
             IntegerField::new('ranking'),
-            DateField::new('join_date'),            
+            DateField::new('join_date'),
         ];
-    }    
+    }
 }

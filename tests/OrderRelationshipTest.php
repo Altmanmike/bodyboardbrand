@@ -7,7 +7,7 @@ use App\Entity\OrderLine;
 use App\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
-class OrderRelationshipTest extends TestCase
+final class OrderRelationshipTest extends TestCase
 {
     public function testOrderFullWithOrderLines()
     {
@@ -23,7 +23,7 @@ class OrderRelationshipTest extends TestCase
         $order->addOrderLine($line2);
 
         $this->assertCount(2, $order->getOrderLines());
-        $this->assertSame($order, $line1->getOrderFull()); 
+        $this->assertSame($order, $line1->getOrderFull());
         $this->assertSame($order, $line2->getOrderFull());
 
         // Total estimé

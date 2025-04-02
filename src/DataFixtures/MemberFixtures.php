@@ -4,13 +4,15 @@ namespace App\DataFixtures;
 
 use App\Entity\Member;
 use App\Repository\MemberRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class MemberFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private MemberRepository $repo) {}    
+    public function __construct(private MemberRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -33,13 +35,13 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setUser($this->getReference('user_0'));
 
         $manager->persist($member);
-        $manager->flush();     
+        $manager->flush();
     }
 
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class
-        ]; 
+            UserFixtures::class,
+        ];
     }
 }

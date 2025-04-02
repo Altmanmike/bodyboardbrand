@@ -6,7 +6,7 @@ use App\Entity\OrderLine;
 use App\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
-class OrderLineTest extends TestCase
+final class OrderLineTest extends TestCase
 {
     public function testOrderLineSettersAndGetters()
     {

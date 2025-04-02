@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryVideoRepository::class)]
 #[ORM\Table(name: '`categoryVideo`')]
@@ -22,12 +22,12 @@ class CategoryVideo
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['videos.show','categoryVideos.index','categoryVideos.show','categoryVideos.create','categoryVideos.update'])]
+    #[Groups(['videos.show', 'categoryVideos.index', 'categoryVideos.show', 'categoryVideos.create', 'categoryVideos.update'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[OA\Property(type: 'string')]
-    #[Groups(['categoryVideos.show','categoryVideos.create','categoryVideos.update'])]
+    #[Groups(['categoryVideos.show', 'categoryVideos.create', 'categoryVideos.update'])]
     private ?string $description = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
@@ -45,11 +45,11 @@ class CategoryVideo
     private Collection $videos;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
-        $this->videos = new ArrayCollection();       
+        $this->videos = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

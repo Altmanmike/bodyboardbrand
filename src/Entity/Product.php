@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 use OpenApi\Attributes as OA;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ORM\Table(name: '`product`')]
@@ -22,68 +22,68 @@ class Product
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['products.index','products.show','products.create','products.update'])]
+    #[Groups(['products.index', 'products.show', 'products.create', 'products.update'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::ARRAY)]
     #[OA\Property(type: 'string')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private array $images = [];
 
     #[ORM\Column(type: Types::ARRAY)]
     #[OA\Property(type: 'string')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private array $colors = [];
 
     #[ORM\Column(type: Types::ARRAY)]
     #[OA\Property(type: 'string')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private array $sizes = [];
 
     #[ORM\Column]
     #[OA\Property(type: 'integer')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private ?int $stock = null;
 
     #[ORM\Column]
     #[OA\Property(type: 'string')]
-    #[Groups(['products.index','products.show','products.create','products.update'])]
+    #[Groups(['products.index', 'products.show', 'products.create', 'products.update'])]
     private ?float $price = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[OA\Property(type: 'string')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     #[OA\Property(type: 'string', maxLength: 255)]
-    #[Groups(['products.index','products.show','products.create','products.update'])]   
+    #[Groups(['products.index', 'products.show', 'products.create', 'products.update'])]
     private ?string $cover = null;
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     #[Groups(['products.date'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     #[Groups(['products.date'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'products', fetch: 'EAGER')]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private ?CategoryProduct $category = null;
 
     /**
      * @var Collection<int, OrderLine>
      */
-    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product', fetch: 'EAGER')]   
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product', fetch: 'EAGER')]
     private Collection $orderLines;
 
     #[ORM\ManyToOne(inversedBy: 'products', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['products.show','products.create','products.update'])]
+    #[Groups(['products.show', 'products.create', 'products.update'])]
     private ?User $user = null;
 
     public function __construct()
-    {     
+    {
         $this->createdAt = new \DateTimeImmutable();
         $this->orderLines = new ArrayCollection();
     }
@@ -164,7 +164,7 @@ class Product
 
         return $this;
     }
-    
+
     public function getDescription(): ?string
     {
         return $this->description;

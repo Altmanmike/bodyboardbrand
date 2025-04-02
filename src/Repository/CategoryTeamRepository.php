@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method CategoryTeam[]    findAll()
  * @method CategoryTeam[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryTeamRepository extends ServiceEntityRepository
+final class CategoryTeamRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

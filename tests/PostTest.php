@@ -6,7 +6,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-class PostTest extends TestCase
+final class PostTest extends TestCase
 {
     public function testPostSettersAndGetters()
     {

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ProductController extends AbstractController
+final class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]
     public function index(): Response
@@ -21,7 +21,7 @@ class ProductController extends AbstractController
     {
         $products = [
             [
-                'title' => 'Board Alpha', 
+                'title' => 'Board Alpha',
                 'cover' => '/build/images/kz-board-01.png',
                 'description' => '',
                 'images' => '',
@@ -32,7 +32,7 @@ class ProductController extends AbstractController
                 'created_at' => '',
             ],
             [
-                'title' => 'Board Omega', 
+                'title' => 'Board Omega',
                 'cover' => '/build/images/kz-board-02.png',
                 'description' => '',
                 'images' => '',
@@ -42,7 +42,7 @@ class ProductController extends AbstractController
                 'price' => '',
                 'created_at' => '',
             ],
-            
+
         ];
         return $this->json($products);
     }*/

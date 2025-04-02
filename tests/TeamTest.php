@@ -2,13 +2,13 @@
 
 namespace App\Tests;
 
-use App\Entity\Team;
 use App\Entity\CategoryTeam;
 use App\Entity\Member;
-use PHPUnit\Framework\TestCase;
+use App\Entity\Team;
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\TestCase;
 
-class TeamTest extends TestCase
+final class TeamTest extends TestCase
 {
     public function testTeamSettersAndGetters()
     {

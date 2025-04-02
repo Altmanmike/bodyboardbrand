@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class TeamController extends AbstractController
+final class TeamController extends AbstractController
 {
     #[Route('/team', name: 'app_team')]
     public function index(): Response
@@ -21,8 +21,8 @@ class TeamController extends AbstractController
     {
         $teams = [
             [
-                'name' => 'Bodyboarders', 
-                'description' => 'Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
+                'name' => 'Bodyboarders',
+                'description' => 'Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux.
                     Composition :
                     Leader de l\'équipe : Le rider principal, souvent le visage de la marque.
                     Riders internationaux : Participants réguliers aux compétitions IBA et autres grands circuits.
@@ -34,7 +34,7 @@ class TeamController extends AbstractController
                     Sessions de test pour les nouveaux produits.',
             ],
             [
-                'name' => 'R&D', 
+                'name' => 'R&D',
                 'description' => 'Concevoir et améliorer les produits (planches, palmes, leash, etc.) en intégrant les retours des riders et les tendances du marché.
                 Composition :
                 Ingénieurs matériaux : Pour travailler sur les stingers, les noyaux, et les revêtements.
@@ -48,7 +48,7 @@ class TeamController extends AbstractController
                 Collaboration avec les riders pour améliorer les produits.',
             ],
             [
-                'name' => 'Marketing and Communication', 
+                'name' => 'Marketing and Communication',
                 'description' => 'Assurer la visibilité et la promotion de la marque auprès des communautés locales et internationales.
                 Composition :
                 Responsable marketing : Définition de la stratégie globale.
@@ -63,7 +63,7 @@ class TeamController extends AbstractController
                 Suivi des tendances de la communauté bodyboard.',
             ],
             [
-                'name' => 'E-Commerce and Sales', 
+                'name' => 'E-Commerce and Sales',
                 'description' => 'Gérer les ventes en ligne et maximiser les revenus.
                 Composition :
                 Responsable e-commerce : Supervision de la boutique en ligne.
@@ -76,7 +76,7 @@ class TeamController extends AbstractController
                 Optimisation des process logistiques.',
             ],
             [
-                'name' => 'S.A.V', 
+                'name' => 'S.A.V',
                 'description' => 'Offrir un support client de qualité et traiter les demandes des clients et partenaires.
                 Composition :
                 Responsables support : Traitement des tickets clients (retours, réparations, etc.).
@@ -88,7 +88,7 @@ class TeamController extends AbstractController
                 Organisation d\'ateliers et webinaires pour expliquer les produits.',
             ],
             [
-                'name' => 'Administration and Staff', 
+                'name' => 'Administration and Staff',
                 'description' => 'Assurer la bonne gestion de l’entreprise sur le plan administratif et financier.
                 Composition :
                 Directeur général : Superviseur de toutes les équipes.

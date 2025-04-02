@@ -23,7 +23,7 @@ class OrderLine
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderLines', fetch: 'EAGER')]
@@ -35,10 +35,10 @@ class OrderLine
     private ?OrderFull $orderFull = null;
 
     public function __construct()
-    {     
-        $this->createdAt = new \DateTimeImmutable();       
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

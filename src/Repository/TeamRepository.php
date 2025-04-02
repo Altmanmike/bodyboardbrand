@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Team[]    findAll()
  * @method Team[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TeamRepository extends ServiceEntityRepository
+final class TeamRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -38,7 +38,7 @@ class TeamRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     //    /**
     //     * @return Team[] Returns an array of Team objects
     //     */

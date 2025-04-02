@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\CategoryPost;
 use PHPUnit\Framework\TestCase;
 
-class CategoryPostTest extends TestCase
+final class CategoryPostTest extends TestCase
 {
     public function testCategoryPostEntity()
     {

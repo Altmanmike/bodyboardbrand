@@ -3,14 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\Innovation;
-use Doctrine\Persistence\ObjectManager;
 use App\Repository\InnovationRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class InnovationFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private InnovationRepository $repo) {}    
+    public function __construct(private InnovationRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -20,10 +22,10 @@ class InnovationFixtures extends Fixture implements DependentFixtureInterface
         $innovation->setImage('../../imgs/innovation/stringers.jpg');
         $innovation->setContent('New stringer technology for improved board flexibility and strength.');
         $innovation->setCreatedAt(new \DateTimeImmutable());
-        $innovation->setUpdatedAt(new \DateTimeImmutable());                
+        $innovation->setUpdatedAt(new \DateTimeImmutable());
         $innovation->setUser($this->getReference('user_0'));
         $manager->persist($innovation);
- 
+
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
         $innovation->setTitle('Hydrodynamic Fins');
@@ -50,7 +52,7 @@ class InnovationFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class
-        ]; 
+            UserFixtures::class,
+        ];
     }
 }

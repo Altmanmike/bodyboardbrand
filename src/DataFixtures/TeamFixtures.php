@@ -4,13 +4,15 @@ namespace App\DataFixtures;
 
 use App\Entity\Team;
 use App\Repository\TeamRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class TeamFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private TeamRepository $repo) {}    
+    public function __construct(private TeamRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -33,7 +35,7 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
         $team->setUpdatedAt(new \DateTimeImmutable());
         $team->setCategory($this->getReference('categoryTeam_0'));
         $manager->persist($team);
-        
+
         $team = new Team();
         $team->setName('Bodyboarders Pro-Amateurs');
         $team->setDescription('Représenter la marque dans les compétitions, les événements, et sur les réseaux sociaux. 
@@ -92,7 +94,7 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
         $team->setCategory($this->getReference('categoryTeam_1'));
         $manager->persist($team);
 
-        $team = new Team();        
+        $team = new Team();
         $team->setName('Développement web');
         $team->setDescription('Concevoir le site et ses fonctionnalités en intégrant les retours des utilisateurs.
                 
@@ -104,7 +106,7 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
                 Activités :
                 Tests unitaires.
                 Force de propositions
-                Rédaction des spécificités et cahiers des charges.'); 
+                Rédaction des spécificités et cahiers des charges.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
         $team->setCategory($this->getReference('categoryTeam_3'));
@@ -125,7 +127,7 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
                 Gestion des campagnes publicitaires.
                 Organisation d’événements (contests, clinics).
                 Création de contenu promotionnel (teasers, tutos, vlog).
-                Suivi des tendances de la communauté bodyboard.');         
+                Suivi des tendances de la communauté bodyboard.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
         $team->setCategory($this->getReference('categoryTeam_2'));
@@ -148,7 +150,7 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
                 Recherche de financements ou investisseurs.
                 Gestion du site e-commerce (SEO, UX).
                 Lancement de nouvelles collections et promotions.
-                Optimisation des process logistiques.'); 
+                Optimisation des process logistiques.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
         $team->setCategory($this->getReference('categoryTeam_3'));
@@ -184,19 +186,19 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
                 Activités :
                 Planification stratégique.
                 Gestion des contrats des riders et des employés.
-                Recherche de financements ou investisseurs.'); 
+                Recherche de financements ou investisseurs.');
         $team->setCreatedAt(new \DateTimeImmutable());
         $team->setUpdatedAt(new \DateTimeImmutable());
         $team->setCategory($this->getReference('categoryTeam_5'));
         $manager->persist($team);
 
-        $manager->flush(); 
+        $manager->flush();
     }
-    
+
     public function getDependencies(): array
     {
         return [
-            CategoryTeamFixtures::class
-        ]; 
+            CategoryTeamFixtures::class,
+        ];
     }
 }

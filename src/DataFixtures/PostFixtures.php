@@ -4,17 +4,19 @@ namespace App\DataFixtures;
 
 use App\Entity\Post;
 use App\Repository\PostRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class PostFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private PostRepository $repo) {}    
+    public function __construct(private PostRepository $repo)
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
-        // Entrée en bdd d'articles 
+        // Entrée en bdd d'articles
         $post = new Post();
         $post->setTitle('Exploring the Waves');
         $post->setImage('../../imgs/posts/waves.jpg');
@@ -24,7 +26,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setUser($this->getReference('user_1'));
         $post->setCategory($this->getReference('categoryPost_10'));
         $manager->persist($post);
- 
+
         // Entrée en bdd d'articles
         $post = new Post();
         $post->setTitle('Top 5 Bodyboard Tricks');
@@ -46,7 +48,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setUser($this->getReference('user_9'));
         $post->setCategory($this->getReference('categoryPost_7'));
         $manager->persist($post);
-        
+
         $manager->flush();
     }
 
@@ -54,7 +56,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            CategoryPostFixtures::class
-        ]; 
+            CategoryPostFixtures::class,
+        ];
     }
 }

@@ -4,34 +4,33 @@ namespace App\Controller\API;
 
 use App\Entity\Product;
 use App\Repository\CategoryProductRepository;
-use OpenApi\Attributes as OA;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Nelmio\ApiDocBundle\Attribute\Model;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Routing\Requirement\Requirement;
+use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
-#[Route('/api/products', name:'api_products')]
-#[OA\Tag(name: "Product endpoints", description: "Product operations")]
-class ProductsController extends AbstractController
+#[Route('/api/products', name: 'api_products')]
+#[OA\Tag(name: 'Product endpoints', description: 'Product operations')]
+final class ProductsController extends AbstractController
 {
-    #[Route('/', name:'_all', methods: ['GET'])]   
+    #[Route('/', name: '_all', methods: ['GET'])]
     public function getProducts(ProductRepository $productRepo, SerializerInterface $serializer): JsonResponse
     {
         $products = $productRepo->findAll();
 
-        $data = $serializer->serialize($products, 'json', ['groups' => ['products.index','products.show','products.date']]);
+        $data = $serializer->serialize($products, 'json', ['groups' => ['products.index', 'products.show', 'products.date']]);
 
-        return new JsonResponse($data, 200, [], true); 
+        return new JsonResponse($data, 200, [], true);
     }
 
-    #[Route('/{id}', name:'_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]  
+    #[Route('/{id}', name: '_one', methods: ['GET'], requirements: ['id' => Requirement::DIGITS])]
     public function getProduct(ProductRepository $productRepo, int $id): JsonResponse
     {
         $product = $productRepo->find($id);
@@ -41,98 +40,97 @@ class ProductsController extends AbstractController
         }
 
         return $this->json($product, 200, [], [
-            'groups' => ['products.index','products.show']
-        ]);       
+            'groups' => ['products.index', 'products.show'],
+        ]);
     }
-    
-    #[Route('/', name: '_create', methods: ['POST'])] 
+
+    #[Route('/', name: '_create', methods: ['POST'])]
     #[OA\RequestBody(
         required: true,
         content: new OA\JsonContent(
-            type: "object",
-            required: ["title", "cover", "images", "colors", "sizes", "stock", "price", "description", "category", "user"],
+            type: 'object',
+            required: ['title', 'cover', 'images', 'colors', 'sizes', 'stock', 'price', 'description', 'category', 'user'],
             properties: [
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),
-                new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Accesories")
-                    ]),
-                new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
-                ])
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'object', required: ['name'], properties: [
+                    new OA\Property(property: 'name', type: 'string', example: 'Accesories'),
+                ]),
+                new OA\Property(property: 'user', type: 'object', required: ['email'], properties: [
+                    new OA\Property(property: 'email', type: 'string', example: 'hgautier@hotmail.fr'),
+                ]),
             ]
         )
     )]
     #[OA\Response(
         response: 201,
-        description: "Product created successfully",
+        description: 'Product created successfully',
         content: new OA\JsonContent(
-            type: "object",
+            type: 'object',
             properties: [
-                new OA\Property(property: "id", type: "integer", example: 1),
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),                          
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),                
-                new OA\Property(property: "category", type: "string", example: "Accesories"),
-                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
-                new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
-                new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'string', example: 'Accesories'),
+                new OA\Property(property: 'user', type: 'string', example: 'hgautier@hotmail.fr'),
+                new OA\Property(property: 'createdAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
+                new OA\Property(property: 'updatedAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
             ]
         )
     )]
     public function createProduct(Request $request, UserRepository $userRepo, CategoryProductRepository $catRepo, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['cover'], $data['images'], $data['colors'], $data['sizes'], $data['stock'], $data['price'], $data['description'], $data['category'], $data['user'])) {            
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+        
+        if (!array_key_exists('title', $data) || !array_key_exists('cover', $data) || !array_key_exists('images', $data) || !array_key_exists('colors', $data) || !array_key_exists('sizes', $data) || !array_key_exists('stock', $data) || !array_key_exists('price', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "cover", "images", "content", "category" and "user" are required.'], 400);
         }
 
         $product = new Product();
 
         $dataSer = $serializer->deserialize($request->getContent(), Product::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $product,
-            'groups' => ['products.create']
-        ]);        
-              
+            'groups' => ['products.create'],
+        ]);
+
         $product->setTitle($dataSer->getTitle());
         $product->setImages($dataSer->getImages());
         $product->setCover($dataSer->getCover());
@@ -143,14 +141,14 @@ class ProductsController extends AbstractController
         $product->setDescription($dataSer->getDescription());
         $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        $category = $catRepo->findOneBy(['name' => $data['category']]);        
+        $category = $catRepo->findOneBy(['name' => $data['category']]);
         $product->setCategory($category);
         $user = $userRepo->findOneBy(['email' => $data['user']]);
         $product->setUser($user);
 
         $entityManager->persist($product);
         $entityManager->flush();
-                
+
         $responseData = $serializer->serialize($product, 'json', ['groups' => 'products.show']);
 
         return new JsonResponse($responseData, 201, [], true);
@@ -165,83 +163,77 @@ class ProductsController extends AbstractController
             return $this->json(['error' => 'Product not found'], 404);
         }
 
-        $entityManager->remove($product);        
+        $entityManager->remove($product);
         $entityManager->flush();
-        
-        return $this->json($product, 204, [], []); 
+
+        return $this->json($product, 204, [], []);
     }
 
     #[Route('/{id}', name: '_update', methods: ['PUT'])]
     #[OA\RequestBody(
         required: true,
         content: new OA\JsonContent(
-            type: "object",
-            required: ["title", "cover", "images", "colors", "sizes", "stock", "price", "description", "category", "user"],
+            type: 'object',
+            required: ['title', 'cover', 'images', 'colors', 'sizes', 'stock', 'price', 'description', 'category', 'user'],
             properties: [
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),
-                new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Accesories")
-                    ]),
-                new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
-                ])
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'object', required: ['name'], properties: [
+                    new OA\Property(property: 'name', type: 'string', example: 'Accesories'),
+                ]),
+                new OA\Property(property: 'user', type: 'object', required: ['email'], properties: [
+                    new OA\Property(property: 'email', type: 'string', example: 'hgautier@hotmail.fr'),
+                ]),
             ]
         )
     )]
     #[OA\Response(
         response: 201,
-        description: "Product put successfully",
+        description: 'Product put successfully',
         content: new OA\JsonContent(
-            type: "object",
+            type: 'object',
             properties: [
-                new OA\Property(property: "id", type: "integer", example: 1),
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),                          
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),                
-                new OA\Property(property: "category", type: "string", example: "Accesories"),
-                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
-                new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
-                new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'string', example: 'Accesories'),
+                new OA\Property(property: 'user', type: 'string', example: 'hgautier@hotmail.fr'),
+                new OA\Property(property: 'createdAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
+                new OA\Property(property: 'updatedAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
             ]
         )
     )]
@@ -252,17 +244,22 @@ class ProductsController extends AbstractController
         if (!$product) {
             return $this->json(['error' => 'Product not found'], 404);
         }
-        
+
         $data = json_decode($request->getContent(), true);
-        if (!isset($data['title'], $data['cover'], $data['images'], $data['colors'], $data['sizes'], $data['stock'], $data['price'], $data['description'], $data['user'], $data['category'])) {            
-            return $this->json(['error' => 'Invalid input data'], 400);
+
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
+        if (!array_key_exists('title', $data) || !array_key_exists('cover', $data) || !array_key_exists('images', $data) || !array_key_exists('colors', $data) || !array_key_exists('sizes', $data) || !array_key_exists('stock', $data) || !array_key_exists('price', $data) || !array_key_exists('description', $data) || !array_key_exists('category', $data) || !array_key_exists('user', $data)) {
+            return $this->json(['error' => 'Fields "title", "cover", "images", "content", "category" and "user" are required.'], 400);
         }
 
         $dataSer = $serializer->deserialize($request->getContent(), Product::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $product,
-            'groups' => ['products.create']
-        ]);        
-              
+            'groups' => ['products.create'],
+        ]);
+
         $product->setTitle($dataSer->getTitle());
         $product->setImages($dataSer->getImages());
         $product->setCover($dataSer->getCover());
@@ -271,9 +268,9 @@ class ProductsController extends AbstractController
         $product->setStock($dataSer->getStock());
         $product->setPrice($dataSer->getPrice());
         $product->setDescription($dataSer->getDescription());
-        //$product->setCreatedAt(new \DateTimeImmutable());
+        // $product->setCreatedAt(new \DateTimeImmutable());
         $product->setUpdatedAt(new \DateTimeImmutable());
-        $category = $catRepo->findOneBy(['name' => $data['category']]);        
+        $category = $catRepo->findOneBy(['name' => $data['category']]);
         $product->setCategory($category);
         $user = $userRepo->findOneBy(['email' => $data['user']]);
         $product->setUser($user);
@@ -284,79 +281,73 @@ class ProductsController extends AbstractController
         $responseData = $serializer->serialize($product, 'json', ['groups' => 'products.show']);
 
         return new JsonResponse($responseData, 201, [], true);
-    } 
-    
+    }
+
     #[Route('/{id}', name: '_updateField', methods: ['PATCH'])]
     #[OA\RequestBody(
         required: true,
         content: new OA\JsonContent(
-            type: "object",
-            required: ["title", "cover", "images", "colors", "sizes", "stock", "price", "description", "category", "user"],
+            type: 'object',
+            required: ['title', 'cover', 'images', 'colors', 'sizes', 'stock', 'price', 'description', 'category', 'user'],
             properties: [
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),
-                new OA\Property(property: "category", type: "object", required: ["name"], properties: [
-                        new OA\Property(property: "name", type: "string", example: "Accesories")
-                    ]),
-                new OA\Property(property: "user", type: "object", required: ["email"], properties: [
-                    new OA\Property(property: "email", type: "string", example: "hgautier@hotmail.fr")
-                ])
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'object', required: ['name'], properties: [
+                    new OA\Property(property: 'name', type: 'string', example: 'Accesories'),
+                ]),
+                new OA\Property(property: 'user', type: 'object', required: ['email'], properties: [
+                    new OA\Property(property: 'email', type: 'string', example: 'hgautier@hotmail.fr'),
+                ]),
             ]
         )
     )]
     #[OA\Response(
         response: 201,
-        description: "Product patched successfully",
+        description: 'Product patched successfully',
         content: new OA\JsonContent(
-            type: "object",
+            type: 'object',
             properties: [
-                new OA\Property(property: "id", type: "integer", example: 1),
-                new OA\Property(property: "title", type: "string", example: "My first Product"),
-                new OA\Property(property: "cover", type: "string", example: "https://example.com/image.jpg"),
-                new OA\Property(property: "images", type: "array", items:
-                    new OA\Items(type: "string",                        
-                            description: "An array of image URLs representing the product images.",
-                            example: "https://example.com/image1.jpg"
-                        )),                        
-                new OA\Property(property: "colors", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "black"
-                        )),                
-                new OA\Property(property: "sizes", type: "array", items:
-                    new OA\Items(
-                            type: "string",                            
-                            description: "An array of colors representing the color of the product.",
-                            example: "42"
-                        )),                          
-                new OA\Property(property: "stock", type: "integer", example: 5),
-                new OA\Property(property: "price", type: "integer", example: 25.50),
-                new OA\Property(property: "description", type: "string", example: "The description of the product..."),                
-                new OA\Property(property: "category", type: "string", example: "Accesories"),
-                new OA\Property(property: "user", type: "string", example: "hgautier@hotmail.fr"),
-                new OA\Property(property: "createdAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z"),
-                new OA\Property(property: "updatedAt", type: "string", format: "date-time", example: "2025-01-16T14:30:00Z")
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+                new OA\Property(property: 'title', type: 'string', example: 'My first Product'),
+                new OA\Property(property: 'cover', type: 'string', example: 'https://example.com/image.jpg'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string',
+                    description: 'An array of image URLs representing the product images.',
+                    example: 'https://example.com/image1.jpg'
+                )),
+                new OA\Property(property: 'colors', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: 'black'
+                )),
+                new OA\Property(property: 'sizes', type: 'array', items: new OA\Items(
+                    type: 'string',
+                    description: 'An array of colors representing the color of the product.',
+                    example: '42'
+                )),
+                new OA\Property(property: 'stock', type: 'integer', example: 5),
+                new OA\Property(property: 'price', type: 'integer', example: 25.50),
+                new OA\Property(property: 'description', type: 'string', example: 'The description of the product...'),
+                new OA\Property(property: 'category', type: 'string', example: 'Accesories'),
+                new OA\Property(property: 'user', type: 'string', example: 'hgautier@hotmail.fr'),
+                new OA\Property(property: 'createdAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
+                new OA\Property(property: 'updatedAt', type: 'string', format: 'date-time', example: '2025-01-16T14:30:00Z'),
             ]
         )
     )]
@@ -370,69 +361,110 @@ class ProductsController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        if (!is_array($data)) {
+            return $this->json(['error' => 'Invalid JSON format'], 400);
+        }
+
         $dataSer = $serializer->deserialize($request->getContent(), Product::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $product,
-            'groups' => ['products.update']
-        ]);        
-          
-        if (isset($data['title'])) {
-            $product->setTitle($dataSer->getTitle());
+            'groups' => ['products.update'],
+        ]);
+
+        if (array_key_exists('title', $data)) {
+            $title = $dataSer->getTitle();
+            if ($title === null) {
+                return $this->json(['error' => 'The "title" field cannot be null'], 400);
+            }
+            $product->setTitle($title);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['cover'])) {
-            $product->setCover($dataSer->getCover());
+        if (array_key_exists('cover', $data)) {
+            $cover = $dataSer->getCover();
+            if ($cover === null) {
+                return $this->json(['error' => 'The "cover" field cannot be null'], 400);
+            }
+            $product->setTitle($cover);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['images'])) {
-            $product->setImages($dataSer->getImages());
+        if (array_key_exists('images', $data)) {
+            $images = $dataSer->getImages();
+            if ($images === null) {
+                return $this->json(['error' => 'The "images" field cannot be null'], 400);
+            }
+            $product->setImages($images);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['colors'])) {
-            $product->setColors($dataSer->getColors());
+        if (array_key_exists('colors', $data)) {
+            $colors = $dataSer->getColors();
+            if ($colors === null) {
+                return $this->json(['error' => 'The "colors" field cannot be null'], 400);
+            }
+            $product->setColors($colors);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['sizes'])) {
-            $product->setSizes($dataSer->getSizes());
+        if (array_key_exists('sizes', $data)) {
+            $sizes = $dataSer->getSizes();
+            if ($sizes === null) {
+                return $this->json(['error' => 'The "sizes" field cannot be null'], 400);
+            }
+            $product->setSizes($sizes);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['stock'])) {
-            $product->setStock($dataSer->getStock());
+        if (array_key_exists('stock', $data)) {
+            $stock = $dataSer->getStock();
+            if ($stock === null) {
+                return $this->json(['error' => 'The "stock" field cannot be null'], 400);
+            }
+            $product->setStock($stock);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['price'])) {
-            $product->setPrice($dataSer->getPrice());
+        if (array_key_exists('price', $data)) {
+            $price = $dataSer->getPrice();
+            if ($price === null) {
+                return $this->json(['error' => 'The "price" field cannot be null'], 400);
+            }
+            $product->setPrice($price);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['description'])) {
-            $product->setDescription($dataSer->getDescription());
+        if (array_key_exists('description', $data)) {
+            $description = $dataSer->getDescription();
+            if ($description === null) {
+                return $this->json(['error' => 'The "description" field cannot be null'], 400);
+            }
+            $product->setDescription($description);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['category'])) {
-            $category = $catRepo->findOneBy(['name' => $data['category']]);        
-            $product->setCategory($category); 
+        if (array_key_exists('category', $data)) {
+            $category = $catRepo->findOneBy(['name' => $data['category']]);
+            if ($category === null) {
+                return $this->json(['error' => 'The "category" field cannot be null'], 400);
+            }
+            $product->setCategory($category);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        if (isset($data['user'])) {
+        if (array_key_exists('user', $data)) {
             $user = $userRepo->findOneBy(['email' => $data['user']]);
-            $product->setUser($user);            
+            if ($user === null) {
+                return $this->json(['error' => 'The "user" field cannot be null'], 400);
+            }
+            $product->setUser($user);
             $product->setUpdatedAt(new \DateTimeImmutable());
         }
 
-        $entityManager->persist($product);        
+        $entityManager->persist($product);
         $entityManager->flush();
 
         $responseData = $serializer->serialize($product, 'json', ['groups' => 'products.show']);
 
         return new JsonResponse($responseData, 201, [], true);
-    }  
-    
+    }
 }
