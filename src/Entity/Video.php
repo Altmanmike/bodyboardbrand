@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
 #[ORM\Table(name: '`video`')]
-final class Video
+class Video
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

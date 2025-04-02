@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
 #[ORM\Table(name: '`member`')]
-final class Member
+class Member
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
