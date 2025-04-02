@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method CategoryVideo[]    findAll()
  * @method CategoryVideo[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryVideoRepository extends ServiceEntityRepository
+final class CategoryVideoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
