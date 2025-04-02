@@ -13,6 +13,7 @@ class CategoryProductFixtures extends Fixture
     {
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Entrée en bdd de catégories de vidéos youtube

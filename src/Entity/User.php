@@ -141,6 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
+    #[\Override]
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -151,6 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return list<string>
      */
+    #[\Override]
     public function getRoles(): array
     {
         $roles = $this->roles;

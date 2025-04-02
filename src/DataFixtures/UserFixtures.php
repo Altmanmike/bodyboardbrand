@@ -15,6 +15,7 @@ class UserFixtures extends Fixture
     {
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Génération de l'admin du site de l'application GeoPV
