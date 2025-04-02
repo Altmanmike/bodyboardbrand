@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class PostController extends AbstractController
+final class PostController extends AbstractController
 {
     /*#[Route('/api/posts', name: 'api_post_all')]
     public function getCollection(): Response

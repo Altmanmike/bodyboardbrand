@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class InnovationController extends AbstractController
+final class InnovationController extends AbstractController
 {
     #[Route('/innovation', name: 'app_innovation')]
     public function index(): Response

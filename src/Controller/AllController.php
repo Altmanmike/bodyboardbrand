@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/all', name: 'app_all')]
-class AllController extends AbstractController
+final class AllController extends AbstractController
 {
     #[Route('/', name: '')]
     public function index(

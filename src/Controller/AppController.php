@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class AppController extends AbstractController
+final class AppController extends AbstractController
 {
     #[Route('/', name: 'app')]
     public function index(SerializerInterface $serializer,

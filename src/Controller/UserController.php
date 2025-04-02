@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class UserController extends AbstractController
+final class UserController extends AbstractController
 {
     /*#[Route('/api/users', name: 'api_user_all')]
     public function getCollection(): Response

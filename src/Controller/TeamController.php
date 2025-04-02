@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class TeamController extends AbstractController
+final class TeamController extends AbstractController
 {
     #[Route('/team', name: 'app_team')]
     public function index(): Response
