@@ -14,7 +14,6 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Entrée en bdd d'articles
@@ -53,7 +52,6 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    #[\Override]
     public function getDependencies(): array
     {
         return [

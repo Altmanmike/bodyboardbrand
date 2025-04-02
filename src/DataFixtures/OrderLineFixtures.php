@@ -14,7 +14,6 @@ class OrderLineFixtures extends Fixture implements DependentFixtureInterface
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Entrée en bdd de ligne de commande
@@ -40,7 +39,6 @@ class OrderLineFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    #[\Override]
     public function getDependencies(): array
     {
         return [

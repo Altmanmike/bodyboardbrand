@@ -13,7 +13,6 @@ class ProductFixtures extends Fixture
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // BOARDS
@@ -278,7 +277,6 @@ class ProductFixtures extends Fixture
         $manager->flush();
     }
 
-    #[\Override]
     public function getDependencies(): array
     {
         return [

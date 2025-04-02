@@ -13,7 +13,6 @@ class CategoryTeamFixtures extends Fixture
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Entrée en bdd de catégories d'équipes

@@ -14,7 +14,6 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Génération de l'admin du site de l'application GeoPV
@@ -39,7 +38,6 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    #[\Override]
     public function getDependencies(): array
     {
         return [

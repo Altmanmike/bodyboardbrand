@@ -14,7 +14,6 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
     {
     }
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         // Teams
@@ -196,7 +195,6 @@ class TeamFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    #[\Override]
     public function getDependencies(): array
     {
         return [
