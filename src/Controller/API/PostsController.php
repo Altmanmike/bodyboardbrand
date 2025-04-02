@@ -278,7 +278,7 @@ final class PostsController extends AbstractController
             if ($image === null) {
                 return $this->json(['error' => 'The "image" field cannot be null'], 400);
             }
-            $post->setTitle($title);
+            $post->setImage($image);
             $post->setUpdatedAt(new \DateTimeImmutable());
         }
 
