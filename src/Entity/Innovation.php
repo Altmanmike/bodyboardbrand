@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: InnovationRepository::class)]
 #[ORM\Table(name: '`innovation`')]
-class Innovation
+final class Innovation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

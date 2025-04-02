@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryPostRepository::class)]
 #[ORM\Table(name: '`categoryPost`')]
-class CategoryPost
+final class CategoryPost
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

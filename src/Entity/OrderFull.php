@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderFullRepository::class)]
 #[ORM\Table(name: '`orderFull`')]
-class OrderFull
+final class OrderFull
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
