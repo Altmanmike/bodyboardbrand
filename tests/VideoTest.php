@@ -6,7 +6,7 @@ use App\Entity\CategoryVideo;
 use App\Entity\Video;
 use PHPUnit\Framework\TestCase;
 
-class VideoTest extends TestCase
+final class VideoTest extends TestCase
 {
     public function testVideoSettersAndGetters()
     {

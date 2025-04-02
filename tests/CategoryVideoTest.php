@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\CategoryVideo;
 use PHPUnit\Framework\TestCase;
 
-class CategoryVideoTest extends TestCase
+final class CategoryVideoTest extends TestCase
 {
     public function testCategoryVideoEntity()
     {

@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\CategoryTeam;
 use PHPUnit\Framework\TestCase;
 
-class CategoryTeamTest extends TestCase
+final class CategoryTeamTest extends TestCase
 {
     public function testCategoryTeamEntity()
     {

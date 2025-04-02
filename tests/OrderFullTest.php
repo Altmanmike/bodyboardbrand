@@ -6,7 +6,7 @@ use App\Entity\OrderFull;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-class OrderFullTest extends TestCase
+final class OrderFullTest extends TestCase
 {
     public function testOrderFullSettersAndGetters()
     {

@@ -7,7 +7,7 @@ use App\Entity\OrderLine;
 use App\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
-class OrderRelationshipTest extends TestCase
+final class OrderRelationshipTest extends TestCase
 {
     public function testOrderFullWithOrderLines()
     {

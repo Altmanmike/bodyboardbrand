@@ -6,7 +6,7 @@ use App\Entity\CategoryProduct;
 use App\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
-class ProductTest extends TestCase
+final class ProductTest extends TestCase
 {
     public function testProductSettersAndGetters()
     {

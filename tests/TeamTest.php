@@ -8,7 +8,7 @@ use App\Entity\Team;
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
-class TeamTest extends TestCase
+final class TeamTest extends TestCase
 {
     public function testTeamSettersAndGetters()
     {

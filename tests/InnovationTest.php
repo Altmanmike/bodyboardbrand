@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\Innovation;
 use PHPUnit\Framework\TestCase;
 
-class InnovationTest extends TestCase
+final class InnovationTest extends TestCase
 {
     public function testInnovationSettersAndGetters()
     {
