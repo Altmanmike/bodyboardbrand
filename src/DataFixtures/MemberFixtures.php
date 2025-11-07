@@ -21,7 +21,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setLastname('ALTMAN');
         $member->setNickname('MikyMike');
         $member->setRole('Dev Web');
-        $member->setPhoto('/public/build/images/dev.0e60f8e1.jpg');
+        $member->setPhoto('/build/images/dev.0e60f8e1.jpg');
         $member->setBiography('Meet Mike, a 30-year-old with a passion for the ocean and a newfound love for coding. When hes not catching waves at his local beach, hes diving into the world of web development. As a beginner bodyboarder, Mike is still learning the ropes, but his determination and enthusiasm are undeniable.');
         $member->setSponsors('KZ, Volcom');
         $member->setInstagram('https://www.instagram.com/mikymike/');
@@ -40,7 +40,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setLastname('BERNARD');
         $member->setNickname('Domy');
         $member->setRole('Leader');
-        $member->setPhoto('/public/build/images/leader.9f810f05.jpg');
+        $member->setPhoto('/build/images/leader.9f810f05.jpg');
         $member->setBiography('Domy, a legend in the bodyboarding world, hails from the shores of Lacanau. As an international leader and KZ team rider, his powerful style and innovative maneuvers have inspired generations. When hes not dominating competitions, hes mentoring young riders and pushing the limits of the sport.');
         $member->setSponsors('KZ, Volcom, Vans');
         $member->setInstagram('https://www.instagram.com/domard/');
@@ -59,7 +59,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setLastname('JACQUET');
         $member->setNickname('Jo');
         $member->setRole('Pro');
-        $member->setPhoto('/public/build/images/pro1.84373019.jpg');
+        $member->setPhoto('/build/images/pro1.84373019.jpg');
         $member->setBiography('Jo brings a unique flavor to the KZ team, representing the vibrant bodyboarding scene of Guiana. With his explosive style and fearless approach, hes a rising star on the pro circuit. When hes not chasing barrels, hes exploring the untouched waves of his home coast.');
         $member->setSponsors('KZ');
         $member->setInstagram('https://www.instagram.com/jo750/');
@@ -78,7 +78,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setLastname('DIDIER');
         $member->setNickname('Didou');
         $member->setRole('Pro');
-        $member->setPhoto('/public/build/images/pro2.b86b29c3.jpg');
+        $member->setPhoto('/build/images/pro2.b86b29c3.jpg');
         $member->setBiography('Didou, a local hero from Reunion Island, is known for his powerful performances in heavy waves. As a KZ pro, he combines raw talent with a deep connection to the ocean. When hes not charging reefs, hes sharing his passion for bodyboarding with the next generation.');
         $member->setSponsors('KZ');
         $member->setInstagram('https://www.instagram.com/didouuu/');
@@ -97,7 +97,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setLastname('MARQUES');
         $member->setNickname('Mark');
         $member->setRole('Junior');
-        $member->setPhoto('/public/build/images/junior2.405bd38f.jpg');
+        $member->setPhoto('/build/images/junior2.405bd38f.jpg');
         $member->setBiography('Mark is the future of Lacanau bodyboarding. As a junior team rider, his raw talent and dedication are evident in every session. With his sights set on the pro circuit, hes constantly pushing his limits and learning from the best.');
         $member->setSponsors('KZ');
         $member->setInstagram('https://www.instagram.com/rm02/');
