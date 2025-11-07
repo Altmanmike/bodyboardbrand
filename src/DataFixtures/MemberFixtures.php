@@ -29,9 +29,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/mikymike/');
         $member->setRanking(0);
         $member->setCreatedAt(new \DateTimeImmutable());
-
         $member->setUser($this->getReference('user_0'));
-
+        
         $manager->persist($member);
 
         
@@ -49,6 +48,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/domard/');
         $member->setRanking(17);
         $member->setCreatedAt(new \DateTimeImmutable());
+        $member->setUser($this->getReference('user_1'));
+        
         $manager->persist($member);
 
 
@@ -66,6 +67,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/jo750/');
         $member->setRanking(30);
         $member->setCreatedAt(new \DateTimeImmutable());
+        $member->setUser($this->getReference('user_2'));
+        
         $manager->persist($member);
         
 
@@ -83,6 +86,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/didouuu/');
         $member->setRanking(30);
         $member->setCreatedAt(new \DateTimeImmutable());
+        $member->setUser($this->getReference('user_3'));
+        
         $manager->persist($member);
 
         
@@ -100,6 +105,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/rm02/');
         $member->setRanking(30);
         $member->setCreatedAt(new \DateTimeImmutable());
+        $member->setUser($this->getReference('user_4'));
+        
         $manager->persist($member);
 
         
@@ -117,6 +124,8 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $member->setYoutube('https://www.youtube.com/dann48/');
         $member->setRanking(30);
         $member->setCreatedAt(new \DateTimeImmutable());
+        $member->setUser($this->getReference('user_5'));
+        
         $manager->persist($member);
         
         
