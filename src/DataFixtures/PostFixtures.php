@@ -17,7 +17,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'articles 
         $post = new Post();
         $post->setTitle('Exploring the Waves');
-        $post->setImage('../../imgs/posts/waves.jpg');
+        $post->setImage('/public/build/images/waves.4020a681.jpg');
         $post->setContent('Discover the best spots for bodyboarding this summer.');
         $post->setCreatedAt(new \DateTimeImmutable());
         $post->setUpdatedAt(new \DateTimeImmutable());
@@ -28,7 +28,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'articles
         $post = new Post();
         $post->setTitle('Top 5 Bodyboard Tricks');
-        $post->setImage('../../imgs/posts/tricks.jpg');
+        $post->setImage('/public/build/images/tricks.facbb0c4.jpg');
         $post->setContent('Learn the most exciting tricks to level up your skills.');
         $post->setCreatedAt(new \DateTimeImmutable());
         $post->setUpdatedAt(new \DateTimeImmutable());
@@ -39,7 +39,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'articles
         $post = new Post();
         $post->setTitle('Maintaining Your Gear');
-        $post->setImage('../../imgs/posts/gear.jpg');
+        $post->setImage('/public/build/images/gear.fb70c022.jpg');
         $post->setContent('Tips to ensure your bodyboard and fins last longer.');
         $post->setCreatedAt(new \DateTimeImmutable());
         $post->setUpdatedAt(new \DateTimeImmutable());

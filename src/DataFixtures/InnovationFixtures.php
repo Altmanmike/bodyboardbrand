@@ -17,7 +17,7 @@ class InnovationFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
         $innovation->setTitle('Reinforced Board Stringers');
-        $innovation->setImage('../../imgs/innovation/stringers.jpg');
+        $innovation->setImage('/public/build/images/stringers.6434a365.jpg');
         $innovation->setContent('New stringer technology for improved board flexibility and strength.');
         $innovation->setCreatedAt(new \DateTimeImmutable());
         $innovation->setUpdatedAt(new \DateTimeImmutable());                
@@ -27,7 +27,7 @@ class InnovationFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
         $innovation->setTitle('Hydrodynamic Fins');
-        $innovation->setImage('../../imgs/innovation/fins.jpg');
+        $innovation->setImage('/public/build/images/fins.ec7b529c.jpg');
         $innovation->setContent('New stringer technology for improved board flexibility and strength.');
         $innovation->setCreatedAt(new \DateTimeImmutable());
         $innovation->setUpdatedAt(new \DateTimeImmutable());
@@ -37,7 +37,7 @@ class InnovationFixtures extends Fixture implements DependentFixtureInterface
         // Entrée en bdd d'article d'innovation
         $innovation = new Innovation();
         $innovation->setTitle('Eco-Friendly Leash');
-        $innovation->setImage('../../imgs/innovation/leash.jpg');
+        $innovation->setImage('/public/build/images/leash.a46e4147.jpg');
         $innovation->setContent('Sustainable materials to minimize ocean pollution.');
         $innovation->setCreatedAt(new \DateTimeImmutable());
         $innovation->setUpdatedAt(new \DateTimeImmutable());
